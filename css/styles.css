@@ -1,21 +1,81 @@
 /**************************************************
                  GENERAL Sytles
 ***************************************************/
+body{
+    display: grid;
+    grid-template-rows: 70px auto 200px; 
 
+    margin: 0px;
+    color: white;
+}
 
 
 /**************************************************
                  HEADER Sytles
 ***************************************************/
-
+header{
+    background-color: blue;
+}
 
 
 /**************************************************
                  MAIN Sytles
 ***************************************************/
+main{
+    background-color: green;
+}
 
+main .banner{
+    width: 100%;
+    background-color: yellow;
+    height: 250px;
+}
+
+main .content{
+    max-width: 1000px;
+    background-color: indigo;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 1200px){
+    main .content{
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+    /**************************************************
+                 Search-Area Sytles
+    ***************************************************/
+    .search-area{
+        
+    }
+
+    /**************************************************
+                 Results-Area Sytles
+    ***************************************************/
+    .results-area{
+        
+    }
+
+    /**************************************************
+                 Search-Area Sytles
+    ***************************************************/
+    .promoted-area{
+        
+    }
+
+    /**************************************************
+                 Search-Area Sytles
+    ***************************************************/
+    .newest-area{
+        
+    }
 
 
 /**************************************************
                  FOOTER Sytles
 ***************************************************/
+footer{
+    background-color: red;
+}
