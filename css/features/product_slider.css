@@ -5,6 +5,280 @@ h2 {
     color: red;
 }
 
+.slider {
+    position: relative;
+    margin-top: 30px;
+    height: 490px;
+}
+
+.slider ul {
+    list-style-type: none;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 140px;
+	overflow: hidden;
+	text-align: center;
+	pointer-events: none;
+}
+
+.slider ul.mi-current {
+	pointer-events: auto;
+}
+
+.no-js .slider ul {
+	position: relative;
+	left: auto;
+	bottom: auto;
+	margin: 0;
+	overflow: visible;
+}
+
+.slider ul li {
+	display: inline-block;
+	padding: 20px;
+	width: 20%;
+	max-width: 300px;
+	transform: translateX(600%);
+	transition: opacity 0.2s linear;
+}
+
+.no-js .slider ul li {
+	transform: translateX(0);
+}
+
+.slider ul li a,
+.slider ul li img {
+	display: block;
+	margin: 0 auto;
+}
+
+.slider ul li a {
+	outline: none;
+	cursor: pointer;
+}
+
+.slider ul li img {
+	max-width: 100%;
+	border: none;
+}
+
+.slider ul li h4 {
+	display: inline-block;
+	font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-style: italic;
+	font-weight: 400;
+	font-size: 18px;
+	padding: 20px 10px 0;
+}
+
+.slider ul li:hover {
+	opacity: 0.7;
+} 
+
+.slider nav {
+	position: relative;
+	top: 400px;
+	text-align: center;
+	max-width: 800px;
+	margin: 0 auto;
+	border-top: 5px solid #333;
+}
+
+.no-js nav {
+	display: none;
+}
+
+.slider nav a {
+	display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	padding: 40px 30px 30px 34px;
+	position: relative;
+	color: #888;
+	outline: none;
+	transition: color 0.2s linear;
+}
+
+.slider nav a:hover,
+.slider nav a.mi-selected {
+	color: #000;
+}
+
+.slider nav a.mi-selected:after,
+.slider nav a.mi-selected:before {
+	content: '';
+	position: absolute;
+	top: -5px;
+	border: solid transparent;
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.slider nav a.mi-selected:after {
+	border-color: transparent;
+	border-top-color: #fff;
+	border-width: 20px;
+	left: 50%;
+	margin-left: -20px;
+}
+
+.slider nav a.mi-selected:before {
+	border-color: transparent;
+	border-top-color: #333;
+	border-width: 27px;
+	left: 50%;
+	margin-left: -27px;
+}
+
+.slider ul:first-child li,
+.no-js .slider ul li {
+	animation: scaleUp 350ms ease-in-out both;
+}
+
+@keyframes scaleUp {
+	0% { transform: translateX(0) scale(0); }
+	100% { transform: translateX(0) scale(1); }
+}
+
+.slider ul:first-child li:first-child {
+	animation-delay: 90ms;
+}
+
+.slider ul:first-child li:nth-child(2) {
+	animation-delay: 180ms;
+}
+
+.slider ul:first-child li:nth-child(3) {
+	animation-delay: 270ms;
+}
+
+.slider ul:first-child li:nth-child(4) {
+	animation-delay: 360ms;
+}
+
+/* moveFromRight */
+
+.slider ul.mi-moveFromRight li {
+	animation: moveFromRight 350ms ease-in-out both;
+}
+
+/* moveFromLeft */
+
+.slider ul.mi-moveFromLeft li {
+	animation: moveFromLeft 350ms ease-in-out both;
+}
+
+/* moveToRight */
+
+.slider ul.mi-moveToRight li {
+	animation: moveToRight 350ms ease-in-out both;
+}
+
+/* moveToLeft */
+
+.slider ul.mi-moveToLeft li {
+	animation: moveToLeft 350ms ease-in-out both;
+}
+
+.slider ul.mi-moveToLeft li:first-child,
+.slider ul.mi-moveFromRight li:first-child,
+.slider ul.mi-moveToRight li:nth-child(4),
+.slider ul.mi-moveFromLeft li:nth-child(4) {
+	animation-delay: 0ms;
+}
+
+.slider ul.mi-moveToLeft li:nth-child(2),
+.slider ul.mi-moveFromRight li:nth-child(2),
+.slider ul.mi-moveToRight li:nth-child(3),
+.slider ul.mi-moveFromLeft li:nth-child(3) {
+	-webkit-animation-delay: 90ms;
+	animation-delay: 90ms;
+}
+
+.slider ul.mi-moveToLeft li:nth-child(3),
+.slider ul.mi-moveFromRight li:nth-child(3),
+.slider ul.mi-moveToRight li:nth-child(2),
+.slider ul.mi-moveFromLeft li:nth-child(2) {
+	-webkit-animation-delay: 180ms;
+	animation-delay: 180ms;
+}
+
+.slider ul.mi-moveToLeft li:nth-child(4),
+.slider ul.mi-moveFromRight li:nth-child(4),
+.slider ul.mi-moveToRight li:first-child,
+.slider ul.mi-moveFromLeft li:first-child  {
+	-webkit-animation-delay: 270ms;
+	animation-delay: 270ms;
+}
+
+@keyframes moveFromRight {
+	0% { transform: translateX(600%); }
+	100% { transform: translateX(0); }
+}
+
+@keyframes moveFromLeft {
+	0% { transform: translateX(-600%); }
+	100% { transform: translateX(0); }
+}
+
+@keyframes moveToRight {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(600%); }
+}
+
+@keyframes moveToLeft {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(-600%); }
+}
+
+@media screen and (max-width: 910px){
+	.slider nav {
+		max-width: 90%;
+	}
+
+	.slider nav a {
+		font-size: 12px;
+		padding: 40px 10px 30px 14px;
+	}
+}
+
+@media screen and (max-width: 740px){
+	.slider {
+		height: 300px;
+	}
+
+	.slider nav {
+		top: 220px;
+	}
+}
+
+@media screen and (max-width: 490px){ 
+	.slider {
+		text-align: center;
+		height: auto;
+	}
+
+	.slider ul {
+		position: relative;
+		display: inline;
+		bottom: auto;
+		pointer-events: auto;
+	}
+
+	.slider ul li {
+		animation: none !important;
+		transform: translateX(0) !important;
+		padding: 10px 3px;
+		min-width: 140px;
+	}
+
+	.slider nav {
+		display: none;
+	}
+}
 
 /**************************************************
                  HEADER Sytles
