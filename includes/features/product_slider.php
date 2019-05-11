@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 	<head>
 		<link rel="stylesheet" type="text/css" href="/css/features/product_slider_styles.css" />
-		<script src="js/modernizr.custom.63321.js"></script>
+		<script src="/js/features/product_slider_js/modernizr.custom.63321.js"></script>
 	</head>
 	<body>
 		<div class="container">	
@@ -44,7 +44,7 @@
 
 		<!-- below jquery script allows slider to present arrow for current tab -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-		<script src="js/jquery.catslider.js"></script>
+		<script src="/js/features/product_slider_js/jquery.catslider.js"></script>
 		<script>
 			$(function() {
 
