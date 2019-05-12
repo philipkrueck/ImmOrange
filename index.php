@@ -17,8 +17,10 @@
     $balcony = (isset($_POST['balcony'])) ? $_POST['balcony'] : 0;
     $bathtub = (isset($_POST['bathtub'])) ? $_POST['bathtub'] : 0;
     $lift = (isset($_POST['lift'])) ? $_POST['lift'] : 0;
-    $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;;
-    $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;;
+    $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;
+    $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;
+    $full_text_search = (isset($_POST['$full_text_search'])) ? $_POST['$full_text_search'] : 0;;
+    
 
 ?>
 
@@ -203,13 +205,13 @@
                             </form>
                         </div>
 
-                        <!-- FREE-TEXT-SEARCH-AREA -->
+                        <!-- FULL-TEXT-SEARCH-AREA -->
                         <div id="tabs-2">
                             <form action="#results" method="POST">
-                                <div class="free-text-search-area">
+                                <div class="full-text-search-area">
 
                                     <!-- search-bar -->
-                                    <input type="text" class="free-text-search-bar" placeholder="Finde deine Traumimmobilie hier ..">
+                                    <input type="text" name="$full_text_search" class="full-text-search-bar" placeholder="Finde deine Traumimmobilie hier ..">
 
                                     <!-- submit -->
                                     <input type="submit" value="Suchen!">  

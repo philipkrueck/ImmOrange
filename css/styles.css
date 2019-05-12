@@ -284,10 +284,10 @@ main .content{
             }
 
             /**************************************************
-                     Free-Text-Search Sytles
+                     Full-Text-Search Sytles
             ***************************************************/
     
-            .free-text-search-area{
+            .full-text-search-area{
                 text-align: center;
                 background-color: #717171;
                 border-radius: 0px 0px 3px 3px;
@@ -295,7 +295,7 @@ main .content{
                 padding: 30px 50px 20px 50px;
             }
 
-            .free-text-search-bar{
+            .full-text-search-bar{
                 width: 100% !important;
                 display: block;
                 border-radius: 50px !important;
