@@ -33,10 +33,6 @@
         <!-- Homepage-Title -->
         <title>Page Title</title>
 
-        <!-- Link-Relations -->
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-
         <!-- Feature-Includes -->
         <?php 
             include ('includes/features/autocomplete.php');
@@ -44,6 +40,10 @@
             include ('includes/features/price_range.php');
             include ('includes/features/search_tabs.php');
         ?>
+
+        <!-- Link-Relations -->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />        
         
 
     </head>
@@ -61,18 +61,6 @@
         <!-- MAIN-AREA -->
         <main>
 
-            <!-- BANNER-AREA -->
-            <div class="banner">
-
-                <!-- PLACEHOLDER -->
-                <h2 style="
-                    text-align: center;
-                    padding-top: 100px;
-                    margin: 0px;"
-                >BANNER</h2>
-
-            </div>
-
             <!-- CONTENT-AREA -->
             <div class="content">
             
@@ -82,8 +70,8 @@
                     <!-- SEARCH-TABS -->
                     <div id="search-tabs">
                         <ul>
-                            <li><a href="#tabs-1">erweiterte Suche</a></li>
-                            <li><a href="#tabs-2">Freitextsuche</a></li>
+                            <li><a href="#tabs-1">Erweiterte Suche</a></li>
+                            <li><a href="#tabs-2">Suche</a></li>
                         </ul>
 
                         <!-- EXTENDED-SEARCH-AREA -->
@@ -239,7 +227,7 @@
                     text-align: center;
                     margin: 0px;"
                     >PROMOTED</h2>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
+                    <p style="margin: 0px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
                     invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
                      et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
                      Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
@@ -257,7 +245,7 @@
                     text-align: center;
                     margin: 0px;"
                     >NEWEST</h2>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
+                    <p style="margin: 0px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
                     invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
                      et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
                      Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
