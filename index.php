@@ -164,35 +164,35 @@
                                 
                                     <!-- basement -->
                                     <div class="checkbox-container">
-                                        <img src="../img/basement.png" class="checkbox-icon">
+                                        <img src="../img/icons/basement.png" class="checkbox-icon">
                                         <span class="checkbox-description">Keller</span>
                                         <input type="checkbox" name="basement" value="true">
                                     </div>
 
                                     <!-- garden -->
                                     <div class="checkbox-container">
-                                        <img src="../img/botanical.png" class="checkbox-icon">
+                                        <img src="../img/icons/botanical.png" class="checkbox-icon">
                                         <span class="checkbox-description">Garten</span>
                                         <input type="checkbox" name="garden"  value="true">
                                     </div>
 
                                     <!-- balcony -->
                                     <div class="checkbox-container">
-                                        <img src="../img/balcony.png" class="checkbox-icon">
+                                        <img src="../img/icons/balcony.png" class="checkbox-icon">
                                         <span class="checkbox-description">Balkon</span>
                                         <input type="checkbox" name="balcony"  value="true">
                                     </div>
 
                                     <!-- bathtub -->
                                     <div class="checkbox-container">
-                                        <img src="../img/bathtub.png" class="checkbox-icon">
+                                        <img src="../img/icons/bathtub.png" class="checkbox-icon">
                                         <span class="checkbox-description">Badewanne</span>
                                         <input type="checkbox" name="bathtub" value="true">
                                     </div>
 
                                     <!-- lift -->
                                     <div class="checkbox-container">
-                                        <img src="../img/lift.png" class="checkbox-icon">
+                                        <img src="../img/icons/lift.png" class="checkbox-icon">
                                         <span class="checkbox-description">Fahrstuhl</span>
                                         <input type="checkbox" name="lift"  value="true">
                                     </div>
