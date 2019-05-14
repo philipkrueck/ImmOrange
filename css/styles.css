@@ -3,7 +3,7 @@
 ***************************************************/
 body{
     display: grid;
-    grid-template-rows: 80px auto 200px; 
+    grid-template-rows: 90px auto 200px; 
 
     margin: 0px;
     color: white;
@@ -22,7 +22,9 @@ body{
                  HEADER Sytles
 ***************************************************/
 header{
-    height: 80px;
+    height: 90px;
+    background-color: rgba(0, 101, 114, 0.65);
+    
 }
 
 
@@ -42,7 +44,7 @@ main .content{
                  Search-Area Sytles
     ***************************************************/
     .search-area {
-        margin-top: 60px;
+        margin-top: 80px;
         margin-bottom: 20px;
     }
     

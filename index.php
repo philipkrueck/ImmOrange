@@ -137,8 +137,8 @@
                                     <div class="price-range-input">
 
                                         <!-- hidden inputs to catch price-values for POST-Method -->
-                                        <input type="hidden" name="price_min" id="price_min"/>
-                                        <input type="hidden" name="price_max" id="price_max"/>
+                                        <input type="hidden" name="price_min" id="price_min" value="700"/>
+                                        <input type="hidden" name="price_max" id="price_max" value="3300"/>
 
                                         <div id="slider-range"></div>
                                         <input type="text" id="amount" readonly>
