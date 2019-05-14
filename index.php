@@ -35,6 +35,7 @@
 
         <!-- Feature-Includes -->
         <?php 
+            include ('../includes/jquery.php');
             include ('includes/features/autocomplete.php');
             include ('includes/features/combobox.php');
             include ('includes/features/price_range.php');
