@@ -3,11 +3,18 @@
 ***************************************************/
 body{
     display: grid;
-    grid-template-rows: 80px auto 200px; 
+    grid-template-rows: 90px auto 200px; 
 
     margin: 0px;
-    color: black;
+    color: white;
     font-family: 'Open Sans';
+
+    background-color: #717171;
+    background: url(../img/placeholder_banner.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
@@ -15,7 +22,8 @@ body{
                  HEADER Sytles
 ***************************************************/
 header{
-    background-color: #717171;
+    height: 90px;
+    background-color: rgba(0, 101, 114, 0.65);
 }
 
 
@@ -23,34 +31,20 @@ header{
                  MAIN Sytles
 ***************************************************/
 main{
-    background-color: green;
-}
 
-main .banner{
-    width: 100%;
-    height: 250px;
-    background-image: url('../img/placeholder_banner.jpg');
-    background-position: 0% 15%;
 }
 
 main .content{
-    max-width: 1000px;
-    background-color: white;
+    max-width: 900px;
     margin: 0 auto;
-}
-
-@media only screen and (max-width: 1200px){
-    main .content{
-        max-width: 800px;
-        margin: 0 auto;
-    }
 }
 
     /**************************************************
                  Search-Area Sytles
     ***************************************************/
     .search-area {
-        padding: 0px 40px;
+        margin-top: 80px;
+        margin-bottom: 20px;
     }
     
     .search-area input{
@@ -58,12 +52,14 @@ main .content{
         border-radius: 50px;
         font-size: 15px;
         border: 1px solid #c5c5c5;
-        width: 87%;
         font-family: 'Open Sans';
+        margin: 10px;
+        width: 205px;
+        height: 22px;
     }
        
     input[type="submit"]{
-        background-color: orange;
+        background-color: #ffa500;
         color: white;
         border: 0px !important;
         padding: 15px;
@@ -71,6 +67,11 @@ main .content{
         font-weight: bold;
         width: 8em !important;
         border-radius: 50px !important;
+        height: 60px;
+    }
+
+    input[type="submit"]:hover{
+        background-color: #d18800;
     }
 
     input[type="submit"]:hover{
@@ -81,6 +82,10 @@ main .content{
                  Search-Tabs Sytles
         ***************************************************/
 
+        #search-tabs {
+            background-color: rgba(0, 101, 114, 0.65);
+        }
+        
         .ui-tabs .ui-tabs-panel {
             padding: 0em !important;
         }
@@ -102,8 +107,13 @@ main .content{
         }
 
         .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
-            background-color: orange;
+            background-color: #ffa500;
+            padding: 20px !important;
             color: white;  
+        }
+
+        .ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover{
+            background-color: #d18800;
         }
 
         .ui-tabs-anchor:focus{
@@ -127,7 +137,7 @@ main .content{
 
         .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor, .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor, .ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
             border: 0px!important;
-            background: rgb(175, 114, 0)!important;
+            background: #d18800!important;
         }
 
         .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
@@ -142,10 +152,9 @@ main .content{
     
         .extended-search{
             text-align: center;
-            background-color: #717171;
             border-radius: 0px 0px 3px 3px;
             margin-top: -18px;
-            padding-top: 30px;
+            padding: 30px 20px 20px 20px;
         }
 
         .extended-search h3{
@@ -162,15 +171,13 @@ main .content{
         }
 
         .extended-search .ui-selectmenu-button.ui-button{
-            width: 80%;
+            max-width: 200px;
+            margin: 10px;
             font-family: 'Open Sans';
-            height: 19px;
+            height: 23px;
             border-radius: 50px !important;
         }
 
-        .ui-selectmenu-text {
-            margin-top: -2px;
-        }
 
             /**************************************************
                  Extended-Search: FIRST Row
@@ -220,12 +227,12 @@ main .content{
             }
 
             span.ui-slider-handle.ui-corner-all.ui-state-default {
-                background-color: orange;
+                background-color: #ffa500;
                 border-radius: 50px;
             }
 
             .ui-slider-range.ui-corner-all.ui-widget-header {
-                background-color: rgb(226, 147, 0)!important;
+                background-color: #d18800!important;
             }
 
             /**************************************************
@@ -236,6 +243,7 @@ main .content{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
                 padding: 10px 40px 10px 40px;
+                margin-left: 45px;
             }
 
             .checkbox-container{
@@ -289,19 +297,16 @@ main .content{
     
             .full-text-search-area{
                 text-align: center;
-                background-color: #717171;
                 border-radius: 0px 0px 3px 3px;
                 margin-top: -18px;
                 padding: 30px 50px 20px 50px;
             }
 
             .full-text-search-bar{
-                width: 100% !important;
+                width: 95% !important;
                 display: block;
                 border-radius: 50px !important;
-                padding: 10px;
-                border: 0px;
-                margin: 30px 0px 30px 0px;
+                padding: 15px !important;
                 font-size: 18px!important;
             }
  
@@ -310,6 +315,8 @@ main .content{
                  Results-Area Sytles
     ***************************************************/
     .results-area{
+        background-color: rgba(0, 101, 114, 0.65);
+        margin-bottom: 20px;
         
     }
 
@@ -317,14 +324,16 @@ main .content{
                  Search-Area Sytles
     ***************************************************/
     .promoted-area{
-        
+        background-color: rgba(0, 101, 114, 0.65);
+        margin-bottom: 20px;        
     }
 
     /**************************************************
                  Search-Area Sytles
     ***************************************************/
     .newest-area{
-        
+        background-color: rgba(0, 101, 114, 0.65);
+        margin-bottom: 20px;        
     }
 
 
@@ -332,5 +341,5 @@ main .content{
                  FOOTER Sytles
 ***************************************************/
 footer{
-    background-color: #717171;
+    background-color: rgba(0, 101, 114, 0.65);
 }
