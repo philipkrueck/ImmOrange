@@ -38,6 +38,7 @@ CREATE TABLE offer (
   offer_id INTEGER PRIMARY KEY NOT NULL,
   offer_name VARCHAR(50) NOT NULL,
   address_id INTEGER NOT NULL,
+  realtor_id INTEGER NOT NULL, 
   is_apartment BOOLEAN NOT NULL,
   purchasing_type BOOLEAN NOT NULL,
   rooms INTEGER NOT NULL,
@@ -51,6 +52,7 @@ CREATE TABLE offer (
   has_balcony BOOLEAN NOT NULL,
   creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   FOREIGN KEY(address_id) REFERENCES address(address_id),
+  FOREIGN KEY(realtor_id) REFERENCES realtor(realtor_id),
   FOREIGN KEY(image_id) REFERENCES image(image_id)
 );
 # make image_id not null 
@@ -146,22 +148,22 @@ INSERT INTO account (account_id, email, password, person_id, realtor_id, creatio
 ('13', 'grady@slimshady.com', '1234', '13', NULL, CURRENT_TIMESTAMP), 
 ('14', 'soto@sushikyoto.tk', '1234', '14', NULL, CURRENT_TIMESTAMP);
 
-INSERT INTO offer (offer_id, offer_name, address_id, is_apartment, purchasing_type, rooms, price, qm, image_id, 
+INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, purchasing_type, rooms, price, qm, image_id, 
 has_garden, has_garage, has_bathtub, has_elevator, has_balcony, creation_date) VALUES 
-('1', 'Wohnung mit Aussicht **TOP LAGE**', '15', '0', '0', '3', '200000', '100', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP),
- ('2', 'Direkt am Stadtpark!', '16', '0', '0', '4', '500000', '60', NULL, '0', '1', '1', '0', '1', CURRENT_TIMESTAMP), 
- ('3', 'Ubahn-Anbindung TOP', '17', '1', '1', '2', '1500', '45', NULL, '0', '0', '0', '0', '1', CURRENT_TIMESTAMP), 
- ('4', 'Naturparadies! Haustiere erlaubt.', '18', '0', '1', '5', '2000', '120', NULL, '1', '1', '0', '0', '0', CURRENT_TIMESTAMP), 
- ('5', 'Perfekt zum JOGGEN!', '19', '1', '1', '2', '700', '40', NULL, '0', '0', '1', '1', '0', CURRENT_TIMESTAMP), 
- ('6', '24-Stunden Tageslicht! 2-Z.-Wohn.', '20', '1', '0', '4', '700', '70', NULL, '1', '1', '0', '1', '0', CURRENT_TIMESTAMP), 
- ('7', 'Altbau, ruhig, Stadtpark-Nähe **WINTERHUDE**', '1', '1', '1', '4', '900', '80', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP), 
- ('8', 'frisch RENOVIERTes City-App.', '2', '1', '0', '5', '1400', '105', NULL, '0', '1', '1', '1', '1', CURRENT_TIMESTAMP), 
- ('9', 'U1 & U3 !!! Perfekt für Singles.', '3', '1', '1', '2', '600', '20', NULL, '0', '0', '0', '0', '0', CURRENT_TIMESTAMP), 
- ('10', 'WG-ZIMMER * Shopping-Street zentral', '4', '1', '1', '1', '300', '15', NULL, '0', '1', '0', '1', '1', CURRENT_TIMESTAMP), 
- ('11', 'Mit Aussicht! Edel Altbau über Dönerbude', '5', '0', '0', '3', '670', '65', NULL, '0', '1', '0', '1', '1', CURRENT_TIMESTAMP), 
- ('12', 'Alpen in Sicht! Traumhüdli mit Kamin', '6', '0', '0', '5', '800000', '120', NULL, '1', '1', '1', '0', '1', CURRENT_TIMESTAMP), 
- ('13', 'Hauptstadt olé! Hipster-WG', '7', '1', '1', '1', '400', '25', NULL, '0', '0', '1', '1', '1', CURRENT_TIMESTAMP), 
- ('14', 'fast Hamburg! Landeshauptstadt Kiel', '8', '0', '1', '4', '6000', '78', NULL, '1', '1', '1', '0', '1', CURRENT_TIMESTAMP);
+('1', 'Wohnung mit Aussicht **TOP LAGE**', '15', '1', '0', '0', '3', '200000', '100', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP),
+ ('2', 'Direkt am Stadtpark!', '16', '2', '0', '0', '4', '500000', '60', NULL, '0', '1', '1', '0', '1', CURRENT_TIMESTAMP), 
+ ('3', 'Ubahn-Anbindung TOP', '17', '3', '1', '1', '2', '1500', '45', NULL, '0', '0', '0', '0', '1', CURRENT_TIMESTAMP), 
+ ('4', 'Naturparadies! Haustiere erlaubt.', '18', '4', '0', '1', '5', '2000', '120', NULL, '1', '1', '0', '0', '0', CURRENT_TIMESTAMP), 
+ ('5', 'Perfekt zum JOGGEN!', '19', '5', '1', '1', '2', '700', '40', NULL, '0', '0', '1', '1', '0', CURRENT_TIMESTAMP), 
+ ('6', '24-Stunden Tageslicht! 2-Z.-Wohn.', '20', '1', '6', '0', '4', '700', '70', NULL, '1', '1', '0', '1', '0', CURRENT_TIMESTAMP), 
+ ('7', 'Altbau, ruhig, Stadtpark-Nähe **WINTERHUDE**', '1', '7', '1', '1', '4', '900', '80', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP), 
+ ('8', 'frisch RENOVIERTes City-App.', '2', '1', '1', '0', '5', '1400', '105', NULL, '0', '1', '1', '1', '1', CURRENT_TIMESTAMP), 
+ ('9', 'U1 & U3 !!! Perfekt für Singles.', '3', '2', '1', '1', '2', '600', '20', NULL, '0', '0', '0', '0', '0', CURRENT_TIMESTAMP), 
+ ('10', 'WG-ZIMMER * Shopping-Street zentral', '4', '3', '1', '1', '1', '300', '15', NULL, '0', '1', '0', '1', '1', CURRENT_TIMESTAMP), 
+ ('11', 'Mit Aussicht! Edel Altbau über Dönerbude', '5', '4', '0', '0', '3', '670', '65', NULL, '0', '1', '0', '1', '1', CURRENT_TIMESTAMP), 
+ ('12', 'Alpen in Sicht! Traumhüdli mit Kamin', '6', '5', '0', '0', '5', '800000', '120', NULL, '1', '1', '1', '0', '1', CURRENT_TIMESTAMP), 
+ ('13', 'Hauptstadt olé! Hipster-WG', '7', '6', '1', '1', '1', '400', '25', NULL, '0', '0', '1', '1', '1', CURRENT_TIMESTAMP), 
+ ('14', 'fast Hamburg! Landeshauptstadt Kiel', '8', '7', '0', '1', '4', '6000', '78', NULL, '1', '1', '1', '0', '1', CURRENT_TIMESTAMP);
 
 INSERT INTO favorite_offer (offer_id, account_id) VALUES 
 ('12', '12'), 
