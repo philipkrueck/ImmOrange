@@ -36,7 +36,7 @@ CREATE TABLE realtor  (
 
 CREATE TABLE offer (
   offer_id INTEGER PRIMARY KEY NOT NULL,
-  name VARCHAR(50) NOT NULL,
+  offer_name VARCHAR(50) NOT NULL,
   address_id INTEGER NOT NULL,
   is_appartment BOOLEAN NOT NULL,
   purchasing_type BOOLEAN NOT NULL,
@@ -68,9 +68,9 @@ CREATE TABLE account (
 
 CREATE TABLE image (
   image_id INTEGER PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
+  image_name VARCHAR(255) NOT NULL,
   mime VARCHAR(255) NOT NULL,
-  data LONGBLOB NOT NULL
+  image_data LONGBLOB NOT NULL
 ); 
 
 CREATE TABLE address  (
@@ -146,7 +146,7 @@ INSERT INTO account (account_id, email, password, person_id, realtor_id, creatio
 ('13', 'grady@slimshady.com', '1234', '13', NULL, CURRENT_TIMESTAMP), 
 ('14', 'soto@sushikyoto.tk', '1234', '14', NULL, CURRENT_TIMESTAMP);
 
-INSERT INTO offer (offer_id, name, address_id, is_appartment, purchasing_type, rooms, price, qm, image_id, 
+INSERT INTO offer (offer_id, offer_name, address_id, is_appartment, purchasing_type, rooms, price, qm, image_id, 
 has_garden, has_garage, has_bathtub, has_elevator, has_balcony, creation_date) VALUES 
 ('1', 'Wohnung mit Aussicht **TOP LAGE**', '15', '0', '0', '3', '200000', '100', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP),
  ('2', 'Direkt am Stadtpark!', '16', '0', '0', '4', '500000', '60', NULL, '0', '1', '1', '0', '1', CURRENT_TIMESTAMP), 
