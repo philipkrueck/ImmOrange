@@ -14,11 +14,11 @@
         
         $login_statement = pdo()->prepare("SELECT * FROM account WHERE email = :email");
         $result = $login_statement->execute(array('email' => $email));
-        $user = $login_statement->fetch();
+        $account = $login_statement->fetch();
             
         //Überprüfung des Passworts
-        if ($user !== false && password_verify($password, $user['password'])) {
-            $_SESSION['account_id'] = $user['account_id'];
+        if ($password == $account['password']) { // TODO: insert password_verify($password, $account['password']) in if statement
+            $_SESSION['account_id'] = $account['account_id'];
             die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
         } else {
             $errorMessage = "E-Mail oder Passwort war ungültig<br>";
