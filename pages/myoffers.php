@@ -30,18 +30,6 @@
         <!-- MAIN-AREA -->
         <main>
 
-            <!-- BANNER-AREA -->
-            <div class="banner">
-
-                <!-- PLACEHOLDER -->
-                <h2 style="
-                    text-align: center;
-                    padding-top: 100px;
-                    margin: 0px;"
-                >MEINE IMMOBILIEN</h2>
-
-            </div>
-
             <!-- CONTENT-AREA -->
             <div class="content">
             
