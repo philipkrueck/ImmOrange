@@ -315,8 +315,7 @@ main .content{
                  Results-Area Sytles
     ***************************************************/
     .results-area{
-        margin-bottom: 20px;
-        
+        margin-bottom: 20px;        
     }
 
     .results-area a{
@@ -340,6 +339,7 @@ main .content{
         grid-template-columns: 2fr 2fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
 
+        font-family: 'Open Sans';
         margin-bottom: 20px;
         max-height: 250px;
         border-radius: 3px;
