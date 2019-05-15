@@ -1,16 +1,83 @@
 <!-- PLACEHOLDER -->
-<h2 style="
-    text-align: center;
-    margin: 0px;"
-    >RESULTS</h2>
+<h2>Suchergebnisse</h2>
     
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
-    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
-        takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <a href=""><div class="search-result-container">
+        
+        <div class="result-image-container">
+            <img src="../temporary_assets/imm_1.jpg">
+        </div>
+
+        <h3 class="result-title">Hier könnte Ihr Titel der Immobilie stehen</h3>
+
+
+        <span class="result-price">50000 €</span>
+
+
+        <span class="result-space">47 qm</span>
+
+
+        <div class="result-rooms-container">
+            <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">4 Zimmer</span>
+        </div>
+
+
+        <div class="result-location-container">
+            <img src="../img/icons/location.png" class="location-img"><span class="result-location">in Hamburg</span>
+        </div>
+
+    </div></a>
+
+    <a href=""><div class="search-result-container">
+        
+        <div class="result-image-container">
+            <img src="../temporary_assets/imm_2.jpg">
+        </div>
+
+        <h3 class="result-title">Hier könnte Ihr Titel der Immobilie stehen</h3>
+
+
+        <span class="result-price">50000 €</span>
+
+
+        <span class="result-space">47 qm</span>
+
+
+        <div class="result-rooms-container">
+            <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">4 Zimmer</span>
+        </div>
+
+
+        <div class="result-location-container">
+            <img src="../img/icons/location.png" class="location-img"><span class="result-location">in Hamburg</span>
+        </div>
+        
+    </div></a>
+
+    <a href=""><div class="search-result-container">
+        
+        <div class="result-image-container">
+            <img src="../temporary_assets/imm_3.jpg">
+        </div>
+
+        <h3 class="result-title">Hier könnte Ihr Titel der Immobilie stehen</h3>
+
+
+        <span class="result-price">50000 €</span>
+
+
+        <span class="result-space">47 qm</span>
+
+
+        <div class="result-rooms-container">
+            <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">4 Zimmer</span>
+        </div>
+
+
+        <div class="result-location-container">
+            <img src="../img/icons/location.png" class="location-img"><span class="result-location">in Hamburg</span>
+        </div>
+        
+    </div></a>
 
     <?php
         echo "<h2 style='

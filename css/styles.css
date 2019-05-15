@@ -315,13 +315,124 @@ main .content{
                  Results-Area Sytles
     ***************************************************/
     .results-area{
-        background-color: rgba(0, 101, 114, 0.65);
         margin-bottom: 20px;
         
     }
 
+    .results-area a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .results-area h2{
+        color: white;
+        text-transform: uppercase;
+        max-width: 900px;
+        background-color: #ffa500;
+        padding: 10px;
+        text-align: center;
+        border-radius: 3px;
+    }
+
+    .search-result-container{
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 2fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+        margin-bottom: 20px;
+        max-height: 250px;
+        border-radius: 3px;
+        background-color: rgba(0, 101, 114, 0.65);
+    }
+
+    .search-result-container .result-image-container{
+        grid-column: 1/2;
+        grid-row: 1/5;
+        overflow: hidden;
+        border-right: 10px solid #d18800;
+    }
+
+    .search-result-container .result-image-container img{
+        max-height: 250px;
+    }
+
+    .search-result-container h3{
+        grid-column: 2/5;
+
+        text-align: center;
+        font-size: 22px;
+        margin: 30px 30px 20px 30px;
+    }
+
+    .search-result-container .result-price{
+        grid-column: 4/5;
+        grid-row: 2/3;
+
+        text-align: center;
+        padding: 10px 20px;
+        margin-top: 15px;
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffa500;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+    .search-result-container .result-space{
+        grid-column: 4/5;
+        grid-row: 3/4;
+
+        text-align: center;
+        padding: 10px 20px;
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffa500;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+    .search-result-container .result-rooms-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 2/3;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .result-rooms{
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .search-result-container .rooms-img{
+        width: 20px;
+        margin-right: 15px;
+    }
+
+    .search-result-container .result-location-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 3/4;
+        text-align: center;
+        margin: 5px;
+    }
+
+    .result-location{
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .search-result-container .location-img{
+        width: 20px;
+        margin-right: 10px;
+    }
+
+
     /**************************************************
-                 Search-Area Sytles
+                 Promoted-Area Sytles
     ***************************************************/
     .promoted-area{
         background-color: rgba(0, 101, 114, 0.65);
@@ -329,7 +440,7 @@ main .content{
     }
 
     /**************************************************
-                 Search-Area Sytles
+                 Newest-Area Sytles
     ***************************************************/
     .newest-area{
         background-color: rgba(0, 101, 114, 0.65);
