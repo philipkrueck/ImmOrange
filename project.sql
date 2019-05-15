@@ -58,7 +58,7 @@ CREATE TABLE offer (
 CREATE TABLE account (
   account_id INTEGER PRIMARY KEY NOT NULL,
   email VARCHAR(50) NOT NULL,
-  password VARCHAR(50) NOT NULL,
+  password VARCHAR(200) NOT NULL,
   person_id INTEGER NOT NULL,
   realtor_id INTEGER,
   creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
