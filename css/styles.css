@@ -18,6 +18,17 @@ body{
 }
 
 
+h2{
+    color: white;
+    text-transform: uppercase;
+    max-width: 900px;
+    background-color: rgba(255, 165, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+
 /**************************************************
                  HEADER Sytles
 ***************************************************/
@@ -30,9 +41,6 @@ header{
 /**************************************************
                  MAIN Sytles
 ***************************************************/
-main{
-
-}
 
 main .content{
     max-width: 900px;
@@ -268,16 +276,6 @@ main .content{
         color: white;
     }
 
-    .results-area h2{
-        color: white;
-        text-transform: uppercase;
-        max-width: 900px;
-        background-color: #ffa500;
-        padding: 10px;
-        text-align: center;
-        border-radius: 3px;
-    }
-
     .search-result-container{
         display: grid;
         grid-gap: 10px;
@@ -301,6 +299,15 @@ main .content{
 
     .search-result-container .result-image-container img{
         max-height: 250px;
+        -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    }
+
+    .search-result-container .result-image-container img:hover{
+        moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);        
+        transform: scale(1.1);
     }
 
     .search-result-container h3{

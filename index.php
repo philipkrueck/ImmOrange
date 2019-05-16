@@ -214,7 +214,13 @@
                 <!-- RESULTS-AREA -->
                 <div class="results-area" id="results">
 
+                <h2>Suchergebnisse (Jetzt: alle Immobilien)</h2>
+
                     <?php
+                        
+                        require_once('includes/functions/pdo.php');
+                        $sql_select = 'SELECT offer_id, offer_name, price, qm, rooms, city FROM offer o LEFT OUTER JOIN address a ON a.address_id = o.address_id';
+
                         include ('includes/results.php');
                     ?>
 
@@ -223,29 +229,8 @@
                 <!-- PROMOTED-AREA -->
                 <div class="promoted-area">
                 
-                    <!-- PLACEHOLDER -->
-                    <h2 style="
-                    text-align: center;
-                    margin: 0px;"
-                    >PROMOTED</h2>
-                    <p style="margin: 0px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
-                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-                     et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                     Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
-                     diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-                     At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
-                     takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    <h2>Promoted</h2>    
 
-                </div>
-
-                <!-- NEWEST-AREA -->
-                <div class="newest-area">
-                
-                    <!-- PLACEHOLDER -->
-                    <h2 style="
-                    text-align: center;
-                    margin: 0px;"
-                    >NEWEST</h2>
                     <p style="margin: 0px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
                     invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
                      et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
