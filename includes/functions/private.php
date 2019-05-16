@@ -16,7 +16,8 @@ $realtor_id_array = $get_realtor_id_statement->fetch();
 
 // todo: if realtor_id_array == account --> account is realtor
 if($realtor_id_array['realtor_id'] != null){
-    echo "Hallo realtor: ".$account_id;
+    // realtor is now logged in
+    $_SESSION['realtor_id'] = $realtor_id_array['realtor_id'];
 } else {
     die('Sie sind kein Makler <a href="login.php">einloggen</a>');
 }
