@@ -17,18 +17,17 @@
 
         if(isset($_POST['is_realtor'])){
             $is_realtor = $_POST['is_realtor'];
+            $company_name = $_POST['company_name'];
+            $tel_number = $_POST['tel_number'];
+            $realtor_id = get_random_id();
         }else{
             $is_realtor = false;
         }
-
-        $company_name = $_POST['company_name'];
-        $tel_number = $_POST['tel_number'];
 
         //assigning random IDs to variables
         $account_id = get_random_id();
         $address_id = get_random_id();
         $person_id = get_random_id();
-        $realtor_id = get_random_id();
 
         //error-message for incorrect email-format
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
