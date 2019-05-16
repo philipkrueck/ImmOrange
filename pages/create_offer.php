@@ -2,25 +2,33 @@
     require_once('../includes/functions/pdo.php');
     require_once('../includes/functions/private.php');
     include('../includes/functions/random_id.php');
-    
+
     if (isset($_POST['create_offer_submit'])) {
         setSessionVariables();
         $rand_address_id = get_random_id();
         insertAddressFromPostParameters($rand_address_id);
+        insertOfferingFromPostParameters($rand_address_id);
         header("Location: offer.php");
         return;
     }
 
     function setSessionVariables() {
-       $_SESSION['offer_name'] = $_POST['offer_name'];
-       $_SESSION['rooms'] = $_POST['rooms'];
-       $_SESSION['qm'] = $_POST['qm'];
-       $_SESSION['price'] = $_POST['price'];
-       $_SESSION['street'] = $_POST['street'];
-       $_SESSION['house_number'] = $_POST['house_number'];
-       $_SESSION['zip'] = $_POST['zip'];
-       $_SESSION['city'] = $_POST['city'];
-       $_SESSION['country'] = $_POST['country'];
+        $_SESSION['offer_name'] = $_POST['offer_name'];
+        $_SESSION['rooms'] = $_POST['rooms'];
+        $_SESSION['qm'] = $_POST['qm'];
+        $_SESSION['price'] = $_POST['price'];
+        $_SESSION['street'] = $_POST['street'];
+        $_SESSION['house_number'] = $_POST['house_number'];
+        $_SESSION['zip'] = $_POST['zip'];
+        $_SESSION['city'] = $_POST['city'];
+        $_SESSION['country'] = $_POST['country'];
+        $_SESSION['is_apartment'] = isset($_POST["is_apartment"]) ? 1 : 0;
+        $_SESSION['purchasing_type'] = isset($_POST["purchasing_type"]) ? 1 : 0;
+        $_SESSION['has_garage'] = isset($_POST["has_garage"]) ? 1 : 0;
+        $_SESSION['has_garden'] = isset($_POST["has_garden"]) ? 1 : 0;
+        $_SESSION['has_balcony'] = isset($_POST["has_balcony"]) ? 1 : 0;
+        $_SESSION['has_bathtub'] = isset($_POST["has_bathtub"]) ? 1 : 0;
+        $_SESSION['has_elevator'] = isset($_POST["has_elevator"]) ? 1 : 0;
     }
 
     function insertAddressFromPostParameters($address_id) {
@@ -31,6 +39,26 @@
         $country = $_SESSION['country'];
         $insert_account_stmt = pdo()->prepare("INSERT INTO address VALUES (:address_id, :street, :house_number, :zip, :city, :country);");
         $insert_account_stmt->execute(array(':address_id' => $address_id, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country));
+    }
+
+    function insertOfferingFromPostParameters($address_id) {
+        $offer_id = get_random_id();
+        $offer_name = $_SESSION["offer_name"];
+        $realtor_id = $_SESSION['realtor_id']; // set in private.php
+        $is_apartment = $_SESSION['is_apartment'];
+        $purchasing_type = $_SESSION['purchasing_type'];
+        $rooms = $_SESSION['purchasing_type'];
+        $qm = $_SESSION['qm'];
+        $image_id = null; // todo: should be uploaded from user
+        $price = $_SESSION['price'];
+        $has_garage = $_SESSION['has_garage'];
+        $has_garden = $_SESSION['has_garden'];
+        $has_balcony = $_SESSION['has_balcony'];
+        $has_bathtub = $_SESSION['has_bathtub'];
+        $has_elevator = $_SESSION['has_elevator'];
+
+        $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, purchasing_type, rooms, price, qm, image_id, has_garden, has_garage, has_bathtub, has_elevator, has_balcony) VALUES (:offer_id, :offer_name, :address_id, :realtor_id, :is_apartment, :purchasing_type, :rooms, :price, :qm, :image_id, :has_garden, :has_garage, :has_bathtub, :has_elevator, :has_balcony);");
+        $insert_offer_stmt->execute(array(':offer_id' => $offer_id, ':offer_name' => $offer_name, ':address_id' => $address_id, ':realtor_id' => $realtor_id, ':is_apartment' => $is_apartment, ':purchasing_type' => $purchasing_type, ':rooms' => $rooms, ':price' => $price, ':qm' => $qm, ':image_id' => $image_id, ':has_garden' => $has_garden, ':has_garage' => $has_garage, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony));
     }
 
 
