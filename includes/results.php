@@ -10,6 +10,9 @@
         <h3 class="result-title">Hier könnte Ihr Titel der Immobilie stehen</h3>
 
 
+        <img src="../img/icons/heart_white.png" class="heart-icon">
+
+
         <span class="result-price">50000 €</span>
 
 
@@ -36,6 +39,9 @@
         <h3 class="result-title">Hier könnte Ihr Titel der Immobilie stehen</h3>
 
 
+        <img src="../img/icons/heart_white.png" class="heart-icon">
+
+
         <span class="result-price">50000 €</span>
 
 
@@ -60,6 +66,9 @@
         </div>
 
         <h3 class="result-title">Hier könnte Ihr Titel der Immobilie stehen</h3>
+
+
+        <img src="../img/icons/heart_orange.png" class="heart-icon">
 
 
         <span class="result-price">50000 €</span>
