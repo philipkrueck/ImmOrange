@@ -3,14 +3,14 @@
 ***************************************************/
 body{
     display: grid;
-    grid-template-rows: 90px auto 200px; 
+    grid-template-rows: 90px auto 200px;
 
     margin: 0px;
     color: white;
     font-family: 'Open Sans';
 
     background-color: #717171;
-    background: url(../img/placeholder_banner.jpg) no-repeat center center fixed; 
+    background: url(../img/placeholder_banner.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -26,6 +26,34 @@ header{
     background-color: rgba(0, 101, 114, 0.65);
 }
 
+.logo{
+  margin: 0px;
+  text-align: center;
+  background-color: #d18800;
+  border-radius: 50px;
+  padding: 15px;
+  width: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 14px 0px 0px 15px;
+  border: 4px dashed #ffa500;
+  text-decoration: none;
+  color: white;
+}
+
+.iconUSER{
+  width:10%;
+  float:right;
+  margin-right:20px;
+  margin-top: -57px
+
+}
+
+.headerDIV{
+  float: right;
+  margin-left: 200px;
+  height: 100%;
+}
 
 /**************************************************
                  MAIN Sytles
@@ -46,7 +74,7 @@ main .content{
         margin-top: 80px;
         margin-bottom: 20px;
     }
-    
+
     .search-area input{
         padding: 7px;
         border-radius: 50px;
@@ -57,7 +85,7 @@ main .content{
         width: 205px;
         height: 22px;
     }
-       
+
     input[type="submit"]{
         background-color: #ffa500;
         color: white;
@@ -85,7 +113,7 @@ main .content{
         #search-tabs {
             background-color: rgba(0, 101, 114, 0.65);
         }
-        
+
         .ui-tabs .ui-tabs-panel {
             padding: 0em !important;
         }
@@ -95,21 +123,21 @@ main .content{
         }
 
         .ui-widget-header {
-            border: 0px !important; 
-            background: none !important; 
+            border: 0px !important;
+            background: none !important;
         }
 
         .ui-tabs .ui-tabs-nav {
             text-align: center;
-            margin-top: -30px !important;    
-            font-family: 'Open Sans'; 
-            font-weight: bold;     
+            margin-top: -30px !important;
+            font-family: 'Open Sans';
+            font-weight: bold;
         }
 
         .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
             background-color: #ffa500;
             padding: 20px !important;
-            color: white;  
+            color: white;
         }
 
         .ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover{
@@ -121,7 +149,7 @@ main .content{
         }
 
         .ui-tabs .ui-tabs-nav .ui-tabs-anchor:focus {
-            border: none;  
+            border: none;
         }
 
         .ui-tabs .ui-tabs-nav li {
@@ -149,7 +177,7 @@ main .content{
         /**************************************************
                  Extended-Search Sytles
         ***************************************************/
-    
+
         .extended-search{
             text-align: center;
             border-radius: 0px 0px 3px 3px;
@@ -182,7 +210,7 @@ main .content{
             /**************************************************
                  Extended-Search: FIRST Row
             ***************************************************/
-    
+
             .extended-search.first-row{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
@@ -294,7 +322,7 @@ main .content{
             /**************************************************
                      Full-Text-Search Sytles
             ***************************************************/
-    
+
             .full-text-search-area{
                 text-align: center;
                 border-radius: 0px 0px 3px 3px;
@@ -309,7 +337,7 @@ main .content{
                 padding: 15px !important;
                 font-size: 18px!important;
             }
- 
+
 
     /**************************************************
                  Results-Area Sytles
@@ -317,7 +345,7 @@ main .content{
     .results-area{
         background-color: rgba(0, 101, 114, 0.65);
         margin-bottom: 20px;
-        
+
     }
 
     /**************************************************
@@ -325,7 +353,7 @@ main .content{
     ***************************************************/
     .promoted-area{
         background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;        
+        margin-bottom: 20px;
     }
 
     /**************************************************
@@ -333,17 +361,46 @@ main .content{
     ***************************************************/
     .newest-area{
         background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;        
+        margin-bottom: 20px;
     }
 
 
 /**************************************************
                  FOOTER Sytles
 ***************************************************/
-footer{
-    background-color: rgba(0, 101, 114, 0.65);
+.smallfooter {
+  float:left;
+  width:32.33%;height:90%;
+  margin-top: 50px;margin-left: 8px;
+  text-align: center;
 }
 
+.minifooter {
+
+  height: 10%;
+  background-color: rgba(0, 101, 114, 0.65);
+  text-align: center; vertical-align:middle;
+  color:#ffffff;
+  font-size: 12px;
+  padding:15px;
+}
+
+.iconTIF{
+  width:10%;
+  float:left;
+  margin-left:75px;
+  margin-top: 50px;
+}
+
+.iconWP{
+  width:5%;
+  margin-left: 5px;
+}
+
+.iconHouse{
+  width:5%;
+  margin-left: 10px;
+}
 /**************************************************
                  LOGIN-PAGE Sytles
 ***************************************************/
