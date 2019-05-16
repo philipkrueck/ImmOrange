@@ -6,9 +6,10 @@
     if (isset($_POST['create_offer_submit'])) {
         setSessionVariables();
         $rand_address_id = get_random_id();
-        insertAddressFromPostParameters($rand_address_id);
-        insertOfferingFromPostParameters($rand_address_id);
-        header("Location: offer.php");
+        $rand_offer_id = get_random_id();
+        insertAddress($rand_address_id);
+        insertOffer($rand_address_id, $rand_offer_id);
+        header("Location: offer.php?offer_id=".$rand_offer_id);
         return;
     }
 
@@ -31,7 +32,7 @@
         $_SESSION['has_elevator'] = isset($_POST["has_elevator"]) ? 1 : 0;
     }
 
-    function insertAddressFromPostParameters($address_id) {
+    function insertAddress($address_id) {
         $street = $_SESSION['street'];
         $house_number = $_SESSION['house_number'];
         $zip = $_SESSION['zip'];
@@ -41,8 +42,7 @@
         $insert_account_stmt->execute(array(':address_id' => $address_id, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country));
     }
 
-    function insertOfferingFromPostParameters($address_id) {
-        $offer_id = get_random_id();
+    function insertOffer($address_id, $offer_id) {
         $offer_name = $_SESSION["offer_name"];
         $realtor_id = $_SESSION['realtor_id']; // set in private.php
         $is_apartment = $_SESSION['is_apartment'];
