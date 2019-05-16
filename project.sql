@@ -60,7 +60,7 @@ CREATE TABLE offer (
 CREATE TABLE account (
   account_id INTEGER PRIMARY KEY NOT NULL,
   email VARCHAR(50) NOT NULL,
-  password VARCHAR(50) NOT NULL,
+  password VARCHAR(200) NOT NULL,
   person_id INTEGER NOT NULL,
   realtor_id INTEGER,
   creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -133,20 +133,20 @@ INSERT INTO person (person_id, last_name, first_name, address_id) VALUES
 ('14', 'Soto', 'Benjamin', '14');
 
 INSERT INTO account (account_id, email, password, person_id, realtor_id, creation_date) VALUES 
-('1', 'Franson@gmail.com', '1234', '1', '1', CURRENT_TIMESTAMP), 
-('2', 'americantower@corporation.com', '1234', '2', '2', CURRENT_TIMESTAMP), 
-('3', 'simon@propertygroup.com', '1234', '3', '3', CURRENT_TIMESTAMP), 
-('4', 'sapp.weyerhaeuser@gmail.com', '1234', '4', '4', CURRENT_TIMESTAMP), 
-('5', 'hunt.westfield@gmail.com', '1234', '5', '5', CURRENT_TIMESTAMP), 
-('6', 'riordan@avalonbay.com', '1234', '6', '6', CURRENT_TIMESTAMP), 
-('7', 'isaac@lakeview.com', '1234', '7', '7', CURRENT_TIMESTAMP), 
-('8', 'flemming@hotmail.com', '1234', '8', NULL, CURRENT_TIMESTAMP), 
-('9', 'hommes@myhsba.de', '1234', '9', NULL, CURRENT_TIMESTAMP), 
-('10', 'long@gmail.com', '1234', '10', NULL, CURRENT_TIMESTAMP), 
-('11', 'hill@hillert.com', '1234', '11', NULL, CURRENT_TIMESTAMP), 
-('12', 'pinard@peanuts.com', '1234', '12', NULL, CURRENT_TIMESTAMP), 
-('13', 'grady@slimshady.com', '1234', '13', NULL, CURRENT_TIMESTAMP), 
-('14', 'soto@sushikyoto.tk', '1234', '14', NULL, CURRENT_TIMESTAMP);
+('1', 'Franson@gmail.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '1', '1', CURRENT_TIMESTAMP), 
+('2', 'americantower@corporation.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '2', '2', CURRENT_TIMESTAMP), 
+('3', 'simon@propertygroup.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '3', '3', CURRENT_TIMESTAMP), 
+('4', 'sapp.weyerhaeuser@gmail.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '4', '4', CURRENT_TIMESTAMP), 
+('5', 'hunt.westfield@gmail.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '5', '5', CURRENT_TIMESTAMP), 
+('6', 'riordan@avalonbay.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '6', '6', CURRENT_TIMESTAMP), 
+('7', 'isaac@lakeview.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '7', '7', CURRENT_TIMESTAMP), 
+('8', 'flemming@hotmail.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '8', NULL, CURRENT_TIMESTAMP), 
+('9', 'hommes@myhsba.de', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '9', NULL, CURRENT_TIMESTAMP), 
+('10', 'long@gmail.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '10', NULL, CURRENT_TIMESTAMP), 
+('11', 'hill@hillert.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '11', NULL, CURRENT_TIMESTAMP), 
+('12', 'pinard@peanuts.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '12', NULL, CURRENT_TIMESTAMP), 
+('13', 'grady@slimshady.com', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '13', NULL, CURRENT_TIMESTAMP), 
+('14', 'soto@sushikyoto.tk', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '14', NULL, CURRENT_TIMESTAMP);
 
 INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, purchasing_type, rooms, price, qm, image_id, 
 has_garden, has_garage, has_bathtub, has_elevator, has_balcony, creation_date) VALUES 

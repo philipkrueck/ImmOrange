@@ -3,7 +3,7 @@ require_once('pdo.php');
 
 session_start();
 if(!isset($_SESSION['account_id'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
+    die('Bitte zuerst <a href="../../pages/login.php">einloggen</a>');
 }
 
 //Abfrage der Nutzer ID vom Login
