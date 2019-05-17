@@ -144,10 +144,10 @@
                     </div>
 
                     <p>Bitte wähle ein Bild aus</p>
-                    <input type="file" name="picture" id="profile-img">
-                    <img src="" id="profile-img-tag" width="200px" />
+                    <input type="file" name="picture" id="offer-img">
+                    <img src="" id="offer-img-tag" width="200px" />
                     <script type="text/javascript">
-                        $("#profile-img").change(function(){
+                        $("#offer-img").change(function(){
                             readURL(this);
                         });
                     </script>
