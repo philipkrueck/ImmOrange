@@ -350,8 +350,9 @@ main .content{
 
     .result-container .heart-icon{
         position: absolute;
-        margin-left: 850px;
-        margin-top: -20px;
+        margin-left: 840px;
+        margin-top: 25px;
+        width: 35px;
         cursor: pointer;
     }
     
