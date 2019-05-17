@@ -46,8 +46,8 @@
         $zip = $_SESSION['zip'];
         $city = $_SESSION['city'];
         $country = $_SESSION['country'];
-        $insert_account_stmt = pdo()->prepare("INSERT INTO address VALUES (:address_id, :street, :house_number, :zip, :city, :country);");
-        $insert_account_stmt->execute(array(':address_id' => $address_id, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country));
+        $insert_address_stmt = pdo()->prepare("INSERT INTO address VALUES (:address_id, :street, :house_number, :zip, :city, :country);");
+        $insert_address_stmt->execute(array(':address_id' => $address_id, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country));
     }
 
     function insertImage($image_id) {
@@ -100,12 +100,12 @@
     <head>
         <title>Page Title</title>
         <link rel="stylesheet" href="../css/styles.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     </head>
     <body>
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/functions/image_upload.php');
+                include('../includes/header.php');
             ?>
         </header>
         <main>
@@ -147,16 +147,6 @@
                     <input type="file" name="picture" id="profile-img">
                     <img src="" id="profile-img-tag" width="200px" />
                     <script type="text/javascript">
-                        function readURL(input) {
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-                                
-                                reader.onload = function (e) {
-                                    $('#profile-img-tag').attr('src', e.target.result);
-                                }
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        }
                         $("#profile-img").change(function(){
                             readURL(this);
                         });
