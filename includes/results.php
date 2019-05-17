@@ -11,7 +11,7 @@
         <h3 class="result-title"><a href="/pages/offer.php?id='.$offer["offer_id"].'">'.$offer["offer_name"].'</a></h3>
 
 
-        <img src="../img/icons/heart_white.png" class="heart-icon" onclick="toggleFavorite()">
+        <img src="../img/icons/heart_white.png" class="heart-icon" id="heart-icon" onclick="toggleFavorite()">
 
 
         <span class="result-price">'.$offer["price"].' €</span>

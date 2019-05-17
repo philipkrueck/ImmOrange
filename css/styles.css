@@ -322,8 +322,9 @@ main .content{
         position: absolute;
         margin-left: 850px;
         margin-top: -20px;
+        cursor: pointer;
     }
-
+    
     .search-result-container .result-price{
         grid-column: 4/5;
         grid-row: 2/3;
