@@ -6,11 +6,17 @@
   <!--END LOGO-->
   <!--DROPDOWN-->
 <div class="dropdown">
-  <img class="iconUSER" src="../img/icons/Benutzer.png" >
-  <div class="iconUSER-content">
-    <p>Regestrieren</p>
-    <p>Login</p>
-    <p>Accountinformation</p>
+    <img class="iconUSER" src="../img/icons/Benutzer.png" >
+    <div class="dropdown-content">
+        <div class="in-dropDIV">
+        <p class="drop-in">Regestrieren</p>
+        </div>
+        <div class="in-dropDIV">
+        <p class="drop-in">Login</p>
+        </div>
+        <div class="in-dropDIV">
+        <p class="drop-in">Accountinformation</p>
+        </div>
   </div>
 </div>
 <!--END DROPDOWN-->
