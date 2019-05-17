@@ -13,7 +13,7 @@
             $rand_image_id = get_random_id();
             insertAddress($rand_address_id);
             insertImage($rand_image_id);
-            insertOffer($rand_address_id, $rand_offer_id);
+            insertOffer($rand_address_id, $rand_offer_id, $rand_image_id);
             header("Location: offer.php?offer_id=".$rand_offer_id);
             return;
         } else {
@@ -58,14 +58,13 @@
         $insert_image_stmt->execute(array(':image_id' => $image_id, ':image_name' => $image_name, ':mime' => $mime, ':image_data' => $image_data));
     }
 
-    function insertOffer($address_id, $offer_id) {
+    function insertOffer($address_id, $offer_id, $image_id) {
         $offer_name = $_SESSION["offer_name"];
         $realtor_id = $_SESSION['realtor_id']; // set in private.php
         $is_apartment = $_SESSION['is_apartment'];
         $purchasing_type = $_SESSION['purchasing_type'];
         $rooms = $_SESSION['rooms'];
         $qm = $_SESSION['qm'];
-        $image_id = null; // todo: should be uploaded from user
         $price = $_SESSION['price'];
         $has_garage = $_SESSION['has_garage'];
         $has_garden = $_SESSION['has_garden'];
