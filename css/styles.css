@@ -3,14 +3,14 @@
 ***************************************************/
 body{
     display: grid;
-    grid-template-rows: 90px auto 200px; 
+    grid-template-rows: 90px auto 200px;
 
     margin: 0px;
     color: white;
     font-family: 'Open Sans' !important;
 
     background-color: #717171;
-    background: url(../img/placeholder_banner.jpg) no-repeat center center fixed; 
+    background: url(../img/placeholder_banner.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -25,7 +25,6 @@ header{
     height: 90px;
     background-color: rgba(0, 101, 114, 0.65);
 }
-
 
 /**************************************************
                  MAIN Sytles
@@ -46,7 +45,7 @@ main .content{
         margin-top: 80px;
         margin-bottom: 20px;
     }
-    
+
     .search-area input{
         padding: 7px;
         border-radius: 50px;
@@ -63,7 +62,7 @@ main .content{
         border: 4px solid #ffa500;
         outline: none;
     }
-       
+
     input[type="submit"]{
         background-color: #ffa500;
         color: white;
@@ -88,7 +87,7 @@ main .content{
         /**************************************************
                  Extended-Search Sytles
         ***************************************************/
-    
+
         .extended-search{
             text-align: center;
             border-radius: 0px 0px 3px 3px;
@@ -127,7 +126,7 @@ main .content{
             /**************************************************
                  Extended-Search: FIRST Row
             ***************************************************/
-    
+
             .extended-search.first-row{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
@@ -262,7 +261,7 @@ main .content{
     .results-area{
         background-color: rgba(0, 101, 114, 0.65);
         margin-bottom: 20px;
-        
+
     }
 
     /**************************************************
@@ -270,7 +269,7 @@ main .content{
     ***************************************************/
     .promoted-area{
         background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;        
+        margin-bottom: 20px;
     }
 
     /**************************************************
@@ -278,7 +277,7 @@ main .content{
     ***************************************************/
     .newest-area{
         background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;        
+        margin-bottom: 20px;
     }
 
 
@@ -287,9 +286,41 @@ main .content{
 ***************************************************/
 footer{
     background-color: rgba(0, 101, 114, 0.65);
+    width:100%;
+    height:300px;
 }
 
+.smallfooter {
+  float:left;
+  width:32.33%;height:90%;
+  margin-left: 8px;
+  text-align: center;
+}
 
+.minifooter {
+
+  text-align: center; vertical-align:middle;
+  color:#ffffff;
+  font-size: 12px;
+  padding:15px;
+}
+
+.iconTIF{
+  width:10%;
+  float:left;
+  margin-left:75px;
+  margin-top: 50px;
+}
+
+.iconWP{
+  width:5%;
+  margin-left: 5px;
+}
+
+.iconHouse{
+  width:5%;
+  margin-left: 10px;
+}
 /**************************************************
                  LOGIN-PAGE Sytles
 ***************************************************/
