@@ -10,7 +10,9 @@
             setSessionVariables();
             $rand_address_id = get_random_id();
             $rand_offer_id = get_random_id();
+            $rand_image_id = get_random_id();
             insertAddress($rand_address_id);
+            insertImage($rand_image_id);
             insertOffer($rand_address_id, $rand_offer_id);
             header("Location: offer.php?offer_id=".$rand_offer_id);
             return;
@@ -46,6 +48,14 @@
         $country = $_SESSION['country'];
         $insert_account_stmt = pdo()->prepare("INSERT INTO address VALUES (:address_id, :street, :house_number, :zip, :city, :country);");
         $insert_account_stmt->execute(array(':address_id' => $address_id, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country));
+    }
+
+    function insertImage($image_id) {
+        $image_name = $_FILES['picture']['name'];
+        $mime = $_FILES['picture']['type'];
+        $image_data = file_get_contents($_FILES['picture']['tmp_name']);
+        $insert_image_stmt = pdo()->prepare("INSERT INTO image VALUES(:image_id, :image_name, :mime, :image_data)");
+        $insert_image_stmt->execute(array(':image_id' => $image_id, ':image_name' => $image_name, ':mime' => $mime, ':image_data' => $image_data));
     }
 
     function insertOffer($address_id, $offer_id) {
@@ -91,6 +101,7 @@
     <head>
         <title>Page Title</title>
         <link rel="stylesheet" href="../css/styles.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     </head>
     <body>
         <header>
@@ -100,7 +111,7 @@
         </header>
         <main>
             <div class="content">
-                <form action="create_offer.php" method="post" class="edit-offering-form">
+                <form action="create_offer.php" method="post" class="edit-offering-form" enctype="multipart/form-data">
                     <div class="name-input">
                         <input type="text" name="offer_name" placeholder="Titel" value="">
                     </div>
@@ -133,7 +144,24 @@
                         <input type="number" name="price" placeholder="Preis (€)" value="">
                     </div>
 
-                    <p>Placeholder image upload</p>
+                    <p>Bitte wähle ein Bild aus</p>
+                    <input type="file" name="picture" id="profile-img">
+                    <img src="" id="profile-img-tag" width="200px" />
+                    <script type="text/javascript">
+                        function readURL(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                
+                                reader.onload = function (e) {
+                                    $('#profile-img-tag').attr('src', e.target.result);
+                                }
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                        $("#profile-img").change(function(){
+                            readURL(this);
+                        });
+                    </script>
 
                     <div class="street-input">
                         <input type="text" name="street" placeholder="Straße" value="">
