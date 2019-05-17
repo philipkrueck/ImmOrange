@@ -36,7 +36,7 @@ CREATE TABLE realtor  (
 
 CREATE TABLE offer (
   offer_id INTEGER PRIMARY KEY NOT NULL,
-  offer_name VARCHAR(50) NOT NULL,
+  offer_name VARCHAR(40) NOT NULL,
   address_id INTEGER NOT NULL,
   realtor_id INTEGER NOT NULL, 
   is_apartment BOOLEAN NOT NULL,
@@ -50,11 +50,12 @@ CREATE TABLE offer (
   has_bathtub BOOLEAN NOT NULL,
   has_elevator BOOLEAN NOT NULL,
   has_balcony BOOLEAN NOT NULL,
+  FULLTEXT(offer_name),
   creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   FOREIGN KEY(address_id) REFERENCES address(address_id),
   FOREIGN KEY(realtor_id) REFERENCES realtor(realtor_id),
   FOREIGN KEY(image_id) REFERENCES image(image_id)
-);
+) ENGINE=MyISAM CHARSET=utf8mb4;
 # make image_id not null 
 
 CREATE TABLE account (
@@ -156,7 +157,7 @@ has_garden, has_basement, has_bathtub, has_elevator, has_balcony, creation_date)
  ('4', 'Naturparadies! Haustiere erlaubt.', '18', '4', '0', '1', '5', '2000', '120', NULL, '1', '1', '0', '0', '0', CURRENT_TIMESTAMP), 
  ('5', 'Perfekt zum JOGGEN!', '19', '5', '1', '1', '2', '700', '40', NULL, '0', '0', '1', '1', '0', CURRENT_TIMESTAMP), 
  ('6', '24-Stunden Tageslicht! 2-Z.-Wohn.', '20', '1', '6', '0', '4', '700', '70', NULL, '1', '1', '0', '1', '0', CURRENT_TIMESTAMP), 
- ('7', 'Altbau, ruhig, Stadtpark-Nähe **WINTERHUDE**', '1', '7', '1', '1', '4', '900', '80', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP), 
+ ('7', 'Altbau, ruhig, Stadtpark *WINTERHUDE*', '1', '7', '1', '1', '4', '900', '80', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP), 
  ('8', 'frisch RENOVIERTes City-App.', '2', '1', '1', '0', '5', '1400', '105', NULL, '0', '1', '1', '1', '1', CURRENT_TIMESTAMP), 
  ('9', 'U1 & U3 !!! Perfekt für Singles.', '3', '2', '1', '1', '2', '600', '20', NULL, '0', '0', '0', '0', '0', CURRENT_TIMESTAMP), 
  ('10', 'WG-ZIMMER * Shopping-Street zentral', '4', '3', '1', '1', '1', '300', '15', NULL, '0', '1', '0', '1', '1', CURRENT_TIMESTAMP), 
