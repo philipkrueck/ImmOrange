@@ -51,24 +51,24 @@
 
         <!-- offer-options -->
         <div class="result-options-container">
-            <?php
-
-                if($offer["has_basement"]){
-                    echo '<img src="../img/icons/basement.png">';
+            ';           
+                if ($offer["has_basement"]) {
+                    echo '<img src="../img/icons/basement.png" title="besitzt einen Keller">';
                 }
-                if($offer["has_garden"]){
-                    echo '<img src="../img/icons/botanical.png">';
+                if ($offer["has_garden"]) {
+                    echo '<img src="../img/icons/botanical.png" title="besitzt einen Garten">';
                 }
-                if($offer["has_balcony"]){
-                    echo '<img src="../img/icons/balcony.png">';
+                if ($offer["has_balcony"]) {
+                    echo '<img src="../img/icons/balcony.png" title="besitzt einen Balkon">';
                 }
-                if($offer["has_bathtub"]){
-                    echo '<img src="../img/icons/bathtub.png">';
+                if ($offer["has_bathtub"]) {
+                    echo '<img src="../img/icons/bathtub.png" title="besitzt eine Badewanne">';
                 }
-                if($offer["has_elevator"]){
-                    echo '<img src="../img/icons/lift.png">';
+                if ($offer["has_elevator"]) {
+                    echo '<img src="../img/icons/lift.png" title="besitzt einen Fahrstuhl">';
                 }
-            ?>   
+                
+            echo '  
         </div>
 
     </div>';

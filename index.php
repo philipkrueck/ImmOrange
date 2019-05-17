@@ -220,7 +220,7 @@
                         
                         // sets SQL Statement for results
                         require_once('includes/functions/pdo.php');
-                        $sql_select = 'SELECT offer_id, offer_name, price, qm, rooms, city FROM offer o LEFT OUTER JOIN address a ON a.address_id = o.address_id';
+                        $sql_select = 'SELECT * FROM offer o LEFT OUTER JOIN address a ON a.address_id = o.address_id';
                         
                         // includes results-area
                         include ('includes/results.php');
