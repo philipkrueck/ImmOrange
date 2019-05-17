@@ -21,9 +21,62 @@ body{
 /**************************************************
                  HEADER Sytles
 ***************************************************/
+
 header{
     height: 90px;
     background-color: rgba(0, 101, 114, 0.65);
+}
+
+.logo{
+  margin: 0px;
+  text-align: center;
+  background-color: #d18800;
+  border-radius: 50px;
+  padding: 15px;
+  width: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 14px 0px 0px 15px;
+  border: 4px dashed #ffa500;
+  text-decoration: none;
+  color: white;
+}
+
+.iconUSER{
+  width:70%;
+  float:right;
+  margin-right:20px;
+  margin-top: -57px;
+}
+
+.headerDIV{
+  float: right;
+  margin-left: 200px;
+  height: 100%;
+}
+
+
+.dropdown {
+  position: relative;
+  float: right;
+  margin-left: 400px;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover
+
+.dropdown-content {
+  display: block;
 }
 
 /**************************************************
@@ -253,7 +306,7 @@ main .content{
             padding: 15px !important;
             font-size: 18px!important;
         }
- 
+
 
     /**************************************************
                  Results-Area Sytles
@@ -433,7 +486,7 @@ footer{
         grid-template-columns: 1fr 3fr;
         margin-bottom: 20px;
         margin-bottom: 10px;
-        background-color: 
+        background-color:
     }
 
     .signup-form .is-realtor-description{
@@ -487,7 +540,7 @@ footer{
     .signup-form .success-message a{
         color: white;
     }
-    
+
 
 
 /**************************************************
@@ -507,21 +560,21 @@ footer{
 }
 
 .ui-widget-header {
-    border: 0px !important; 
-    background: none !important; 
+    border: 0px !important;
+    background: none !important;
 }
 
 .ui-tabs .ui-tabs-nav {
     text-align: center;
-    margin-top: -30px !important;    
-    font-family: 'Open Sans'; 
-    font-weight: bold;     
+    margin-top: -30px !important;
+    font-family: 'Open Sans';
+    font-weight: bold;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     background-color: #ffa500;
     padding: 30px !important;
-    color: white;  
+    color: white;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover{
@@ -533,7 +586,7 @@ footer{
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor:focus {
-    border: none;  
+    border: none;
 }
 
 .ui-tabs .ui-tabs-nav li {
@@ -557,4 +610,3 @@ footer{
     background: none !important;
     color: black !important;
 }
-
