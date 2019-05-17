@@ -1,9 +1,26 @@
+<div class="result-breadcrum">
+
+    <?php
+        $counter = 0;
+        foreach (pdo()->query($sql_select) as $offer) {
+            $counter++;
+        }
+    ?>
+
+    <span class="result-counter">Anzahl Suchergebnisse: <b><?php echo $counter; ?></b></span>
+    <select>
+        <option>neuste zuerst</option>
+        <option>Preis aufsteigend</option>
+        <option>Preis absteigend</option>
+    </select>
+</div>
+
 <?php
 
     // creates container for each entry in DB
     foreach (pdo()->query($sql_select) as $offer) {
 
-        echo '<div class="search-result-container">
+        echo '<div class="result-container">
         
         <!-- offer-image -->
         <div class="result-image-container">
