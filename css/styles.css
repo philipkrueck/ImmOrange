@@ -310,12 +310,12 @@ main .content{
         display: grid;
         grid-gap: 10px;
         grid-template-columns: 2fr 2fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 80px 50px 50px 50px;
 
         font-family: 'Open Sans';
         margin-bottom: 20px;
         margin-top: 30px;
-        max-height: 250px;
+        max-height: 280px;
         border-radius: 3px;
         background-color: rgba(0, 101, 114, 0.65);
     }
@@ -361,7 +361,6 @@ main .content{
 
         text-align: center;
         padding: 10px 20px;
-        margin-top: 15px;
         margin-right: 20px;
         font-size: 20px;
         font-weight: bold;
@@ -389,7 +388,7 @@ main .content{
         grid-column: 2/4;
         grid-row: 2/3;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
     .result-rooms{
@@ -418,6 +417,22 @@ main .content{
     .result-container .location-img{
         width: 20px;
         margin-right: 10px;
+    }
+
+    .result-container .result-options-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 4/5;
+        text-align: center;
+    }
+
+    .result-container .result-options-container img{
+        max-width: 20px;
+        margin-right: 25px;
+    }
+
+    .result-container .result-options-container img:last-child{
+        margin-right: 0px;
     }
 
 

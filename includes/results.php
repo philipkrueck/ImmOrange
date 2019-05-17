@@ -49,6 +49,28 @@
             <img src="../img/icons/location.png" class="location-img"><span class="result-location">in '.$offer["city"].'</span>
         </div>
 
+        <!-- offer-options -->
+        <div class="result-options-container">
+            <?php
+
+                if($offer["has_basement"]){
+                    echo '<img src="../img/icons/basement.png">';
+                }
+                if($offer["has_garden"]){
+                    echo '<img src="../img/icons/botanical.png">';
+                }
+                if($offer["has_balcony"]){
+                    echo '<img src="../img/icons/balcony.png">';
+                }
+                if($offer["has_bathtub"]){
+                    echo '<img src="../img/icons/bathtub.png">';
+                }
+                if($offer["has_elevator"]){
+                    echo '<img src="../img/icons/lift.png">';
+                }
+            ?>   
+        </div>
+
     </div>';
 
     }
