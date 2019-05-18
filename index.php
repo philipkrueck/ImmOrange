@@ -225,18 +225,19 @@
                         $sql_select = "SELECT * FROM offer o LEFT OUTER JOIN address a ON a.address_id = o.address_id 
                         WHERE MATCH (o.offer_name) AGAINST ('".$full_text_search."')";
 
-                        echo '<div class="result-breadcrum">';
-                                $counter = 0;
-                                foreach (pdo()->query($sql_select) as $offer) {
-                                    $counter++;
-                                }
+                        echo '
+                        <div class="result-breadcrum">';
+                            $counter = 0;
+                            foreach (pdo()->query($sql_select) as $offer) {
+                                $counter++;
+                            }
         
-                                echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
-                            <select>
+                            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
+                            <!-- <select>
                                 <option>neuste zuerst</option>
                                 <option>Preis aufsteigend</option>
                                 <option>Preis absteigend</option>
-                            </select>
+                            </select> -->
                         </div>';
                     
                         // includes results-area
