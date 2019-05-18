@@ -21,6 +21,12 @@
             max-width: 220px;
         }
 
+        .ui-button:hover, .ui-button:focus {
+            border: 0px !important;
+            background: white !important;
+            padding: 10.5px 20px;
+        }
+
         .create-edit-offering-general-container .name-input{
             grid-column: 1/3;
             grid-row: 1/2;
