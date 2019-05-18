@@ -18,6 +18,17 @@ body{
 }
 
 
+h2{
+    color: white;
+    text-transform: uppercase;
+    max-width: 900px;
+    background-color: rgba(255, 165, 0, 0.8);
+    padding: 10px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+
 /**************************************************
                  HEADER Sytles
 ***************************************************/
@@ -29,9 +40,6 @@ header{
 /**************************************************
                  MAIN Sytles
 ***************************************************/
-main{
-
-}
 
 main .content{
     max-width: 900px;
@@ -259,13 +267,178 @@ main .content{
                  Results-Area Sytles
     ***************************************************/
     .results-area{
-        background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;
-
+        margin-bottom: 20px;        
     }
 
+    .results-area a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .result-breadcrum{
+        display: grid;
+        grid-template-columns: 700px 200px;
+
+        background-color: #d18800d1;
+        color: white;
+        padding: 7px;
+        border-radius: 50px;
+        font-family: 'Open Sans';
+        max-w
+    }
+
+    .result-breadcrum .result-counter{
+        margin: 5px 0px 0px 10px;
+    }
+
+    .result-breadcrum select{
+        background-color: #ffa500;
+        color: white;
+        border-radius: 50px;
+        padding: 7px;
+        border: 0px;
+        max-width: 185px;
+        float: right;
+        font-family: 'Open Sans';
+    }
+
+    .result-breadcrum select:focus{
+        outline: none;
+    }
+
+    .result-container{
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 2fr 2fr 1fr;
+        grid-template-rows: 80px 50px 50px 50px;
+
+        font-family: 'Open Sans';
+        margin-bottom: 20px;
+        margin-top: 30px;
+        max-height: 280px;
+        border-radius: 3px;
+        background-color: rgba(0, 101, 114, 0.65);
+    }
+
+    .result-container .result-image-container{
+        grid-column: 1/2;
+        grid-row: 1/5;
+        overflow: hidden;
+        border-right: 10px solid #d18800;
+    }
+
+    .result-container .result-image-container img{
+        max-height: 280px;
+        -moz-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+
+    .result-container .result-image-container img:hover{
+        moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);        
+        transform: scale(1.1);
+    }
+
+    .result-container h3{
+        grid-column: 2/5;
+
+        text-align: center;
+        font-size: 22px;
+        margin: 30px 30px 20px 30px;
+    }
+
+    .result-container .heart-icon{
+        position: absolute;
+        margin-left: 840px;
+        margin-top: 25px;
+        width: 35px;
+        cursor: pointer;
+    }
+    
+    .result-container .result-price{
+        grid-column: 4/5;
+        grid-row: 2/3;
+
+        text-align: center;
+        padding: 10px 20px;
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffa500;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+    .result-container .result-space{
+        grid-column: 4/5;
+        grid-row: 3/4;
+
+        text-align: center;
+        padding: 10px 20px;
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffa500;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+    .result-container .result-rooms-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 2/3;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .result-rooms{
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .result-container .rooms-img{
+        width: 20px;
+        margin-right: 15px;
+    }
+
+    .result-container .result-location-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 3/4;
+        text-align: center;
+        margin: 5px;
+    }
+
+    .result-location{
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .result-container .location-img{
+        width: 20px;
+        margin-right: 10px;
+    }
+
+    .result-container .result-options-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 4/5;
+        text-align: center;
+    }
+
+    .result-container .result-options-container img{
+        max-width: 25px;
+        margin-right: 25px;
+    }
+
+    .result-container .result-options-container img:last-child{
+        margin-right: 0px;
+    }
+
+
     /**************************************************
-                 Search-Area Sytles
+                 Promoted-Area Sytles
     ***************************************************/
     .promoted-area{
         background-color: rgba(0, 101, 114, 0.65);
@@ -273,7 +446,7 @@ main .content{
     }
 
     /**************************************************
-                 Search-Area Sytles
+                 Newest-Area Sytles
     ***************************************************/
     .newest-area{
         background-color: rgba(0, 101, 114, 0.65);

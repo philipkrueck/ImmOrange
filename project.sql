@@ -46,7 +46,7 @@ CREATE TABLE offer (
   qm INTEGER NOT NULL,
   image_id INTEGER,
   has_garden BOOLEAN NOT NULL,
-  has_garage BOOLEAN NOT NULL,
+  has_basement BOOLEAN NOT NULL,
   has_bathtub BOOLEAN NOT NULL,
   has_elevator BOOLEAN NOT NULL,
   has_balcony BOOLEAN NOT NULL,
@@ -149,7 +149,7 @@ INSERT INTO account (account_id, email, password, person_id, realtor_id, creatio
 ('14', 'soto@sushikyoto.tk', '$2y$10$FJX1BetFa9sChYb8S3YHRe3nM7cz.bhtCEL7U2PqV9x9xrrStz/PS', '14', NULL, CURRENT_TIMESTAMP);
 
 INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, purchasing_type, rooms, price, qm, image_id, 
-has_garden, has_garage, has_bathtub, has_elevator, has_balcony, creation_date) VALUES 
+has_garden, has_basement, has_bathtub, has_elevator, has_balcony, creation_date) VALUES 
 ('1', 'Wohnung mit Aussicht **TOP LAGE**', '15', '1', '0', '0', '3', '200000', '100', NULL, '0', '0', '1', '0', '1', CURRENT_TIMESTAMP),
  ('2', 'Direkt am Stadtpark!', '16', '2', '0', '0', '4', '500000', '60', NULL, '0', '1', '1', '0', '1', CURRENT_TIMESTAMP), 
  ('3', 'Ubahn-Anbindung TOP', '17', '3', '1', '1', '2', '1500', '45', NULL, '0', '0', '0', '0', '1', CURRENT_TIMESTAMP), 
