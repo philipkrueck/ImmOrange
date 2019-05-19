@@ -50,7 +50,7 @@
 
         <!-- rooms -->
         <div class="rooms-input">
-            <input type="number" name="rooms" placeholder="Raumanzahl" value="">
+            <input type="number" name="number_of_rooms" placeholder="Raumanzahl" value="">
         </div>
 
         <!-- living-space -->

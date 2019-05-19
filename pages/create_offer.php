@@ -22,6 +22,7 @@
         $_SESSION['number_of_rooms'] = $_POST['number_of_rooms'];
         $_SESSION['qm'] = $_POST['qm'];
         $_SESSION['price'] = $_POST['price'];
+        $_SESSION['construction_year'] = '1998';
         $_SESSION['street'] = $_POST['street'];
         $_SESSION['house_number'] = $_POST['house_number'];
         $_SESSION['zip'] = $_POST['zip'];
@@ -37,30 +38,31 @@
     }
 
     function insertPropertyOffer($offer_id) {
-        $offer_name = $_SESSION["offer_name"];
-        $realtor_id = $_SESSION['realtor_id']; // set in private.php
-        $is_apartment = $_SESSION['is_apartment'];
-        $is_for_rent = $_SESSION['is_for_rent'];
-        $number_of_rooms = $_SESSION['number_of_rooms'];
-        $price = $_SESSION['price'];
-        $qm = $_SESSION['qm'];
-        $construction_year  = '1998';
-        $has_basement = $_SESSION['has_basement'];
-        $has_garden = $_SESSION['has_garden'];
-        $has_balcony = $_SESSION['has_balcony'];
-        $has_bathtub = $_SESSION['has_bathtub'];
-        $has_elevator = $_SESSION['has_elevator'];
-        $street = $_SESSION['street'];
-        $house_number = $_SESSION['house_number'];
-        $zip = $_SESSION['zip'];
-        $city = $_SESSION['city'];
-        $country = $_SESSION['country'];
-        $image_name = $_FILES['picture']['name'];
-        $image_mime = $_FILES['picture']['type'];
+        $insert_offer_stmt = pdo()->prepare("INSERT INTO property_offer VALUES (:offer_id, :realtor_id, :offer_name, :is_apartment, :is_for_rent, :number_of_rooms, :price, :qm, :construction_year, :has_garden, :has_basement, :has_bathtub, :has_elevator, :has_balcony, :street, :house_number, :zip, :city, :country, :image_name, :image_mime, :image_data, now());");
+        $insert_offer_stmt->bindParam(':offer_id', $offer_id);
+        $insert_offer_stmt->bindParam(':realtor_id', $_SESSION['realtor_id']);
+        $insert_offer_stmt->bindParam(':offer_name', $_SESSION['offer_name']);
+        $insert_offer_stmt->bindParam(':is_apartment', $_SESSION['is_apartment']);
+        $insert_offer_stmt->bindParam(':is_for_rent', $_SESSION['is_for_rent']);
+        $insert_offer_stmt->bindParam(':number_of_rooms', $_SESSION['number_of_rooms']);
+        $insert_offer_stmt->bindParam(':price', $_SESSION['price']);
+        $insert_offer_stmt->bindParam(':qm', $_SESSION['qm']);
+        $insert_offer_stmt->bindParam(':construction_year', $_SESSION['construction_year']);
+        $insert_offer_stmt->bindParam(':has_garden', $_SESSION['has_garden']);
+        $insert_offer_stmt->bindParam(':has_basement', $_SESSION['has_basement']);
+        $insert_offer_stmt->bindParam(':has_bathtub', $_SESSION['has_bathtub']);
+        $insert_offer_stmt->bindParam(':has_elevator', $_SESSION['has_elevator']);
+        $insert_offer_stmt->bindParam(':has_balcony', $_SESSION['has_balcony']);
+        $insert_offer_stmt->bindParam(':street', $_SESSION['street']);
+        $insert_offer_stmt->bindParam(':house_number', $_SESSION['house_number']);
+        $insert_offer_stmt->bindParam(':zip', $_SESSION['zip']);
+        $insert_offer_stmt->bindParam(':city', $_SESSION['city']);
+        $insert_offer_stmt->bindParam(':country', $_SESSION['country']);
+        $insert_offer_stmt->bindParam(':image_name', $_FILES['picture']['name']);
+        $insert_offer_stmt->bindParam(':image_mime', $_FILES['picture']['type']);
         $image_data = file_get_contents($_FILES['picture']['tmp_name']);
-        
-        $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, realtor_id, offer_name, is_apartment,	is_for_rent, number_of_rooms, price, qm, construction_year,	has_garden,	has_basement, has_bathtub,	has_elevator, has_balcony,	street,	house_number, zip, city, country, image_name, image_mime, image_data);");
-        $insert_offer_stmt->execute(array(':offer_id' => $offer_id, 'realtor_id' => $realtor_id, ':offer_name' => $offer_name, ':is_apartment' => $is_apartment, ':is_for_rent' => $is_for_rent, ':number_of_rooms' => $number_of_rooms, ':price' => $price, ':qm' => $qm, ':construction_year' => $construction_year, ':has_garden' => $has_garden, ':has_basement' => $has_basement, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country, ':image_name' => $image_name, ':image_mime' => $image_mime, ':image_data' => $image_data));
+        $insert_offer_stmt->bindParam(':image_data', $image_data);
+        $insert_offer_stmt->execute();
     }
 
     function checkAllPostVariablesAreSet() {
