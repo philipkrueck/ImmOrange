@@ -10,6 +10,12 @@
 
     // todo: check that offer_id is related to realtor
 
+    $offer = getOffer($_GET['offer_id']);
+    if($offer['realtor_id'] != $_SESSION['realtor_id']) {
+        die('Sie haben keine Berechtigung zu bearbeiten. Zurück zur <a href="../../index.php">Homepage</a>');
+        return;
+    }
+
     if (isset($_POST['submit_offer'])) {
         if (checkAllPostVariablesAreSet()) {
             setSessionVariables();
@@ -61,6 +67,14 @@
             return true;
         }
         return false;
+    }
+
+    
+    function getOffer($offer_id) {
+        $offer_statement = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id;");
+        $offer_statement->bindParam(':offer_id', $offer_id);
+        $offer_statement->execute();
+        return $offer_statement->fetch();
     }
 
 ?>
