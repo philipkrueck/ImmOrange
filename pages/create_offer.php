@@ -1,16 +1,14 @@
 <!-- PHP-AREA -->
 <?php
-    // require_once('../includes/functions/pdo.php');
-    // require_once('../includes/functions/private.php');
+    require_once('../includes/functions/pdo.php');
+    require_once('../includes/functions/private.php');
     include('../includes/functions/random_id.php');
 
     if (isset($_POST['create_offer_submit'])) {
         if (checkAllPostVariablesAreSet()) {
-            // setSessionVariables();
+            setSessionVariables();
             $rand_offer_id = get_random_id();
-    //         // insertAddress($rand_address_id);
-    //         // insertImage($rand_image_id);
-    //         // insertOffer($rand_address_id, $rand_offer_id, $rand_image_id);
+            insertPropertyOffer($rand_offer_id);
             header("Location: offer.php?offer_id=".$rand_offer_id);
             return;
         } else {
@@ -19,66 +17,57 @@
         }
     }
 
-    // function setSessionVariables() {
-    //     $_SESSION['offer_name'] = $_POST['offer_name'];
-    //     $_SESSION['rooms'] = $_POST['rooms'];
-    //     $_SESSION['qm'] = $_POST['qm'];
-    //     $_SESSION['price'] = $_POST['price'];
-    //     $_SESSION['street'] = $_POST['street'];
-    //     $_SESSION['house_number'] = $_POST['house_number'];
-    //     $_SESSION['zip'] = $_POST['zip'];
-    //     $_SESSION['city'] = $_POST['city'];
-    //     $_SESSION['country'] = $_POST['country'];
-    //     $_SESSION['is_apartment'] = isset($_POST["is_apartment"]) ? 1 : 0;
-    //     $_SESSION['is_for_rent'] = isset($_POST["is_for_rent"]) ? 1 : 0;
-    //     $_SESSION['has_basement'] = isset($_POST["has_basement"]) ? 1 : 0;
-    //     $_SESSION['has_garden'] = isset($_POST["has_garden"]) ? 1 : 0;
-    //     $_SESSION['has_balcony'] = isset($_POST["has_balcony"]) ? 1 : 0;
-    //     $_SESSION['has_bathtub'] = isset($_POST["has_bathtub"]) ? 1 : 0;
-    //     $_SESSION['has_elevator'] = isset($_POST["has_elevator"]) ? 1 : 0;
-    // }
+    function setSessionVariables() {
+        $_SESSION['offer_name'] = $_POST['offer_name'];
+        $_SESSION['number_of_rooms'] = $_POST['number_of_rooms'];
+        $_SESSION['qm'] = $_POST['qm'];
+        $_SESSION['price'] = $_POST['price'];
+        $_SESSION['street'] = $_POST['street'];
+        $_SESSION['house_number'] = $_POST['house_number'];
+        $_SESSION['zip'] = $_POST['zip'];
+        $_SESSION['city'] = $_POST['city'];
+        $_SESSION['country'] = $_POST['country'];
+        $_SESSION['is_apartment'] = isset($_POST["is_apartment"]) ? 1 : 0;
+        $_SESSION['is_for_rent'] = isset($_POST["is_for_rent"]) ? 1 : 0;
+        $_SESSION['has_basement'] = isset($_POST["has_basement"]) ? 1 : 0;
+        $_SESSION['has_garden'] = isset($_POST["has_garden"]) ? 1 : 0;
+        $_SESSION['has_balcony'] = isset($_POST["has_balcony"]) ? 1 : 0;
+        $_SESSION['has_bathtub'] = isset($_POST["has_bathtub"]) ? 1 : 0;
+        $_SESSION['has_elevator'] = isset($_POST["has_elevator"]) ? 1 : 0;
+    }
 
-    // function insertAddress($address_id) {
-    //     $street = $_SESSION['street'];
-    //     $house_number = $_SESSION['house_number'];
-    //     $zip = $_SESSION['zip'];
-    //     $city = $_SESSION['city'];
-    //     $country = $_SESSION['country'];
-    //     $insert_address_stmt = pdo()->prepare("INSERT INTO address VALUES (:address_id, :street, :house_number, :zip, :city, :country);");
-    //     $insert_address_stmt->execute(array(':address_id' => $address_id, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country));
-    // }
-
-    // function insertImage($image_id) {
-    //     $image_name = $_FILES['picture']['name'];
-    //     $mime = $_FILES['picture']['type'];
-    //     $image_data = file_get_contents($_FILES['picture']['tmp_name']);
-    //     $insert_image_stmt = pdo()->prepare("INSERT INTO image VALUES(:image_id, :image_name, :mime, :image_data)");
-    //     $insert_image_stmt->execute(array(':image_id' => $image_id, ':image_name' => $image_name, ':mime' => $mime, ':image_data' => $image_data));
-    // }
-
-    // function insertOffer($address_id, $offer_id, $image_id) {
-    //     $offer_name = $_SESSION["offer_name"];
-    //     $realtor_id = $_SESSION['realtor_id']; // set in private.php
-    //     $is_apartment = $_SESSION['is_apartment'];
-    //     $is_for_rent = $_SESSION['is_for_rent'];
-    //     $rooms = $_SESSION['rooms'];
-    //     $qm = $_SESSION['qm'];
-    //     $price = $_SESSION['price'];
-    //     $has_basement = $_SESSION['has_basement'];
-    //     $has_garden = $_SESSION['has_garden'];
-    //     $has_balcony = $_SESSION['has_balcony'];
-    //     $has_bathtub = $_SESSION['has_bathtub'];
-    //     $has_elevator = $_SESSION['has_elevator'];
-
-    //     $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, is_for_rent, rooms, price, qm, image_id, has_garden, has_basement, has_bathtub, has_elevator, has_balcony) VALUES (:offer_id, :offer_name, :address_id, :realtor_id, :is_apartment, :is_for_rent, :rooms, :price, :qm, :image_id, :has_garden, :has_basement, :has_bathtub, :has_elevator, :has_balcony);");
-    //     $insert_offer_stmt->execute(array(':offer_id' => $offer_id, ':offer_name' => $offer_name, ':address_id' => $address_id, ':realtor_id' => $realtor_id, ':is_apartment' => $is_apartment, ':is_for_rent' => $is_for_rent, ':rooms' => $rooms, ':price' => $price, ':qm' => $qm, ':image_id' => $image_id, ':has_garden' => $has_garden, ':has_basement' => $has_basement, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony));
-    // }
+    function insertPropertyOffer($offer_id) {
+        $offer_name = $_SESSION["offer_name"];
+        $realtor_id = $_SESSION['realtor_id']; // set in private.php
+        $is_apartment = $_SESSION['is_apartment'];
+        $is_for_rent = $_SESSION['is_for_rent'];
+        $number_of_rooms = $_SESSION['number_of_rooms'];
+        $price = $_SESSION['price'];
+        $qm = $_SESSION['qm'];
+        $construction_year  = '1998';
+        $has_basement = $_SESSION['has_basement'];
+        $has_garden = $_SESSION['has_garden'];
+        $has_balcony = $_SESSION['has_balcony'];
+        $has_bathtub = $_SESSION['has_bathtub'];
+        $has_elevator = $_SESSION['has_elevator'];
+        $street = $_SESSION['street'];
+        $house_number = $_SESSION['house_number'];
+        $zip = $_SESSION['zip'];
+        $city = $_SESSION['city'];
+        $country = $_SESSION['country'];
+        $image_name = $_FILES['picture']['name'];
+        $image_mime = $_FILES['picture']['type'];
+        $image_data = file_get_contents($_FILES['picture']['tmp_name']);
+        
+        $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, realtor_id, offer_name, is_apartment,	is_for_rent, number_of_rooms, price, qm, construction_year,	has_garden,	has_basement, has_bathtub,	has_elevator, has_balcony,	street,	house_number, zip, city, country, image_name, image_mime, image_data);");
+        $insert_offer_stmt->execute(array(':offer_id' => $offer_id, 'realtor_id' => $realtor_id, ':offer_name' => $offer_name, ':is_apartment' => $is_apartment, ':is_for_rent' => $is_for_rent, ':number_of_rooms' => $number_of_rooms, ':price' => $price, ':qm' => $qm, ':construction_year' => $construction_year, ':has_garden' => $has_garden, ':has_basement' => $has_basement, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony, ':street' => $street, ':house_number' => $house_number, ':zip' => $zip, ':city' => $city, ':country' => $country, ':image_name' => $image_name, ':image_mime' => $image_mime, ':image_data' => $image_data));
+    }
 
     function checkAllPostVariablesAreSet() {
         if (($_POST['offer_name'] != '') and
             (isset($_POST['is_apartment'])) and
             (isset($_POST['is_for_rent'])) and
-            ($_POST['rooms'] != '') and
+            ($_POST['number_of_rooms'] != '') and
             ($_POST['qm'] != '') and
             ($_POST['street'] != '') and
             ($_POST['house_number'] != '') and
