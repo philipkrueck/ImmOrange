@@ -9,16 +9,23 @@
 <!-- CONTENT-AREA -->
 <div class="content">
 
-<!-- CREATE-OFFER-AREA -->
-<h2>Immobilie inserieren / bearbeiten</h2>
+<?php 
+    $title = $page_is_in_edit_ui == true ? "Immobilie bearbeiten" : "Immobilie inserieren";
+    $button_title = $page_is_in_edit_ui == true ? "Bestätigen" : "Inserieren";
+    $button_name = $page_is_in_edit_ui == true ? "Bestätigen" : "create_offer_submit";
+    $form_action = $page_is_in_edit_ui == true ? "edit_offer.php" : "create_offer.php";
+?>
 
-<form action="create_offer.php" method="post" enctype="multipart/form-data" class="create-edit-offering-form">
+<!-- CREATE-OFFER-AREA -->
+<h2><?php echo $title ?></h2>
+
+<form action="<?php echo $form_action?>" method="post" enctype="multipart/form-data" class="create-edit-offering-form">
 
 <!-- check if error-message should be dispayed -->
     <?php 
         if (isset($_GET['not_filled'])) {
             $errorMessage = "Bitte alle Felder ausfüllen";
-            echo '<div class="error-message">'.$errorMessage.'</div>';
+            echo '<div class="error-message">'.$errorMessage.'</div >';
         }
     ?>
 
@@ -150,7 +157,7 @@
                 <input type="text" name="country" placeholder="Land" value="">
             </div>
 
-            <input type="submit" class="submit-btn" name="create_offer_submit" value="abschicken">
+            <input type="submit" class="submit-btn" name="submit_offer" value="<?php echo $button_title?>">
 
         </div>                     
     </div>

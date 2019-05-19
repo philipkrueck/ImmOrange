@@ -4,7 +4,7 @@
     require_once('../includes/functions/private.php');
     include('../includes/functions/random_id.php');
 
-    if (isset($_POST['create_offer_submit'])) {
+    if (isset($_POST['submit_offer'])) {
         if (checkAllPostVariablesAreSet()) {
             setSessionVariables();
             $rand_offer_id = get_random_id();
@@ -121,6 +121,7 @@
         <!-- MAIN-AREA -->
         <main>
             <?php 
+                $page_is_in_edit_ui = false;
                 include('../includes/create_edit_offer.php');
             ?>>
         </main>

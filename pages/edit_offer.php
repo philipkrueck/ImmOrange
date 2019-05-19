@@ -1,27 +1,11 @@
 <?php
     require_once('../includes/functions/pdo.php');
+    require_once('../includes/functions/private.php');
 
 ?>
 
 <!DOCTYPE html>
 <html>
-
-    <?php
-        require_once('../includes/functions/private.php');
-        if (isset($_GET['offer_id'])){
-            $_POST['offer_id'] = $_GET['offer_id'];
-            $offer = get_offer();
-            if($offer['realtor_id'] == $_SESSION['realtor_id']) {
-                $_POST['offer_id'] = $_GET['offer_id'];
-                $pageStateIsEditUI = true;
-            } else {
-                die('Sie haben keine Berechtigung diese Immobilie zu bearbeiten <a href="../index.php">Startseite</a>');
-            }
-        } else {
-            $pageStateIsEditUI = false;
-        }
-
-    ?>
 
     <!-- HEAD-AREA -->
     <head>
@@ -49,6 +33,7 @@
         <!-- MAIN-AREA -->
         <main>
             <?php 
+                $page_is_in_edit_ui = true;
                 include('../includes/create_edit_offer.php');
             ?>
         </main>
