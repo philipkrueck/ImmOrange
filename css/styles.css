@@ -17,6 +17,9 @@ body{
     background-size: cover;
 }
 
+    /**************************************************
+                    Font Sytles
+    ***************************************************/
 
 h2{
     color: white;
@@ -46,14 +49,10 @@ main .content{
 }
 
     /**************************************************
-                 Search-Area Sytles
+                 Input Sytles
     ***************************************************/
-    .search-area {
-        margin-top: 80px;
-        margin-bottom: 20px;
-    }
 
-    .search-area input{
+    input{
         padding: 7px;
         border-radius: 50px;
         font-size: 15px;
@@ -65,7 +64,7 @@ main .content{
         border: 4px solid white;
     }
 
-    .search-area input:focus{
+    input:focus{
         border: 4px solid #ffa500;
         outline: none;
     }
@@ -90,6 +89,53 @@ main .content{
         cursor: pointer;
     }
 
+    select{
+        padding: 5px;
+        font-size: 15px;
+        font-family: 'Open Sans';
+    }
+
+    .ui-selectmenu-button.ui-button{
+        max-width: 200px;
+        margin: 10px;
+        font-family: 'Open Sans';
+        height: 23px;
+        border-radius: 50px !important;
+        border: 4px solid white;
+        background-color: white;
+    }
+
+    .ui-selectmenu-button.ui-button:focus{
+        border: 4px solid #ffa500;
+        outline: none;
+    }
+
+
+/**************************************************
+                 HEADER Sytles
+***************************************************/
+header{
+    height: 90px;
+    background-color: rgba(0, 101, 114, 0.65);
+}
+
+/**************************************************
+                 MAIN Sytles
+***************************************************/
+
+main .content{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+    /**************************************************
+                 Search-Area Sytles
+    ***************************************************/
+    .search-area {
+        margin-top: 80px;
+        margin-bottom: 20px;
+    }
+
 
         /**************************************************
                  Extended-Search Sytles
@@ -107,26 +153,6 @@ main .content{
             margin: 0px 0px 20px 0px;
             font-family: 'Open Sans';
             font-size: 16px;
-        }
-
-        .extended-search select{
-            padding: 5px;
-            font-size: 15px;
-            font-family: 'Open Sans';
-        }
-
-        .extended-search .ui-selectmenu-button.ui-button{
-            max-width: 200px;
-            margin: 10px;
-            font-family: 'Open Sans';
-            height: 23px;
-            border-radius: 50px !important;
-            border: 4px solid white;
-        }
-
-        .extended-search .ui-selectmenu-button.ui-button:focus{
-            border: 4px solid #ffa500;
-            outline: none;
         }
 
 
@@ -217,6 +243,7 @@ main .content{
                 font-size: 14px;
                 color: white;
                 font-family: 'Open Sans';
+                text-align: center;
             }
 
             .checkbox-container input[type=checkbox]{

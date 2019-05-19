@@ -3,8 +3,6 @@
     require_once('../includes/functions/private.php');
     include('../includes/functions/random_id.php');
 
-
-
     if (isset($_POST['create_offer_submit'])) {
         if (checkAllPostVariablesAreSet()) {
             setSessionVariables();
@@ -33,7 +31,7 @@
         $_SESSION['country'] = $_POST['country'];
         $_SESSION['is_apartment'] = isset($_POST["is_apartment"]) ? 1 : 0;
         $_SESSION['purchasing_type'] = isset($_POST["purchasing_type"]) ? 1 : 0;
-        $_SESSION['has_garage'] = isset($_POST["has_garage"]) ? 1 : 0;
+        $_SESSION['has_basement'] = isset($_POST["has_basement"]) ? 1 : 0;
         $_SESSION['has_garden'] = isset($_POST["has_garden"]) ? 1 : 0;
         $_SESSION['has_balcony'] = isset($_POST["has_balcony"]) ? 1 : 0;
         $_SESSION['has_bathtub'] = isset($_POST["has_bathtub"]) ? 1 : 0;
@@ -66,14 +64,14 @@
         $rooms = $_SESSION['rooms'];
         $qm = $_SESSION['qm'];
         $price = $_SESSION['price'];
-        $has_garage = $_SESSION['has_garage'];
+        $has_basement = $_SESSION['has_basement'];
         $has_garden = $_SESSION['has_garden'];
         $has_balcony = $_SESSION['has_balcony'];
         $has_bathtub = $_SESSION['has_bathtub'];
         $has_elevator = $_SESSION['has_elevator'];
 
-        $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, purchasing_type, rooms, price, qm, image_id, has_garden, has_garage, has_bathtub, has_elevator, has_balcony) VALUES (:offer_id, :offer_name, :address_id, :realtor_id, :is_apartment, :purchasing_type, :rooms, :price, :qm, :image_id, :has_garden, :has_garage, :has_bathtub, :has_elevator, :has_balcony);");
-        $insert_offer_stmt->execute(array(':offer_id' => $offer_id, ':offer_name' => $offer_name, ':address_id' => $address_id, ':realtor_id' => $realtor_id, ':is_apartment' => $is_apartment, ':purchasing_type' => $purchasing_type, ':rooms' => $rooms, ':price' => $price, ':qm' => $qm, ':image_id' => $image_id, ':has_garden' => $has_garden, ':has_garage' => $has_garage, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony));
+        $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, purchasing_type, rooms, price, qm, image_id, has_garden, has_basement, has_bathtub, has_elevator, has_balcony) VALUES (:offer_id, :offer_name, :address_id, :realtor_id, :is_apartment, :purchasing_type, :rooms, :price, :qm, :image_id, :has_garden, :has_basement, :has_bathtub, :has_elevator, :has_balcony);");
+        $insert_offer_stmt->execute(array(':offer_id' => $offer_id, ':offer_name' => $offer_name, ':address_id' => $address_id, ':realtor_id' => $realtor_id, ':is_apartment' => $is_apartment, ':purchasing_type' => $purchasing_type, ':rooms' => $rooms, ':price' => $price, ':qm' => $qm, ':image_id' => $image_id, ':has_garden' => $has_garden, ':has_basement' => $has_basement, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony));
     }
 
     function checkAllPostVariablesAreSet() {
@@ -97,132 +95,38 @@
 <!DOCTYPE html>
 <html>
 
+    <!-- HEAD-AREA -->
     <head>
+
+        <!-- Homepage-Title -->
         <title>Page Title</title>
+
+        <!-- Link-Relations -->
         <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/pages/create_edit_offer.css">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />   
+
+
     </head>
+
+    <!-- BODY-AREA -->
     <body>
+
+        <!-- HEADER-AREA -->
         <header>
             <?php 
-                include('../includes/functions/image_upload.php');
                 include('../includes/header.php');
             ?>
         </header>
+
+        <!-- MAIN-AREA -->
         <main>
-            <div class="content">
-                <form action="create_offer.php" method="post" class="edit-offering-form" enctype="multipart/form-data">
-                    <div class="name-input">
-                        <input type="text" name="offer_name" placeholder="Titel" value="">
-                    </div>
-
-                    <div class="is_apartment-input">
-                        <select id="is_apartment-input" name="is_apartment">
-                            <option disabled selected>Haus oder Wohnung</option>
-                            <option>Haus</option>
-                            <option>Wohnung</option>
-                        </select>
-                    </div>
-
-                    <div class="purchasing_type-input">
-                        <select id="purchasing_type-input" name="purchasing_type">
-                            <option disabled selected>mieten oder kaufen</option>
-                            <option>mieten</option>
-                            <option>kaufen</option>
-                        </select>
-                    </div>
-
-                    <div class="rooms-input">
-                        <input type="number" name="rooms" placeholder="Raumanzahl" value="">
-                    </div>
-
-                    <div class="living-space-input">
-                        <input type="number" name="qm" placeholder="Wohnfläche (qm)" value="">
-                    </div>
-
-                    <div class="price-input">
-                        <input type="number" name="price" placeholder="Preis (€)" value="">
-                    </div>
-
-                    <p>Bitte wähle ein Bild aus</p>
-                    <input type="file" name="picture" id="offer-img">
-                    <img src="" id="offer-img-tag" width="200px" />
-                    <script type="text/javascript">
-                        $("#offer-img").change(function(){
-                            readURL(this);
-                        });
-                    </script>
-
-                    <div class="street-input">
-                        <input type="text" name="street" placeholder="Straße" value="">
-                    </div>
-
-                    <div class="house_number-input">
-                        <input type="text" name="house_number" placeholder="Hausnummer" value="">
-                    </div>
-
-                    <div class="zip-input">
-                        <input type="text" name="zip" placeholder="zip" value="">
-                    </div>
-
-                    <div class="city-input">
-                        <input type="text" name="city" placeholder="Stadt" value="">
-                    </div>
-
-                    <div class="country-input">
-                        <input type="text" name="country" placeholder="Land" value="">
-                    </div>
-
-                    <!-- check if error-message should be dispayed -->
-                    <?php 
-                        if(isset($errorMessage)) {
-                            echo '<div class="error-message">'.$errorMessage.'</div>';
-                        }
-                    ?>
-
-                    <!-- basement -->
-                    <div class="checkbox-container">
-                        <img src="../img/icons/basement.png" class="checkbox-icon">
-                        <span class="checkbox-description">Garage</span>
-                        <input type="checkbox" name="has_garage" value="">
-                    </div>
-
-                    <!-- garden -->
-                    <div class="checkbox-container">
-                        <img src="../img/icons/botanical.png" class="checkbox-icon">
-                        <span class="checkbox-description">Garten</span>
-                        <input type="checkbox" name="has_garden" value="1" >
-                    </div>
-
-                    <!-- balcony -->
-                    <div class="checkbox-container">
-                        <img src="../img/icons/balcony.png" class="checkbox-icon">
-                        <span class="checkbox-description">Balkon</span>
-                        <input type="checkbox" name="has_balcony"  value="1">
-                    </div>
-
-                    <!-- bathtub -->
-                    <div class="checkbox-container">
-                        <img src="../img/icons/bathtub.png" class="checkbox-icon">
-                        <span class="checkbox-description">Badewanne</span>
-                        <input type="checkbox" name="has_bathtub" value="1">
-                    </div>
-
-                    <!-- lift -->
-                    <div class="checkbox-container">
-                        <img src="/img/icons/lift.png" class="checkbox-icon">
-                        <span class="checkbox-description">Fahrstuhl</span>
-                        <input type="checkbox" name="has_elevator"  value="1">
-                    </div>
-                    </div>
-
-                    <!-- fifth row -->
-                    <div class="extended-search fifth-row">
-                        <input type="submit" name="create_offer_submit">
-                    </div>
-
-                </form>
-            </div>
+            <?php 
+                include('../includes/create_edit_offer.php');
+            ?>
         </main>
+
+        <!-- FOOTER-AREA -->
         <footer>
             <?php
                 include ('../includes/footer.php');
