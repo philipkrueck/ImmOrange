@@ -15,8 +15,8 @@
       <div class="smallfooter">
 
         <h3>Finde uns auf:</h3>
-        <a href="https://www.facebook.com/"><img class="iconTIF" src="../img/icons/facebook.png"></a>
-        <a href="https://twitter.com/?lang=de"><img class="iconTIF" src="../img/icons/twitter.png" ></a>
+        <a href="https://www.facebook.com/"><img class="iconTIF" src="../img/icons/Facebook.png"></a>
+        <a href="https://twitter.com/?lang=de"><img class="iconTIF" src="../img/icons/Twitter.png" ></a>
         <a href="https://www.instagram.com/?hl=de"><img class="iconTIF" src="../img/icons/instagram.png" ></a>
 
       </div>
