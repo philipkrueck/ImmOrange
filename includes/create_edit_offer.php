@@ -13,7 +13,7 @@
     $title = $page_is_in_edit_ui == true ? "Immobilie bearbeiten" : "Immobilie inserieren";
     $button_title = $page_is_in_edit_ui == true ? "Bestätigen" : "Inserieren";
     $button_name = $page_is_in_edit_ui == true ? "Bestätigen" : "create_offer_submit";
-    $form_action = $page_is_in_edit_ui == true ? "edit_offer.php" : "create_offer.php";
+    $form_action = $page_is_in_edit_ui == true ? "edit_offer.php?offer_id=".$_GET['offer_id'] : "create_offer.php";
 ?>
 
 <!-- CREATE-OFFER-AREA -->

@@ -3,6 +3,13 @@
     require_once('../includes/functions/private.php');
     include('../includes/functions/random_id.php');
 
+    if(!isset($_GET['offer_id'])) {
+        die('Immobilie existiert nicht. Zurück zur <a href="../../index.php">Homepage</a>');
+        return;
+    }
+
+    // todo: check that offer_id is related to realtor
+
     if (isset($_POST['submit_offer'])) {
         if (checkAllPostVariablesAreSet()) {
             setSessionVariables();
