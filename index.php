@@ -220,10 +220,9 @@
                 <?php
 
                     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';                 
+                        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
                                                                                
-                        $sql_select = "SELECT * FROM offer o LEFT OUTER JOIN address a ON a.address_id = o.address_id 
-                        WHERE MATCH (o.offer_name) AGAINST ('".$full_text_search."')";
+                        $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, city, country) AGAINST ('".$full_text_search."')";
 
                         echo '
                         <div class="result-breadcrum">';

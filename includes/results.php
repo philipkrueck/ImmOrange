@@ -24,7 +24,7 @@
 
         <!-- offer-rooms -->
         <div class="result-rooms-container">
-            <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">'.$offer["rooms"].' Zimmer</span>
+            <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">'.$offer["number_of_rooms"].' Zimmer</span>
         </div>
 
         <!-- offer-location -->
