@@ -1,9 +1,9 @@
 <!-- Includes -->
 <?php
-            include ('../includes/functions/image_upload.php');
-            include ('../includes/features/jquery.php');
-            include ('../includes/features/autocomplete.php');
-            include ('../includes/features/combobox.php');
+    include ('../includes/functions/image_upload.php');
+    include ('../includes/features/jquery.php');
+    include ('../includes/features/autocomplete.php');
+    include ('../includes/features/combobox.php');
 ?>
 
 <!-- CONTENT-AREA -->
@@ -13,6 +13,14 @@
 <h2>Immobilie inserieren / bearbeiten</h2>
 
 <form action="create_offer.php" method="post" enctype="multipart/form-data" class="create-edit-offering-form">
+
+<!-- check if error-message should be dispayed -->
+    <?php 
+        if (isset($_GET['not_filled'])) {
+            $errorMessage = "Bitte alle Felder ausfüllen";
+            echo '<div class="error-message">'.$errorMessage.'</div>';
+        }
+    ?>
 
     <!-- FIRST CONTAINER -->
     <div class="create-edit-offering-general-container">
@@ -141,13 +149,6 @@
             <div class="country-input">
                 <input type="text" name="country" placeholder="Land" value="">
             </div>
-
-            <!-- check if error-message should be dispayed -->
-            <?php 
-                if(isset($errorMessage)) {
-                    echo '<div class="error-message">'.$errorMessage.'</div>';
-                }
-            ?>
 
             <input type="submit" class="submit-btn" name="create_offer_submit" value="abschicken">
 

@@ -2,23 +2,22 @@
 <?php
     // require_once('../includes/functions/pdo.php');
     // require_once('../includes/functions/private.php');
-    // include('../includes/functions/random_id.php');
+    include('../includes/functions/random_id.php');
 
-    // if (isset($_POST['create_offer_submit'])) {
-    //     if (checkAllPostVariablesAreSet()) {
-    //         // setSessionVariables();
-    //         // $rand_address_id = get_random_id();
-    //         // $rand_offer_id = get_random_id();
-    //         // $rand_image_id = get_random_id();
+    if (isset($_POST['create_offer_submit'])) {
+        if (checkAllPostVariablesAreSet()) {
+            // setSessionVariables();
+            $rand_offer_id = get_random_id();
     //         // insertAddress($rand_address_id);
     //         // insertImage($rand_image_id);
     //         // insertOffer($rand_address_id, $rand_offer_id, $rand_image_id);
-    //         // header("Location: offer.php?offer_id=".$rand_offer_id);
-    //         // return;
-    //     } else {
-    //         $errorMessage = "Bitte fülle alle Felder aus";
-    //     }
-    // }
+            header("Location: offer.php?offer_id=".$rand_offer_id);
+            return;
+        } else {
+            header("Location: create_offer.php?not_filled");
+            return;
+        }
+    }
 
     // function setSessionVariables() {
     //     $_SESSION['offer_name'] = $_POST['offer_name'];
@@ -75,22 +74,22 @@
     //     $insert_offer_stmt->execute(array(':offer_id' => $offer_id, ':offer_name' => $offer_name, ':address_id' => $address_id, ':realtor_id' => $realtor_id, ':is_apartment' => $is_apartment, ':is_for_rent' => $is_for_rent, ':rooms' => $rooms, ':price' => $price, ':qm' => $qm, ':image_id' => $image_id, ':has_garden' => $has_garden, ':has_basement' => $has_basement, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony));
     // }
 
-    // function checkAllPostVariablesAreSet() {
-    //     if (($_POST['offer_name'] != '') and
-    //         (isset($_POST['is_apartment'])) and
-    //         (isset($_POST['is_for_rent'])) and
-    //         ($_POST['rooms'] != '') and
-    //         ($_POST['qm'] != '') and
-    //         ($_POST['street'] != '') and
-    //         ($_POST['house_number'] != '') and
-    //         ($_POST['zip'] != '') and
-    //         ($_POST['city'] != '') and
-    //         ($_POST['country'] != '')
-    //     ) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    function checkAllPostVariablesAreSet() {
+        if (($_POST['offer_name'] != '') and
+            (isset($_POST['is_apartment'])) and
+            (isset($_POST['is_for_rent'])) and
+            ($_POST['rooms'] != '') and
+            ($_POST['qm'] != '') and
+            ($_POST['street'] != '') and
+            ($_POST['house_number'] != '') and
+            ($_POST['zip'] != '') and
+            ($_POST['city'] != '') and
+            ($_POST['country'] != '')
+        ) {
+            return true;
+        }
+        return false;
+    }
 ?>
 
 <!DOCTYPE html>
