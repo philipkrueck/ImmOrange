@@ -32,8 +32,8 @@
         </div>
 
         <!-- purchasing-type -->
-        <div class="purchasing_type-input">
-            <select id="purchase-type-input" name="purchasing_type" >
+        <div class="is_for_rent-input">
+            <select id="purchase-type-input" name="is_for_rent" >
                 <option disabled selected>mieten oder kaufen</option>
                 <option>mieten</option>
                 <option>kaufen</option>

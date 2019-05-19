@@ -31,7 +31,7 @@
     //     $_SESSION['city'] = $_POST['city'];
     //     $_SESSION['country'] = $_POST['country'];
     //     $_SESSION['is_apartment'] = isset($_POST["is_apartment"]) ? 1 : 0;
-    //     $_SESSION['purchasing_type'] = isset($_POST["purchasing_type"]) ? 1 : 0;
+    //     $_SESSION['is_for_rent'] = isset($_POST["is_for_rent"]) ? 1 : 0;
     //     $_SESSION['has_basement'] = isset($_POST["has_basement"]) ? 1 : 0;
     //     $_SESSION['has_garden'] = isset($_POST["has_garden"]) ? 1 : 0;
     //     $_SESSION['has_balcony'] = isset($_POST["has_balcony"]) ? 1 : 0;
@@ -61,7 +61,7 @@
     //     $offer_name = $_SESSION["offer_name"];
     //     $realtor_id = $_SESSION['realtor_id']; // set in private.php
     //     $is_apartment = $_SESSION['is_apartment'];
-    //     $purchasing_type = $_SESSION['purchasing_type'];
+    //     $is_for_rent = $_SESSION['is_for_rent'];
     //     $rooms = $_SESSION['rooms'];
     //     $qm = $_SESSION['qm'];
     //     $price = $_SESSION['price'];
@@ -71,14 +71,14 @@
     //     $has_bathtub = $_SESSION['has_bathtub'];
     //     $has_elevator = $_SESSION['has_elevator'];
 
-    //     $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, purchasing_type, rooms, price, qm, image_id, has_garden, has_basement, has_bathtub, has_elevator, has_balcony) VALUES (:offer_id, :offer_name, :address_id, :realtor_id, :is_apartment, :purchasing_type, :rooms, :price, :qm, :image_id, :has_garden, :has_basement, :has_bathtub, :has_elevator, :has_balcony);");
-    //     $insert_offer_stmt->execute(array(':offer_id' => $offer_id, ':offer_name' => $offer_name, ':address_id' => $address_id, ':realtor_id' => $realtor_id, ':is_apartment' => $is_apartment, ':purchasing_type' => $purchasing_type, ':rooms' => $rooms, ':price' => $price, ':qm' => $qm, ':image_id' => $image_id, ':has_garden' => $has_garden, ':has_basement' => $has_basement, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony));
+    //     $insert_offer_stmt = pdo()->prepare("INSERT INTO offer (offer_id, offer_name, address_id, realtor_id, is_apartment, is_for_rent, rooms, price, qm, image_id, has_garden, has_basement, has_bathtub, has_elevator, has_balcony) VALUES (:offer_id, :offer_name, :address_id, :realtor_id, :is_apartment, :is_for_rent, :rooms, :price, :qm, :image_id, :has_garden, :has_basement, :has_bathtub, :has_elevator, :has_balcony);");
+    //     $insert_offer_stmt->execute(array(':offer_id' => $offer_id, ':offer_name' => $offer_name, ':address_id' => $address_id, ':realtor_id' => $realtor_id, ':is_apartment' => $is_apartment, ':is_for_rent' => $is_for_rent, ':rooms' => $rooms, ':price' => $price, ':qm' => $qm, ':image_id' => $image_id, ':has_garden' => $has_garden, ':has_basement' => $has_basement, ':has_bathtub' => $has_bathtub, ':has_elevator' => $has_elevator, ':has_balcony' => $has_balcony));
     // }
 
     // function checkAllPostVariablesAreSet() {
     //     if (($_POST['offer_name'] != '') and
     //         (isset($_POST['is_apartment'])) and
-    //         (isset($_POST['purchasing_type'])) and
+    //         (isset($_POST['is_for_rent'])) and
     //         ($_POST['rooms'] != '') and
     //         ($_POST['qm'] != '') and
     //         ($_POST['street'] != '') and
