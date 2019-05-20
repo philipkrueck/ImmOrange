@@ -23,6 +23,8 @@
         return false;
     }
 
-
+    function passwordsAreMatching($password_one, $password_two) {
+        return ($password_one == $password_two);
+    }
 
 ?>
