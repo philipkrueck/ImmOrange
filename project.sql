@@ -32,9 +32,10 @@ CREATE TABLE property_offer (
   image_name VARCHAR(255) NOT NULL,
   image_mime VARCHAR(255) NOT NULL,
   image_data LONGBLOB NOT NULL,
+  FULLTEXT full_text(offer_name, street, city, country),
   creation_date DATETIME DEFAULT now() NOT NULL,
   FOREIGN KEY(realtor_id) REFERENCES realtor(realtor_id)
-) ENGINE = InnoDB ;
+) ENGINE=MyISAM CHARSET=utf8mb4;
 
 CREATE TABLE account (
   acc_id INTEGER PRIMARY KEY NOT NULL,
