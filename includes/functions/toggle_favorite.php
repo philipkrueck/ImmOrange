@@ -6,7 +6,9 @@
             $(this).attr('src','../img/icons/heart_orange.png');
         } else {
             $(this).attr('src','../img/icons/heart_white.png');
-        }        
+        }
+
+        
     }
 });
 </script>
