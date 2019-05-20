@@ -39,14 +39,6 @@
 
 <form action="<?php echo $form_action?>" method="post" enctype="multipart/form-data" class="create-edit-offering-form">
 
-<!-- check if error-message should be dispayed -->
-    <?php 
-        if (isset($_GET['not_filled'])) {
-            $errorMessage = "Bitte alle Felder ausfüllen";
-            echo '<div class="error-message">'.$errorMessage.'</div >';
-        }
-    ?>
-
     <!-- FIRST CONTAINER -->
     <div class="create-edit-offering-general-container">
 
@@ -175,7 +167,16 @@
                 <input type="text" name="country" placeholder="Land" value="<?php echo $country ?>">
             </div>
 
+            <!-- submit-button -->
             <input type="submit" class="submit-btn" name="submit_offer" value="<?php echo $button_title?>">
+
+            <!-- check if error-message should be dispayed -->
+            <?php 
+                if (isset($_GET['not_filled'])) {
+                    $errorMessage = "Bitte alle Felder ausfüllen";
+                    echo '<div class="error-message">'.$errorMessage.'</div >';
+                }
+            ?>
 
         </div>                     
     </div>
