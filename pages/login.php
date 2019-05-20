@@ -7,6 +7,7 @@
     //starting session to save login-cookie
     session_start();
 
+
     if (isset($_POST['submit'])) {
         if (isset($_GET['login'])) {
             login();
@@ -16,12 +17,68 @@
     }
 
     function login() {
-        echo "login"; 
+        if (checkLoginPostParameters()) {
+            setLoginSessionVariables();
+        }   
     }
 
     function signup() {
-        echo "sigunp"; 
+        if (checkSignupPostParameters()) {
+            setSignupSessionVariables();
+        } 
     }
+
+    function checkLoginPostParameters() {
+        if (($_POST['email'] != '') and ($_POST['password'] != '')) {
+            return true;
+        } 
+        return false;
+    }
+
+    function checkSignupPostParameters() {
+        if (($_POST['email'] != '') and
+        ($_POST['password'] != '') and
+        ($_POST['first_name'] != '') and
+        ($_POST['last_name'] != '') and
+        ($_POST['company_name'] != '') and
+        ($_POST['tel_number'] != '')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function setLoginSessionVariables() {
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = $_POST['password'];
+    }
+
+    function setSignupSessionVariables() {
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = $_POST['password'];
+        $_SESSION['first_name'] = $_POST['first_name']
+        $_SESSION['last_name'] = $_POST['last_name']
+        $_SESSION['company_name'] = $_POST['company_name']
+        $_SESSION['tel_nubmber'] = $_POST['tel_nubmber']
+    }
+
+    // function checkLoginPostVariables() {
+    //     if ($_POST['email'] != '') and ($_POST['password'] != '') {
+
+    //     }
+    // }
+
+    // function checkSignup() {
+    //     if ($_POST['email'] != '') and 
+    //     ($_POST['password']) and 
+    //     ($_POST['first_name']) and 
+    //     ($_POST['last_name']) and
+    //     ($_POST['company_name']
+    //     ($_POST['tel_number']) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 ?>
 
 <!DOCTYPE html>
