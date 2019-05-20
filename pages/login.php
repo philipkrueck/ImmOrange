@@ -106,7 +106,7 @@
         $_SESSION['last_name'] = $_POST['last_name'];
         if (checkIsRealtor()) {
             $_SESSION['company_name'] = $_POST['company_name'];
-            $_SESSION['tel_nubmber'] = $_POST['tel_nubmber'];
+            $_SESSION['tel_number'] = $_POST['tel_number'];
         }
     }
 
