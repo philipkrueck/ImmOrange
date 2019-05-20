@@ -1,12 +1,27 @@
 <!-- PHP-AREA -->
 <?php
-
-    //if errors appear, show all of them
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1'); 
+    include ('../includes/functions/random_id.php');
+    require_once('../includes/functions/pdo.php');
+    //include ('../includes/functions/login.php');
 
     //starting session to save login-cookie
     session_start();
+
+    if (isset($_POST['submit'])) {
+        if (isset($_GET['login'])) {
+            login();
+        } else if (isset($_GET['signup'])) {
+            signup();
+        }
+    }
+
+    function login() {
+        echo "login"; 
+    }
+
+    function signup() {
+        echo "sigunp"; 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +37,6 @@
         <?php 
             include ('../includes/features/jquery.php');
             include ('../includes/features/search_tabs.php');
-            include ('../includes/functions/random_id.php');
-            require_once('../includes/functions/pdo.php');
-            include ('../includes/functions/login.php');
         ?>
 
         <!-- Scripts --> 
@@ -85,7 +97,7 @@
                                 }
                             ?>
                            
-                            <input type="submit" value="Login!"> 
+                            <input type="submit" name="submit" value="Login!"> 
                         </form>
 
                     </div>
@@ -120,7 +132,7 @@
                             <input type="text" maxlength="25" id="tel_number" placeholder="Telefonnummer*" name="tel_number" style="display:none;">
 
                             <!-- submit -->
-                            <input type="submit" value="Registrieren!">     
+                            <input type="submit" name="submit" value="Registrieren!">     
                         </form>
                     </div>
                 </div> 
