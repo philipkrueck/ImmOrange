@@ -222,7 +222,7 @@
                     if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
                                                                                
-                        $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, city, country) AGAINST ('".$full_text_search."')";
+                        $sql_select = "SELECT * FROM property_offer";
 
                         echo '
                         <div class="result-breadcrum">';
