@@ -44,14 +44,24 @@
                     $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$curr_realtor_id'";
 
                     echo '
-                    <div class="result-breadcrum">';
-                        $counter = 0;
-                        foreach (pdo()->query($sql_select) as $offer) {
-                            $counter++;
-                        }
 
-                        echo '<span class="result-counter">Anzahl: <b>'; echo $counter; echo '</b></span>
+                    <div class="sub-line">
+                        <div class="result-breadcrum">';
+                            $counter = 0;
+                            foreach (pdo()->query($sql_select) as $offer) {
+                                $counter++;
+                            }
 
+                            echo '<span class="result-counter">Anzahl: <b>'; echo $counter; echo '</b></span>
+
+                        </div>
+
+                        <a href="create_offer.php">
+                            <div class="add-offer-container">                            
+                                <span>hinzufügen</span>
+                                <img src="../img/icons/add.png">                            
+                            </div>
+                        </a>
                     </div>';
                 ?>
             
