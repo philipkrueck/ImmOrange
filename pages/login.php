@@ -48,7 +48,9 @@
         }
     }
 
-    function setLoginSessionVariables() {
+
+
+    function setLoginSessionVariables() {
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['password'] = $_POST['password'];
     }
@@ -56,10 +58,10 @@
     function setSignupSessionVariables() {
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['password'] = $_POST['password'];
-        $_SESSION['first_name'] = $_POST['first_name']
-        $_SESSION['last_name'] = $_POST['last_name']
-        $_SESSION['company_name'] = $_POST['company_name']
-        $_SESSION['tel_nubmber'] = $_POST['tel_nubmber']
+        $_SESSION['first_name'] = $_POST['first_name'];
+        $_SESSION['last_name'] = $_POST['last_name'];
+        $_SESSION['company_name'] = $_POST['company_name'];
+        $_SESSION['tel_nubmber'] = $_POST['tel_nubmber'];
     }
 
     // function checkLoginPostVariables() {
