@@ -1,0 +1,41 @@
+/**************************************************
+                 MY-OFFERS Sytles
+***************************************************/
+
+.my-offers-container{
+    display: grid;
+    grid-template-columns: 800px 90px;
+    grid-gap: 10px;
+
+}
+
+.edit-delete-container{
+    font-family: 'Open Sans';
+    margin-bottom: 20px;
+    margin-top: 30px;
+    max-height: 155px;
+    border-radius: 3px;
+    background-color: rgba(0, 101, 114, 0.65);
+    padding-top: 45px;
+    padding-bottom: 60px;
+}
+
+.edit-delete-container img{
+    width: 40px;
+    margin-top: 30px;
+    display: block;
+    cursor: pointer;
+    padding: 10px 22px 15px 28px;
+}
+
+.edit-delete-container img:hover{
+    background-color: #d18800;
+}
+
+.edit-delete-container .delete{
+    width: 40px;
+    margin-top: 0px;
+    display: block;
+    cursor: pointer;
+    padding: 10px 24px 15px 25px;
+}
