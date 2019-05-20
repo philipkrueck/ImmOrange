@@ -1,6 +1,6 @@
 <?php
-session_start();
-session_destroy();
- 
-echo "Logout erfolgreich";
+    session_start();
+    session_destroy();
+    
+    header("Location: /?logged_out=true");
 ?>

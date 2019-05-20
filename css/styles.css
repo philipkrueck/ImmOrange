@@ -34,10 +34,145 @@ h2{
 /**************************************************
                  HEADER Sytles
 ***************************************************/
+
 header{
     height: 90px;
     background-color: rgba(0, 101, 114, 0.65);
+    padding-right: 10px;
 }
+
+.logo{
+  margin: 0px;
+  text-align: center;
+  background-color: #d18800;
+  border-radius: 50px;
+  padding: 15px;
+  width: 120px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 14px 0px 0px 15px;
+  border: 4px dashed #ffa500;
+  text-decoration: none;
+  color: white;
+}
+
+header a{
+    text-decoration: none;
+}
+
+    /**************************************************
+            Search-Bar (Navigation) Sytles
+    ***************************************************/
+
+    .navsearch {
+        height: 28px;
+        width: 350px;
+        margin-right: 9px;
+        /* margin-top: -30px; */
+        float: right;
+        border-radius: 50px;
+        border: 0px;
+        background-color: rgba(255, 165, 0, 0.9);
+        margin-top: -56px;
+        font-size: 16px;
+        font-weight: lighter;
+        color: white;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .navsearch::placeholder{
+        color: white;
+    }
+
+    .navsearch:focus{
+        border: none;
+    }
+
+
+    /**************************************************
+            Dropdown-Area Sytles
+    ***************************************************/
+
+    .iconUSER{
+        width: 40px;
+        padding-left:60px;
+        padding-right:30px;
+        padding-top: 24px;
+        padding-bottom: 22px;
+        color: white;
+        cursor: pointer;
+    }
+
+
+    .dropdown:hover {
+
+    background-color: rgba(255, 165, 0, 0.8);;
+    }
+
+    .dropdown-content {
+    margin-top: -1px;
+    float: right;
+    margin-right: -1px;
+    display: none;
+    background-color: rgba(0, 101, 114, 0.65);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 210px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    text-decoration: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+    display: block;
+    }
+
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+    width: 160px;
+    height: 89px;
+    margin-top: -79px;
+    }
+
+    .dropdown .login-link{
+        color: white;
+        padding: 30px 54px;
+        text-decoration: none;
+        font-weight: bold;
+        position: absolute;
+        font-size: 20px;
+    }
+
+    .drop-in {
+        margin: 0px;
+        padding: 20px 30px;
+    }
+
+    .drop-in:hover {
+    color: white;
+    background-color: #d18800;
+    border-radius: 5px;
+
+    }
+
+    .in-dropDIV {
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    }
+
+    .in-dropDIV a {
+        color: white;
+        text-decoration: none;
+    }
+
+
+
 
 /**************************************************
                  MAIN Sytles
@@ -287,7 +422,7 @@ main .content{
             padding: 15px !important;
             font-size: 18px!important;
         }
- 
+
 
     /**************************************************
                  Results-Area Sytles
@@ -539,21 +674,21 @@ footer{
 }
 
 .ui-widget-header {
-    border: 0px !important; 
-    background: none !important; 
+    border: 0px !important;
+    background: none !important;
 }
 
 .ui-tabs .ui-tabs-nav {
     text-align: center;
-    margin-top: -30px !important;    
-    font-family: 'Open Sans'; 
-    font-weight: bold;     
+    margin-top: -30px !important;
+    font-family: 'Open Sans';
+    font-weight: bold;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     background-color: #ffa500;
     padding: 30px !important;
-    color: white;  
+    color: white;
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover{
@@ -565,7 +700,7 @@ footer{
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor:focus {
-    border: none;  
+    border: none;
 }
 
 .ui-tabs .ui-tabs-nav li {
@@ -589,4 +724,3 @@ footer{
     background: none !important;
     color: black !important;
 }
-
