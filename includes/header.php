@@ -28,6 +28,7 @@
                 $_SESSION['realtor_id'] = $realtor_id_array['realtor_id'];
               }
 
+              // show "MyOffers" & "MyProfil" only if logged in as realtor
               if(isset($_SESSION['realtor_id'])) {
                   echo '
                     <div class="in-dropDIV">
