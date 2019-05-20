@@ -1,6 +1,20 @@
 <!-- PHP-AREA -->
 <?php
     include ('../includes/functions/private.php');
+
+    if (isset($_GET['delete_offer_id'])) {
+        // check that offer id is associated with a realtor
+        $offer_id = $_GET['delete_offer_id']
+        $offer = getOffer($_GET['delete_offer_id']);
+        if ($offer['offer_id'] == $_SESSION['']) 
+    }
+
+    function getOffer($offer_id) {
+        $offer_statement = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id;");
+        $offer_statement->bindParam(':offer_id', $offer_id);
+        $offer_statement->execute();
+        return $offer_statement->fetch();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -47,10 +61,10 @@
 
                     <div class="sub-line">
                         <div class="result-breadcrum">';
-                            $counter = 0;
-                            foreach (pdo()->query($sql_select) as $offer) {
-                                $counter++;
-                            }
+                            // $counter = 0;
+                            // foreach (pdo()->query($sql_select) as $offer) {
+                            //     $counter++;
+                            // }
 
                             echo '<span class="result-counter">Anzahl: <b>'; echo $counter; echo '</b></span>
 
@@ -87,7 +101,9 @@
                                     <a href="edit_offer.php?offer_id='.$offer['offer_id'].'">
                                         <img src="../img/icons/edit.png" title="bearbeiten">
                                     </a>
-                                    <img class="delete" src="../img/icons/delete.png" title="löschen">                        
+                                    <a href="myoffers.php?delete_offer_id='.$offer['offer_id'].'">
+                                        <img class="delete" src="../img/icons/delete.png" title="löschen">                        
+                                    </a>
                                 </div>';
                             }
                         ?>   
