@@ -40,6 +40,7 @@
             include ('includes/features/combobox.php');
             include ('includes/features/price_range.php');
             include ('includes/features/search_tabs.php');
+            require_once('includes/functions/pdo.php');
         ?>
 
         <!-- Link-Relations -->
@@ -71,131 +72,13 @@
                     <!-- SEARCH-TABS -->
                     <div id="search-tabs">
                         <ul>
-                            <li><a href="#tabs-1">Erweiterte Suche</a></li>
-                            <li><a href="#tabs-2">Suche</a></li>
+                            <li><a href="#tabs-1">Suche</a></li>
+                            <li><a href="#tabs-2">Erweiterte Suche</a></li>
                         </ul>
 
                         <!-- EXTENDED-SEARCH-AREA -->
                         <div id="tabs-1">
 
-                            <form action="#results" method="POST" class="extended-search">
-
-                                <!-- first row -->
-                                <div class="extended-search first-row">
-
-                                    <!-- location -->
-                                    <div class="location-input">
-                                        <input type="text" id="tags" name="location" placeholder="Ort" >
-                                    </div>
-
-                                    <!-- purchase-type -->
-                                    <div class="purchase-type-input">
-                                        <select id="purchase-type-input" name="purchase_type">
-                                            <option disabled selected>mieten oder kaufen</option>
-                                            <option>mieten</option>
-                                            <option>kaufen</option>
-                                            <option>egal</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- offer-type -->
-                                    <div class="offer-type-input">
-                                        <select id="offer-type-input" name="offer_type">
-                                            <option disabled selected>Immobilienart</option>
-                                            <option>Wohnung</option>
-                                            <option>Haus</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- second row -->
-                                <div class="extended-search second-row">
-
-                                    <!-- rooms -->
-                                    <div class="rooms-input">
-                                        <select id="rooms-input" name="rooms">
-                                            <option disabled selected>Zimmer</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>> 4</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- living-space -->
-                                    <div class="living-space-input">
-                                        <input type="number" name="living_space" placeholder="Wohnfläche (qm)">
-                                    </div>
-
-                                </div>
-
-                                <!-- thrid row -->
-                                <h3>Preisspanne:</h3>
-                                <div class="extended-search third-row">
-
-                                    <!-- price-range -->
-                                    <div class="price-range-input">
-
-                                        <!-- hidden inputs to catch price-values for POST-Method -->
-                                        <input type="hidden" name="price_min" id="price_min" value="700"/>
-                                        <input type="hidden" name="price_max" id="price_max" value="3300"/>
-
-                                        <div id="slider-range"></div>
-                                        <input type="text" id="amount" readonly>
-                                    </div> 
-
-                                </div>
-
-                                <!-- fourth row -->
-                                <h3>optional:</h3> 
-                                <div class="extended-search fourth-row">   
-                                
-                                    <!-- basement -->
-                                    <div class="checkbox-container">
-                                        <img src="../img/icons/basement.png" class="checkbox-icon">
-                                        <span class="checkbox-description">Keller</span>
-                                        <input type="checkbox" name="basement" value="true">
-                                    </div>
-
-                                    <!-- garden -->
-                                    <div class="checkbox-container">
-                                        <img src="../img/icons/botanical.png" class="checkbox-icon">
-                                        <span class="checkbox-description">Garten</span>
-                                        <input type="checkbox" name="garden"  value="true">
-                                    </div>
-
-                                    <!-- balcony -->
-                                    <div class="checkbox-container">
-                                        <img src="../img/icons/balcony.png" class="checkbox-icon">
-                                        <span class="checkbox-description">Balkon</span>
-                                        <input type="checkbox" name="balcony"  value="true">
-                                    </div>
-
-                                    <!-- bathtub -->
-                                    <div class="checkbox-container">
-                                        <img src="../img/icons/bathtub.png" class="checkbox-icon">
-                                        <span class="checkbox-description">Badewanne</span>
-                                        <input type="checkbox" name="bathtub" value="true">
-                                    </div>
-
-                                    <!-- lift -->
-                                    <div class="checkbox-container">
-                                        <img src="../img/icons/lift.png" class="checkbox-icon">
-                                        <span class="checkbox-description">Fahrstuhl</span>
-                                        <input type="checkbox" name="lift"  value="true">
-                                    </div>
-                                </div>
-
-                                <!-- fifth row -->
-                                <div class="extended-search fifth-row">
-                                    <input type="submit" value="Suchen!"> 
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- FULL-TEXT-SEARCH-AREA -->
-                        <div id="tabs-2">
                             <form action="#results" method="POST">
                                 <div class="full-text-search-area">
 
@@ -206,46 +89,170 @@
                                     <input type="submit" value="Suchen!">  
                                 </div>    
                             </form>
+
+                        </div>
+
+                        <!-- FULL-TEXT-SEARCH-AREA -->
+                        <div id="tabs-2">
+
+                        <form action="#results" method="POST" class="extended-search">
+
+                            <!-- first row -->
+                            <div class="extended-search first-row">
+
+                                <!-- location -->
+                                <div class="location-input">
+                                    <input type="text" id="tags" name="location" placeholder="Ort" >
+                                </div>
+
+                                <!-- purchase-type -->
+                                <div class="purchase-type-input">
+                                    <select id="purchase-type-input" name="purchase_type">
+                                        <option disabled selected>mieten oder kaufen</option>
+                                        <option>mieten</option>
+                                        <option>kaufen</option>
+                                        <option>egal</option>
+                                    </select>
+                                </div>
+
+                                <!-- offer-type -->
+                                <div class="offer-type-input">
+                                    <select id="offer-type-input" name="offer_type">
+                                        <option disabled selected>Immobilienart</option>
+                                        <option>Wohnung</option>
+                                        <option>Haus</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- second row -->
+                            <div class="extended-search second-row">
+
+                                <!-- rooms -->
+                                <div class="rooms-input">
+                                    <select id="rooms-input" name="rooms">
+                                        <option disabled selected>Zimmer</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>> 4</option>
+                                    </select>
+                                </div>
+
+                                <!-- living-space -->
+                                <div class="living-space-input">
+                                    <input type="number" name="living_space" placeholder="Wohnfläche (qm)">
+                                </div>
+
+                            </div>
+
+                            <!-- thrid row -->
+                            <h3>Preisspanne:</h3>
+                            <div class="extended-search third-row">
+
+                                <!-- price-range -->
+                                <div class="price-range-input">
+
+                                    <!-- hidden inputs to catch price-values for POST-Method -->
+                                    <input type="hidden" name="price_min" id="price_min" value="700"/>
+                                    <input type="hidden" name="price_max" id="price_max" value="3300"/>
+
+                                    <div id="slider-range"></div>
+                                    <input type="text" id="amount" readonly>
+                                </div> 
+
+                            </div>
+
+                            <!-- fourth row -->
+                            <h3>optional:</h3> 
+                            <div class="extended-search fourth-row">   
+
+                                <!-- basement -->
+                                <div class="checkbox-container">
+                                    <img src="../img/icons/basement.png" class="checkbox-icon">
+                                    <span class="checkbox-description">Keller</span>
+                                    <input type="checkbox" name="basement" value="true">
+                                </div>
+
+                                <!-- garden -->
+                                <div class="checkbox-container">
+                                    <img src="../img/icons/botanical.png" class="checkbox-icon">
+                                    <span class="checkbox-description">Garten</span>
+                                    <input type="checkbox" name="garden"  value="true">
+                                </div>
+
+                                <!-- balcony -->
+                                <div class="checkbox-container">
+                                    <img src="../img/icons/balcony.png" class="checkbox-icon">
+                                    <span class="checkbox-description">Balkon</span>
+                                    <input type="checkbox" name="balcony"  value="true">
+                                </div>
+
+                                <!-- bathtub -->
+                                <div class="checkbox-container">
+                                    <img src="../img/icons/bathtub.png" class="checkbox-icon">
+                                    <span class="checkbox-description">Badewanne</span>
+                                    <input type="checkbox" name="bathtub" value="true">
+                                </div>
+
+                                <!-- lift -->
+                                <div class="checkbox-container">
+                                    <img src="../img/icons/lift.png" class="checkbox-icon">
+                                    <span class="checkbox-description">Fahrstuhl</span>
+                                    <input type="checkbox" name="lift"  value="true">
+                                </div>
+                            </div>
+
+                            <!-- fifth row -->
+                            <div class="extended-search fifth-row">
+                                <input type="submit" value="Suchen!"> 
+                            </div>
+                            </form>
+                            
                         </div>
                     </div>                   
 
                 </div>
 
+
                 <!-- RESULTS-AREA -->
-                <div class="results-area" id="results">
+                <?php
 
-                    <?php
+                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
+                                                                               
+                        $sql_select = "SELECT * FROM property_offer";
+
+                        echo '
+                        <div class="result-breadcrum">';
+                            $counter = 0;
+                            foreach (pdo()->query($sql_select) as $offer) {
+                                $counter++;
+                            }
+        
+                            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
+                            <!-- <select>
+                                <option>neuste zuerst</option>
+                                <option>Preis aufsteigend</option>
+                                <option>Preis absteigend</option>
+                            </select> -->
+                        </div>';
+                    
+                        // includes results-area
                         include ('includes/results.php');
-                    ?>
 
-                </div>
+                        echo'</div>';       
+                        
+                    }
+
+                ?>
 
                 <!-- PROMOTED-AREA -->
                 <div class="promoted-area">
                 
-                    <!-- PLACEHOLDER -->
-                    <h2 style="
-                    text-align: center;
-                    margin: 0px;"
-                    >PROMOTED</h2>
-                    <p style="margin: 0px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
-                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-                     et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                     Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
-                     diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-                     At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
-                     takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    <h2>Promoted</h2>    
 
-                </div>
-
-                <!-- NEWEST-AREA -->
-                <div class="newest-area">
-                
-                    <!-- PLACEHOLDER -->
-                    <h2 style="
-                    text-align: center;
-                    margin: 0px;"
-                    >NEWEST</h2>
                     <p style="margin: 0px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
                     invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
                      et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est

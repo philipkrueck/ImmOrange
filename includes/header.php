@@ -1,32 +1,64 @@
-<!-- HEADER -->
 <!--LOGO-->
   <h1 class="logo">
       <span>Imm</span><span>Orange</span>
   </h1>
-  <!--END LOGO-->
-  <!--DROPDOWN-->
-<div class="dropdown">
-    <img class="iconUSER" src="../img/icons/Benutzer.png" >
-    <div class="dropdown-content">
-        <div class="in-dropDIV">
-        <p class="drop-in">Regestrieren</p>
-        </div>
-        <div class="in-dropDIV">
-        <p class="drop-in">Login</p>
-        </div>
-        <div class="in-dropDIV">
-        <p class="drop-in">Accountinformation</p>
-        </div>
-  </div>
-</div>
-<!--END DROPDOWN-->
 
+
+<!-- USER-AREA-->
+<?php
+
+  session_start();
+
+  if(isset($_SESSION['acc_id'])) {
+
+    echo '
+      <!--DROPDOWN-->
+      <div class="dropdown">
+          <img class="iconUSER" src="../img/icons/Benutzer.png" >
+          <div class="dropdown-content">
+
+              '; 
+              
+              // Select realtor_id from account where account_id = :account_id
+              $get_realtor_id_statement = pdo()->prepare("SELECT realtor_id FROM account WHERE acc_id = :acc_id");
+              $result = $get_realtor_id_statement->execute(array('acc_id' => $_SESSION['acc_id']));
+              $realtor_id_array = $get_realtor_id_statement->fetch();
+              if($realtor_id_array['realtor_id'] != null){
+                // realtor is now logged in
+                $_SESSION['realtor_id'] = $realtor_id_array['realtor_id'];
+              }
+              if(isset($_SESSION['realtor_id'])) {
+                  echo '
+                    <div class="in-dropDIV">
+                      <a href="/pages/myoffers.php"><p class="drop-in">Meine Immobilien</p></a>
+                    </div>
+                    
+                    <div class="in-dropDIV">
+                      <a href="/pages/account.php"><p class="drop-in">Mein Profil</p></a>
+                    </div>';
+              }
+
+              echo '
+              <div class="in-dropDIV">
+                <a href="/pages/favorites.php"><p class="drop-in">Merkliste</p></a>
+              </div>
+
+              <div class="in-dropDIV">
+                <a href="/includes/functions/logout.php"><p class="drop-in">Logout</p></a>
+              </div>
+        </div>
+      </div>';
+  }else{
+    echo '<a href="/pages/login.php" class="dropdown"><span class="login-link">Login</span></a>';
+  }
+?>
 
 
 <!--SUCHE-->
-<div >
-<input type="text" name="suche" value=""; class="navsearch";>
-</div>
-<!--END SUCHE-->
+<form action="/#results" method="POST">
+  <input type="text" name="$full_text_search" value="" class="navsearch" placeholder="Suche..">
+  <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1">
+</form>
+
 
 <!-- END HEADER -->

@@ -17,6 +17,19 @@ body{
     background-size: cover;
 }
 
+    /**************************************************
+                    Font Sytles
+    ***************************************************/
+
+h2{
+    color: white;
+    max-width: 900px;
+    background-color: rgba(255, 165, 0, 0.8);
+    padding: 10px;
+    text-align: center;
+    border-radius: 3px;
+}
+
 
 /**************************************************
                  HEADER Sytles
@@ -25,6 +38,7 @@ body{
 header{
     height: 90px;
     background-color: rgba(0, 101, 114, 0.65);
+    padding-right: 10px;
 }
 
 .logo{
@@ -33,7 +47,7 @@ header{
   background-color: #d18800;
   border-radius: 50px;
   padding: 15px;
-  width: 100px;
+  width: 120px;
   font-size: 20px;
   font-weight: bold;
   margin: 14px 0px 0px 15px;
@@ -45,26 +59,27 @@ header{
 /**DROPDOWN STYLES**/
 .dropdown:hover {
 
-  background-color: orange;
+  background-color: rgba(255, 165, 0, 0.8);;
 }
 
 .iconUSER{
-  width:29%;
-  padding-left:45px;
+  width: 40px;
+  padding-left:60px;
   padding-right:30px;
-  padding-top: 35px;
-  padding-bottom: 30px;
-  color: orange;
+  padding-top: 24px;
+  padding-bottom: 22px;
+  color: white;
+  cursor: pointer;
 }
 
 .dropdown-content {
-  margin-top: -17px;
+  margin-top: -1px;
   float: right;
-  margin-right: 1px;
+  margin-right: -1px;
   display: none;
   background-color: rgba(0, 101, 114, 0.65);
   border-radius: 5px;
-  width: auto;
+  width: 210px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 100;
   text-decoration: none;
@@ -78,19 +93,28 @@ header{
   position: relative;
   display: inline-block;
   float: right;
-  width: 10%;
-  height: 90px;
+  width: 160px;
+  height: 89px;
   margin-top: -79px;
+}
+
+.dropdown .login-link{
+    color: white;
+    padding: 30px 54px;
+    text-decoration: none;
+    font-weight: bold;
+    position: absolute;
+    font-size: 20px;
 }
 
 .drop-in {
     margin: 0px;
-    padding: 20px 10px;
+    padding: 20px 30px;
 }
 
 .drop-in:hover {
   color: white;
-  background-color: #d18800d1;
+  background-color: #d18800;
   border-radius: 5px;
 
 }
@@ -99,29 +123,44 @@ header{
   text-align: center;
   vertical-align: middle;
   border-radius: 5px;
-  color: orange;
-}
-/**END DROPDOWN STYLES**/
-.navsearch {
-  height: 30px;
-  width: 14%;
-  margin-right: 9px;
-  float: right;
-  border-radius:50px;
-  border:0px;
-  background-color: orange;
-  margin-top: -39px;
-  font-size: 16px;
-  font-weight: lighter;
   color: white;
+  font-weight: bold;
+}
+
+.in-dropDIV a {
+    color: white;
+    text-decoration: none;
+  }
+/**END DROPDOWN STYLES**/
+
+.navsearch {
+    height: 28px;
+    width: 350px;
+    margin-right: 9px;
+    /* margin-top: -30px; */
+    float: right;
+    border-radius: 50px;
+    border: 0px;
+    background-color: rgba(255, 165, 0, 0.9);
+    margin-top: -56px;
+    font-size: 16px;
+    font-weight: lighter;
+    color: white;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.navsearch::placeholder{
+    color: white;
+}
+
+.navsearch:focus{
+    border: none;
 }
 
 /**************************************************
                  MAIN Sytles
 ***************************************************/
-main{
-
-}
 
 main .content{
     max-width: 900px;
@@ -129,14 +168,10 @@ main .content{
 }
 
     /**************************************************
-                 Search-Area Sytles
+                 Input Sytles
     ***************************************************/
-    .search-area {
-        margin-top: 80px;
-        margin-bottom: 20px;
-    }
 
-    .search-area input{
+    input{
         padding: 7px;
         border-radius: 50px;
         font-size: 15px;
@@ -148,7 +183,7 @@ main .content{
         border: 4px solid white;
     }
 
-    .search-area input:focus{
+    input:focus{
         border: 4px solid #ffa500;
         outline: none;
     }
@@ -173,6 +208,53 @@ main .content{
         cursor: pointer;
     }
 
+    select{
+        padding: 5px;
+        font-size: 15px;
+        font-family: 'Open Sans';
+    }
+
+    .ui-selectmenu-button.ui-button{
+        max-width: 200px;
+        margin: 10px;
+        font-family: 'Open Sans';
+        height: 23px;
+        border-radius: 50px !important;
+        border: 4px solid white;
+        background-color: white;
+    }
+
+    .ui-selectmenu-button.ui-button:focus{
+        border: 4px solid #ffa500;
+        outline: none;
+    }
+
+
+/**************************************************
+                 HEADER Sytles
+***************************************************/
+header{
+    height: 90px;
+    background-color: rgba(0, 101, 114, 0.65);
+}
+
+/**************************************************
+                 MAIN Sytles
+***************************************************/
+
+main .content{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+    /**************************************************
+                 Search-Area Sytles
+    ***************************************************/
+    .search-area {
+        margin-top: 80px;
+        margin-bottom: 20px;
+    }
+
 
         /**************************************************
                  Extended-Search Sytles
@@ -190,26 +272,6 @@ main .content{
             margin: 0px 0px 20px 0px;
             font-family: 'Open Sans';
             font-size: 16px;
-        }
-
-        .extended-search select{
-            padding: 5px;
-            font-size: 15px;
-            font-family: 'Open Sans';
-        }
-
-        .extended-search .ui-selectmenu-button.ui-button{
-            max-width: 200px;
-            margin: 10px;
-            font-family: 'Open Sans';
-            height: 23px;
-            border-radius: 50px !important;
-            border: 4px solid white;
-        }
-
-        .extended-search .ui-selectmenu-button.ui-button:focus{
-            border: 4px solid #ffa500;
-            outline: none;
         }
 
 
@@ -300,6 +362,7 @@ main .content{
                 font-size: 14px;
                 color: white;
                 font-family: 'Open Sans';
+                text-align: center;
             }
 
             .checkbox-container input[type=checkbox]{
@@ -349,13 +412,178 @@ main .content{
                  Results-Area Sytles
     ***************************************************/
     .results-area{
-        background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;
-
+        margin-bottom: 20px;        
     }
 
+    .results-area a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .result-breadcrum{
+        display: grid;
+        grid-template-columns: 700px 200px;
+
+        background-color: #d18800d1;
+        color: white;
+        padding: 7px;
+        border-radius: 50px;
+        font-family: 'Open Sans';
+        max-w
+    }
+
+    .result-breadcrum .result-counter{
+        margin: 5px 0px 0px 10px;
+    }
+
+    .result-breadcrum select{
+        background-color: #ffa500;
+        color: white;
+        border-radius: 50px;
+        padding: 7px;
+        border: 0px;
+        max-width: 185px;
+        float: right;
+        font-family: 'Open Sans';
+    }
+
+    .result-breadcrum select:focus{
+        outline: none;
+    }
+
+    .result-container{
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 2fr 2fr 1fr;
+        grid-template-rows: 80px 50px 50px 50px;
+
+        font-family: 'Open Sans';
+        margin-bottom: 20px;
+        margin-top: 30px;
+        max-height: 280px;
+        border-radius: 3px;
+        background-color: rgba(0, 101, 114, 0.65);
+    }
+
+    .result-container .result-image-container{
+        grid-column: 1/2;
+        grid-row: 1/5;
+        overflow: hidden;
+        border-right: 10px solid #d18800;
+    }
+
+    .result-container .result-image-container img{
+        max-height: 280px;
+        -moz-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+
+    .result-container .result-image-container img:hover{
+        moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);        
+        transform: scale(1.1);
+    }
+
+    .result-container h3{
+        grid-column: 2/5;
+
+        text-align: center;
+        font-size: 22px;
+        margin: 30px 30px 20px 30px;
+    }
+
+    .result-container .heart-icon{
+        position: absolute;
+        margin-left: 840px;
+        margin-top: 25px;
+        width: 35px;
+        cursor: pointer;
+    }
+    
+    .result-container .result-price{
+        grid-column: 4/5;
+        grid-row: 2/3;
+
+        text-align: center;
+        padding: 10px 20px;
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffa500;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+    .result-container .result-space{
+        grid-column: 4/5;
+        grid-row: 3/4;
+
+        text-align: center;
+        padding: 10px 20px;
+        margin-right: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #ffa500;
+        border-radius: 10px;
+        height: 30px;
+    }
+
+    .result-container .result-rooms-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 2/3;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .result-rooms{
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .result-container .rooms-img{
+        width: 20px;
+        margin-right: 15px;
+    }
+
+    .result-container .result-location-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 3/4;
+        text-align: center;
+        margin: 5px;
+    }
+
+    .result-location{
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .result-container .location-img{
+        width: 20px;
+        margin-right: 10px;
+    }
+
+    .result-container .result-options-container{
+        display: inline;
+        grid-column: 2/4;
+        grid-row: 4/5;
+        text-align: center;
+    }
+
+    .result-container .result-options-container img{
+        max-width: 25px;
+        margin-right: 25px;
+    }
+
+    .result-container .result-options-container img:last-child{
+        margin-right: 0px;
+    }
+
+
     /**************************************************
-                 Search-Area Sytles
+                 Promoted-Area Sytles
     ***************************************************/
     .promoted-area{
         background-color: rgba(0, 101, 114, 0.65);
@@ -363,7 +591,7 @@ main .content{
     }
 
     /**************************************************
-                 Search-Area Sytles
+                 Newest-Area Sytles
     ***************************************************/
     .newest-area{
         background-color: rgba(0, 101, 114, 0.65);
@@ -410,174 +638,7 @@ footer{
 .iconHouse{
   width:5%;
   margin-left: 10px;
-}
-/**************************************************
-                 LOGIN-PAGE Sytles
-***************************************************/
-
-.login-area {
-    max-width: 600px;
-    margin: 0 auto;
-    margin-top: 80px;
-    margin-bottom: 20px;
-    text-align: center;
-
-}
-
-
-    /**************************************************
-                 LOGIN-FORM Sytles
-    ***************************************************/
-
-    .login-form{
-        padding: 40px 0px 20px 0px;;
-    }
-
-    .login-form input{
-        border-radius: 50px;
-        padding: 10px 20px;;
-        font-size: 17px;
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        width: 280px;
-        border: 0px;
-
-        border: 5px solid white;
-    }
-
-    .login-form input:focus{
-        border: 5px solid #ffa500;
-        outline: none;
-        transition: 0.8s;
-    }
-
-    .login-form .error-message{
-        color: white;
-        background-color: red;
-        display: block;
-        border-radius: 50px;
-        padding: 10px 20px;
-        font-size: 15px;
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        width: 280px;
-        font-weight: bold;
-        font-family: 'Open Sans';
-    }
-
-
-    /**************************************************
-                 SIGNUP-FORM Sytles
-    ***************************************************/
-
-    .signup-form{
-        padding: 40px 90px 20px 60px;
-        max-width: 410px;
-    }
-
-    .signup-form input{
-        border-radius: 50px;
-        padding: 7px 30px;;
-        font-size: 15px;
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        width: 100%;
-        border: 0px;
-        border: 5px solid white;
-    }
-
-    .signup-form input:focus{
-        border: 5px solid #ffa500;
-        outline: none;
-        transition: 0.8s;
-    }
-
-    .signup-form input[type="submit"]{
-        padding: 0px !important;
-        margin-left: 180px;
-    }
-
-    .signup-form .names{
-        display: grid;
-        grid-gap: 90px;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .signup-form .adress{
-        display: grid;
-        grid-gap: 90px;
-        grid-template-columns: 2fr 1fr;
-    }
-
-    .signup-form .place{
-        display: grid;
-        grid-gap: 90px;
-        grid-template-columns: 1fr 2fr;
-    }
-
-    .signup-form .is-realtor-container{
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        margin-bottom: 20px;
-        margin-bottom: 10px;
-        background-color:
-    }
-
-    .signup-form .is-realtor-description{
-        color: white;
-        font-size: 16px;
-        font-family: 'Open Sans';
-    }
-
-    .signup-form input[type=checkbox]{
-        /* Double-sized Checkboxes */
-        -ms-transform: scale(1.5); /* IE */
-        -moz-transform: scale(1.5); /* FF */
-        -webkit-transform: scale(1.5); /* Safari and Chrome */
-        -o-transform: scale(1.5); /* Opera */
-        transform: scale(1.5);
-        padding: 10px;
-        margin-left: 100px;
-        margin-top: 4px;
-    }
-
-    .signup-form .error-message{
-        color: white;
-        background-color: red;
-        display: block;
-        border-radius: 50px;
-        padding: 10px 20px;
-        font-size: 15px;
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        min-width: 440px;
-        font-weight: bold;
-        font-family: 'Open Sans';
-    }
-
-    .signup-form .success-message{
-        color: white;
-        background-color: #02dd40;
-        display: block;
-        border-radius: 50px;
-        padding: 10px 20px;
-        font-size: 15px;
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        min-width: 440px;
-        font-weight: bold;
-        font-family: 'Open Sans';
-    }
-
-    .signup-form .success-message a{
-        color: white;
-    }
-
+}    
 
 
 /**************************************************

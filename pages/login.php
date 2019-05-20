@@ -50,6 +50,7 @@
 
         <!-- Link-Relations -->
         <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/pages/login.css">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />        
         
 
@@ -109,17 +110,6 @@
                                 <input type="text" maxlength="50" placeholder="Vorname*" name="first_name">
                                 <input type="text" maxlength="50" placeholder="Nachname*" name="last_name">
                             </div>
-
-                             <!-- inputs for adress-information -->
-                            <div class="adress">
-                                <input type="text" maxlength="50" placeholder="Straße*" name="street">
-                                <input type="text" maxlength="5" placeholder="Haus-Nr.*" name="house_number">
-                            </div>
-                            <div class="place">
-                                <input type="text" maxlength="10" placeholder="PLZ*" name="zip">
-                                <input type="text" maxlength="50" placeholder="Ort*" name="city">
-                            </div>                     
-                            <input type="text" maxlength="50" placeholder="Land*" name="country">
 
                              <!-- inputs for realtor-information -->
                             <div class="is-realtor-container">                                
