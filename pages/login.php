@@ -6,7 +6,8 @@
 
     //starting session to save login-cookie
     session_start();
-
+    $_SESSION['login_error_message'] = null;
+    $_SESSION['signup_error_message'] = null; 
 
     if (isset($_POST['submit'])) {
         if (isset($_GET['login'])) {
@@ -18,7 +19,7 @@
 
     function login() {
         if (!checkLoginPostParameters()) {
-            $_SESSION['error_message'] = "Bitte gib sowohl eine Email,<br> als auch ein Passwort ein.";
+            $_SESSION['login_error_message'] = "Bitte gib sowohl eine Email, <br> als auch ein Passwort ein.";
             return; 
         }
         setLoginSessionVariables();
@@ -26,39 +27,40 @@
             header("Location: /?logged_in=true");
             return;
         } else {
-            $_SESSION['error_message'] = "E-Mail oder Passwort ungültig!";
+            $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
         }
     }
 
     function signup() {
         if (!checkSignupPostParameters()) {
-            $_SESSION['error_message'] = "Bitte fülle alle Felder aus.";
+            $_SESSION['signup_error_message'] = "Bitte fülle alle Felder aus.";
             return; 
         }
         setSignupSessionVariables();
         // check email format
         if (!emailFormatIsCorrect($_SESSION['email'])) {
-            $_SESSION['error_message'] = "Bitte eine gültige eMail angeben.";
+            $_SESSION['signup_error_message'] = "Bitte eine gültige eMail angeben.";
             return; 
         }
 
         // check passwords are matching
         if (!passwordsAreMatching($_SESSION['password'], $_SESSION['password_2'])) {
-            $_SESSION['error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
+            $_SESSION['signup_error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
             return;
         }
 
         // check if email already exists
         if (emailAlreadyExists($_SESSION['email'])) {
-            $_SESSION['error_message'] = "Die eMail existiert bereits.";
+            $_SESSION['signup_error_message'] = "Die eMail existiert bereits.";
             return; 
         }
 
-        if (!checkRealtorSignupPostParameters()) {
-            $_SESSION['error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
+        if (!couldRegisterUserFromSessionVariables()) {
+            $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
             return;
         }
-        header("Location: login.php/?signup=1#tabs-2?registration=success");
+        header("Location: /?signed_up=true");
+        return;
     }
 
     function checkLoginPostParameters() {
@@ -164,7 +166,8 @@
             $result_account = $signup_statement_account->execute(array('acc_id' => $account_id, 'acc_email' => $_SESSION['email'], 'acc_password' => $password_hash, 'first_name' => $_SESSION['first_name'], 'last_name' => $_SESSION['last_name'] ));
         }
 
-        if($result_account) {        
+        if($result_account) {  
+            $_SESSION['acc_id'] = $account_id;
             return true;
         } else {
             return false;
@@ -240,8 +243,8 @@
 
                             <!-- check if error-message should be dispayed -->
                             <?php 
-                                if(isset($_SESSION['error_message'])) {
-                                    echo '<div class="error-message">'.$_SESSION['error_message'].'</div>';
+                                if(isset($_SESSION['login_error_message'])) {
+                                    echo '<div class="error-message">'.$_SESSION['login_error_message'].'</div>';
                                 }
                             ?>
                            
@@ -256,8 +259,8 @@
                         <form action="?signup=1#tabs-2" method="POST" class="signup-form">
 
                             <?php
-                                if(isset($_SESSION['error_message'])) {
-                                    echo '<div class="error-message">'.$_SESSION['error_message'].'</div>';
+                                if(isset($_SESSION['signup_error_message'])) {
+                                    echo '<div class="error-message">'.$_SESSION['signup_error_message'].'</div>';
                                 }
                                 
                                 if (isset($_GET['registration'])) {
