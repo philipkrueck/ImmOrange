@@ -3,10 +3,20 @@
     include ('../includes/functions/private.php');
 
     if (isset($_GET['delete_offer_id'])) {
-        // check that offer id is associated with a realtor
-        $offer_id = $_GET['delete_offer_id']
-        $offer = getOffer($_GET['delete_offer_id']);
-        if ($offer['offer_id'] == $_SESSION['']) 
+        // check that offer id is associated with logged in realtor
+        $offer_id = $_GET['delete_offer_id'];
+        $offer = getOffer($offer_id);
+        if($offer['realtor_id'] != $_SESSION['realtor_id']) {
+            die('Sie haben keine Berechtigung zum Bearbeiten. Zurück zur <a href="../../index.php">Homepage</a>');
+            return;
+        }
+        deletePropertyOffer($offer_id);
+    }
+
+    function deletePropertyOffer($offer_id) {
+        $delete_property_stmt = pdo()->prepare("DELETE FROM property_offer WHERE offer_id = :offer_id;");
+        $delete_property_stmt->bindParam(':offer_id', $offer_id);
+        $delete_property_stmt->execute();
     }
 
     function getOffer($offer_id) {
@@ -61,10 +71,10 @@
 
                     <div class="sub-line">
                         <div class="result-breadcrum">';
-                            // $counter = 0;
-                            // foreach (pdo()->query($sql_select) as $offer) {
-                            //     $counter++;
-                            // }
+                            $counter = 0;
+                            foreach (pdo()->query($sql_select) as $offer) {
+                                $counter++;
+                            }
 
                             echo '<span class="result-counter">Anzahl: <b>'; echo $counter; echo '</b></span>
 
