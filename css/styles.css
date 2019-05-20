@@ -21,15 +21,32 @@ body{
                     Font Sytles
     ***************************************************/
 
-    h2{
-        color: white;
-        text-transform: uppercase;
-        max-width: 900px;
-        background-color: rgba(255, 165, 0, 0.8);
-        padding: 10px;
-        text-align: center;
-        border-radius: 3px;
-    }
+h2{
+    color: white;
+    max-width: 900px;
+    background-color: rgba(255, 165, 0, 0.8);
+    padding: 10px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+
+/**************************************************
+                 HEADER Sytles
+***************************************************/
+header{
+    height: 90px;
+    background-color: rgba(0, 101, 114, 0.65);
+}
+
+/**************************************************
+                 MAIN Sytles
+***************************************************/
+
+main .content{
+    max-width: 900px;
+    margin: 0 auto;
+}
 
     /**************************************************
                  Input Sytles
