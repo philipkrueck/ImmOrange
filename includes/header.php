@@ -1,3 +1,12 @@
+<!-- PHP-AREA -->
+<?php
+
+  // setting absolute path for pdo.php
+  $pdo_path = $_SERVER['DOCUMENT_ROOT'];
+  $pdo_path .= "/includes/functions/pdo.php";
+
+?>
+
 <!--LOGO-->
   <a href="/"><h1 class="logo">
       <span>Imm</span><span>Orange</span>
@@ -15,8 +24,9 @@
       <!--DROPDOWN-->
       <div class="dropdown">
           <img class="iconUSER" src="../img/icons/Benutzer.png" >
-          <div class="dropdown-content">';               
-              
+          <div class="dropdown-content">';
+          
+              require_once ($pdo_path);            
               // Select realtor_id from account where account_id = :account_id
               $get_realtor_id_statement = pdo()->prepare("SELECT realtor_id FROM account WHERE acc_id = :acc_id");
               $result = $get_realtor_id_statement->execute(array('acc_id' => $_SESSION['acc_id']));
