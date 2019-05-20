@@ -106,35 +106,34 @@ header a{
 
 
     .dropdown:hover {
-
-    background-color: rgba(255, 165, 0, 0.8);;
+        background-color: rgba(255, 165, 0, 0.8);;
     }
 
     .dropdown-content {
-    margin-top: -1px;
-    float: right;
-    margin-right: -1px;
-    display: none;
-    background-color: rgba(0, 101, 114, 0.65);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 210px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 100;
-    text-decoration: none;
+        margin-top: -1px;
+        float: right;
+        margin-right: -1px;
+        display: none;
+        background-color: rgba(0, 101, 114, 0.65);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 210px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 100;
+        text-decoration: none;
     }
 
     .dropdown:hover .dropdown-content {
-    display: block;
+        display: block;
     }
 
     .dropdown {
-    position: relative;
-    display: inline-block;
-    float: right;
-    width: 160px;
-    height: 89px;
-    margin-top: -79px;
+        position: relative;
+        display: inline-block;
+        float: right;
+        width: 160px;
+        height: 89px;
+        margin-top: -79px;
     }
 
     .dropdown .login-link{
@@ -152,18 +151,18 @@ header a{
     }
 
     .drop-in:hover {
-    color: white;
-    background-color: #d18800;
-    border-radius: 5px;
+        color: white;
+        background-color: #d18800;
+        border-radius: 5px;
 
     }
 
     .in-dropDIV {
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
     }
 
     .in-dropDIV a {

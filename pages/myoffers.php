@@ -61,8 +61,7 @@
                     <!-- RESULTS-AREA -->
                     <div class="results-area" id="results">
 
-                        <?php
-                        
+                        <?php                        
 
                             // includes results-area
                             include ('../includes/results.php');
@@ -75,8 +74,10 @@
                         <?php
                             foreach (pdo()->query($sql_select) as $offer) {
                                 echo '<div class="edit-delete-container">
-                                    <a href="edit_offer.php?offer_id='.$offer['offer_id'].'"><img src="../img/icons/edit.png"></a>
-                                    <img class="delete" src="../img/icons/delete.png">                        
+                                    <a href="edit_offer.php?offer_id='.$offer['offer_id'].'">
+                                        <img src="../img/icons/edit.png" title="bearbeiten">
+                                    </a>
+                                    <img class="delete" src="../img/icons/delete.png" title="löschen">                        
                                 </div>';
                             }
                         ?>   
