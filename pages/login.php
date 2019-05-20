@@ -19,13 +19,23 @@
     function login() {
         if (checkLoginPostParameters()) {
             setLoginSessionVariables();
-        }   
+            if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
+                header("Location: /?logged_in=true");
+                return;
+            } else {
+                $errorMessage = "E-Mail oder Passwort ungültig!";
+            }
+        } else {
+            $errorMessage = "Bitte gib sowohl eine Email,<br> als auch ein Passwort ein.";
+        }
     }
 
     function signup() {
         if (checkSignupPostParameters()) {
             setSignupSessionVariables();
-        } 
+        } else {
+            $errorMessage = "Bitte fülle alle Felder aus.";
+        }
     }
 
     function checkLoginPostParameters() {
@@ -47,9 +57,7 @@
             return false;
         }
     }
-
-
-
+    
     function setLoginSessionVariables() {
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['password'] = $_POST['password'];
@@ -64,23 +72,16 @@
         $_SESSION['tel_nubmber'] = $_POST['tel_nubmber'];
     }
 
-    // function checkLoginPostVariables() {
-    //     if ($_POST['email'] != '') and ($_POST['password'] != '') {
-
-    //     }
-    // }
-
-    // function checkSignup() {
-    //     if ($_POST['email'] != '') and 
-    //     ($_POST['password']) and 
-    //     ($_POST['first_name']) and 
-    //     ($_POST['last_name']) and
-    //     ($_POST['company_name']
-    //     ($_POST['tel_number']) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    function verifyPassword($email, $password) {
+        $login_statement = pdo()->prepare("SELECT acc_id, acc_password FROM account WHERE acc_email = :acc_email");
+        $result = $login_statement->execute(array('acc_email' => $email));
+        $account = $login_statement->fetch();
+        if (password_verify($password, $account['acc_password'])) {
+            $_SESSION['acc_id'] = $account['acc_id'];
+            return true;
+        } 
+        return false;
+    }
 ?>
 
 <!DOCTYPE html>
