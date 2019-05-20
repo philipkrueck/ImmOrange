@@ -18,7 +18,7 @@
 
     function login() {
         if (!checkLoginPostParameters()) {
-            $errorMessage = "Bitte gib sowohl eine Email,<br> als auch ein Passwort ein.";
+            $_SESSION['error_message'] = "Bitte gib sowohl eine Email,<br> als auch ein Passwort ein.";
             return; 
         }
         setLoginSessionVariables();
@@ -26,36 +26,36 @@
             header("Location: /?logged_in=true");
             return;
         } else {
-            $errorMessage = "E-Mail oder Passwort ungültig!";
+            $_SESSION['error_message'] = "E-Mail oder Passwort ungültig!";
         }
     }
 
     function signup() {
         if (!checkSignupPostParameters()) {
-            $errorMessage = "Bitte fülle alle Felder aus.";
+            $_SESSION['error_message'] = "Bitte fülle alle Felder aus.";
             return; 
         }
         setSignupSessionVariables();
         // check email format
         if (!emailFormatIsCorrect($_SESSION['email'])) {
-            $errorMessage = "Bitte eine gültige eMail angeben.";
+            $_SESSION['error_message'] = "Bitte eine gültige eMail angeben.";
             return; 
         }
 
         // check passwords are matching
         if (!passwordsAreMatching($_SESSION['password'], $_SESSION['password_2'])) {
-            $errorMessage = "Die eingegebenen Passwörter stimmen nicht überein.";
+            $_SESSION['error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
             return;
         }
 
         // check if email already exists
         if (emailAlreadyExists($_SESSION['email'])) {
-            $errorMessage = "Die eMail existiert bereits.";
+            $_SESSION['error_message'] = "Die eMail existiert bereits.";
             return; 
         }
 
         if (!checkRealtorSignupPostParameters()) {
-            $errorMessage = "Beim Abspeichern ist leider ein Fehler aufgetreten";
+            $_SESSION['error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
             return;
         }
         header("Location: login.php/?signup=1#tabs-2?registration=success");
@@ -240,8 +240,8 @@
 
                             <!-- check if error-message should be dispayed -->
                             <?php 
-                                if(isset($errorMessage)) {
-                                    echo '<div class="error-message">'.$errorMessage.'</div>';
+                                if(isset($_SESSION['error_message'])) {
+                                    echo '<div class="error-message">'.$_SESSION['error_message'].'</div>';
                                 }
                             ?>
                            
@@ -256,6 +256,10 @@
                         <form action="?signup=1#tabs-2" method="POST" class="signup-form">
 
                             <?php
+                                if(isset($_SESSION['error_message'])) {
+                                    echo '<div class="error-message">'.$_SESSION['error_message'].'</div>';
+                                }
+                                
                                 if (isset($_GET['registration'])) {
                                     echo '<div class="success-message">'.'Erfolgreich registriert. <b><a href="/pages/login.php">Hier anmelden</a><b>.'.'</div>';
                                 }
