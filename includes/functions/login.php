@@ -17,7 +17,7 @@
             if (password_verify($password, $account['acc_password'])) {
                 $_SESSION['acc_id'] = $account['acc_id'];
                 header("Location: /?logged_in=true");
-                die();
+                return;
             } 
             else {
                 $errorMessage = "E-Mail oder Passwort ungültig!";
