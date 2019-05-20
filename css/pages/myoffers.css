@@ -2,6 +2,36 @@
                  MY-OFFERS Sytles
 ***************************************************/
 
+.sub-line{
+    display: grid;
+    grid-template-columns: 690px 200px;
+    grid-gap: 10px;
+    grid-template-rows: 40px;
+}
+
+
+.add-offer-container{
+    background-color: rgba(255, 165, 0, 0.8);
+    border-radius: 50px;
+    max-height: 40px;
+}
+
+.add-offer-container:hover{
+    background-color: #d18800;
+}
+
+.add-offer-container span{
+    font-weight: bold;
+    color: white;
+    margin: 9px 20px 0px 20px;
+    position: absolute;
+}
+
+.add-offer-container img{
+    max-width: 40px;
+    margin-left: 160px;
+}
+
 .my-offers-container{
     display: grid;
     grid-template-columns: 800px 90px;
