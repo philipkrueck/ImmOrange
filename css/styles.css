@@ -56,107 +56,122 @@ header{
   color: white;
 }
 
-/**DROPDOWN STYLES**/
-.dropdown:hover {
-
-  background-color: rgba(255, 165, 0, 0.8);;
-}
-
-.iconUSER{
-  width: 40px;
-  padding-left:60px;
-  padding-right:30px;
-  padding-top: 24px;
-  padding-bottom: 22px;
-  color: white;
-  cursor: pointer;
-}
-
-.dropdown-content {
-  margin-top: -1px;
-  float: right;
-  margin-right: -1px;
-  display: none;
-  background-color: rgba(0, 101, 114, 0.65);
-  border-radius: 5px;
-  width: 210px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 100;
-  text-decoration: none;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  float: right;
-  width: 160px;
-  height: 89px;
-  margin-top: -79px;
-}
-
-.dropdown .login-link{
-    color: white;
-    padding: 30px 54px;
+header a{
     text-decoration: none;
-    font-weight: bold;
-    position: absolute;
-    font-size: 20px;
 }
 
-.drop-in {
-    margin: 0px;
-    padding: 20px 30px;
-}
+    /**************************************************
+            Search-Bar (Navigation) Sytles
+    ***************************************************/
 
-.drop-in:hover {
-  color: white;
-  background-color: #d18800;
-  border-radius: 5px;
+    .navsearch {
+        height: 28px;
+        width: 350px;
+        margin-right: 9px;
+        /* margin-top: -30px; */
+        float: right;
+        border-radius: 50px;
+        border: 0px;
+        background-color: rgba(255, 165, 0, 0.9);
+        margin-top: -56px;
+        font-size: 16px;
+        font-weight: lighter;
+        color: white;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
 
-}
+    .navsearch::placeholder{
+        color: white;
+    }
 
-.in-dropDIV {
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-}
+    .navsearch:focus{
+        border: none;
+    }
 
-.in-dropDIV a {
-    color: white;
-    text-decoration: none;
-  }
-/**END DROPDOWN STYLES**/
 
-.navsearch {
-    height: 28px;
-    width: 350px;
-    margin-right: 9px;
-    /* margin-top: -30px; */
+    /**************************************************
+            Dropdown-Area Sytles
+    ***************************************************/
+
+    .iconUSER{
+        width: 40px;
+        padding-left:60px;
+        padding-right:30px;
+        padding-top: 24px;
+        padding-bottom: 22px;
+        color: white;
+        cursor: pointer;
+    }
+
+
+    .dropdown:hover {
+
+    background-color: rgba(255, 165, 0, 0.8);;
+    }
+
+    .dropdown-content {
+    margin-top: -1px;
     float: right;
-    border-radius: 50px;
-    border: 0px;
-    background-color: rgba(255, 165, 0, 0.9);
-    margin-top: -56px;
-    font-size: 16px;
-    font-weight: lighter;
-    color: white;
-    padding-right: 20px;
-    padding-left: 20px;
-}
+    margin-right: -1px;
+    display: none;
+    background-color: rgba(0, 101, 114, 0.65);
+    border-radius: 5px;
+    width: 210px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    text-decoration: none;
+    }
 
-.navsearch::placeholder{
-    color: white;
-}
+    .dropdown:hover .dropdown-content {
+    display: block;
+    }
 
-.navsearch:focus{
-    border: none;
-}
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+    width: 160px;
+    height: 89px;
+    margin-top: -79px;
+    }
+
+    .dropdown .login-link{
+        color: white;
+        padding: 30px 54px;
+        text-decoration: none;
+        font-weight: bold;
+        position: absolute;
+        font-size: 20px;
+    }
+
+    .drop-in {
+        margin: 0px;
+        padding: 20px 30px;
+    }
+
+    .drop-in:hover {
+    color: white;
+    background-color: #d18800;
+    border-radius: 5px;
+
+    }
+
+    .in-dropDIV {
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    }
+
+    .in-dropDIV a {
+        color: white;
+        text-decoration: none;
+    }
+
+
+
 
 /**************************************************
                  MAIN Sytles
