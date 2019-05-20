@@ -1,26 +1,36 @@
 <!-- PHP-AREA -->
 <?php
-
-    //if errors appear, show all of them
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-
     //setting all variables for the extended search
-    $location = (isset($_POST['location'])) ? $_POST['location'] : 0;
-    $purchase_type = (isset($_POST['purchase_type'])) ? $_POST['purchase_type'] : 0;
-    $offer_type = (isset($_POST['offer_type'])) ? $_POST['offer_type'] : 0;
-    $rooms = (isset($_POST['rooms'])) ? $_POST['rooms'] : 0;
-    $living_space = (isset($_POST['living_space'])) ? $_POST['living_space'] : 0;
-    $price_range = (isset($_POST['price_range'])) ? $_POST['price_range'] : 0;
-    $garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
-    $basement = (isset($_POST['basement'])) ? $_POST['basement'] : 0;
-    $balcony = (isset($_POST['balcony'])) ? $_POST['balcony'] : 0;
-    $bathtub = (isset($_POST['bathtub'])) ? $_POST['bathtub'] : 0;
-    $lift = (isset($_POST['lift'])) ? $_POST['lift'] : 0;
-    $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;
-    $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;
-    $full_text_search = (isset($_POST['$full_text_search'])) ? $_POST['$full_text_search'] : 0;;
+    // $location = (isset($_POST['location'])) ? $_POST['location'] : 0;
+    // $purchase_type = (isset($_POST['purchase_type'])) ? $_POST['purchase_type'] : 0;
+    // $offer_type = (isset($_POST['offer_type'])) ? $_POST['offer_type'] : 0;
+    // $rooms = (isset($_POST['rooms'])) ? $_POST['rooms'] : 0;
+    // $living_space = (isset($_POST['living_space'])) ? $_POST['living_space'] : 0;
+    // $price_range = (isset($_POST['price_range'])) ? $_POST['price_range'] : 0;
+    // $garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
+    // $basement = (isset($_POST['basement'])) ? $_POST['basement'] : 0;
+    // $balcony = (isset($_POST['balcony'])) ? $_POST['balcony'] : 0;
+    // $bathtub = (isset($_POST['bathtub'])) ? $_POST['bathtub'] : 0;
+    // $lift = (isset($_POST['lift'])) ? $_POST['lift'] : 0;
+    // $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;
+    // $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;
+    // $full_text_search = (isset($_POST['$full_text_search'])) ? $_POST['$full_text_search'] : 0;
     
+    if (isset($_POST['submit_fulltext_search'])) {
+        if (!checkFulltextStringNotEmpty()) {
+            $_SESSION["error_message"] = "Bitte geben Sie etwas in die Suche ein.";
+        }
+
+
+    } else if (isset($_POST['submit_extended_search'])) {
+        // ... 
+    }
+
+    function checkFulltextStringNotEmpty() {
+        return ($_POST['full_text_search'] != '');
+    }
+
+
 
 ?>
 
@@ -76,7 +86,7 @@
                             <li><a href="#tabs-2">Erweiterte Suche</a></li>
                         </ul>
 
-                        <!-- EXTENDED-SEARCH-AREA -->
+                        <!-- FULL-TEXT-SEARCH-AREA -->
                         <div id="tabs-1">
 
                             <form action="#results" method="POST">
@@ -86,13 +96,13 @@
                                     <input type="text" name="$full_text_search" class="full-text-search-bar" placeholder="Finde deine Traumimmobilie hier ..">
 
                                     <!-- submit -->
-                                    <input type="submit" value="Suchen!">  
+                                    <input type="submit" value="Suchen!" name="submit_fulltext_search">  
                                 </div>    
                             </form>
 
                         </div>
 
-                        <!-- FULL-TEXT-SEARCH-AREA -->
+                        <!-- EXTENDED-SEARCH-AREA -->
                         <div id="tabs-2">
 
                         <form action="#results" method="POST" class="extended-search">
@@ -206,7 +216,7 @@
 
                             <!-- fifth row -->
                             <div class="extended-search fifth-row">
-                                <input type="submit" value="Suchen!"> 
+                                <input type="submit" value="Suchen!" name="submit_extended_search"> 
                             </div>
                             </form>
                             
@@ -220,6 +230,9 @@
                 <?php
 
                     $do_favorite = true;
+
+                    $full_text_search = "";
+
 
                     if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
