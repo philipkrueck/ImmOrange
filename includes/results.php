@@ -7,15 +7,18 @@
         
         <!-- offer-image -->
         <div class="result-image-container">
-            <a href="/pages/offer.php?id='.$offer["offer_id"].'"><img src="../temporary_assets/imm_1.jpg"></a>
+            <a href="/pages/offer.php?offer_id='.$offer["offer_id"].'"><img src="../temporary_assets/imm_1.jpg"></a>
         </div>
 
         <!-- offer-title -->
-        <h3 class="result-title"><a href="/pages/offer.php?id='.$offer["offer_id"].'">'.$offer["offer_name"].'</a></h3>
+        <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$offer["offer_id"].'">'.$offer["offer_name"].'</a></h3>
 
         <!-- favorite-icon -->
-        <img src="../img/icons/heart_white.png" class="heart-icon" id="heart-icon" onclick="toggleFavorite()">
+        '; if($do_favorite){            
+            echo '<img src="../img/icons/heart_white.png" class="heart-icon" id="heart-icon" onclick="toggleFavorite()">';
+        }
 
+        echo '
         <!-- offer-price -->
         <span class="result-price">'.$offer["price"].' €</span>
 
@@ -63,5 +66,8 @@
 
 <!-- includes function to favorite offer -->
 <?php
-    include ('includes/functions/toggle_favorite.php');
+    
+    if($do_favorite){
+        include ('includes/functions/toggle_favorite.php');
+    }
 ?>

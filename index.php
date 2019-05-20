@@ -219,6 +219,8 @@
                 <!-- RESULTS-AREA -->
                 <?php
 
+                    $do_favorite = true;
+
                     if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
                                                                                
