@@ -15,24 +15,24 @@
     // $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;
     // $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;
     // $full_text_search = (isset($_POST['$full_text_search'])) ? $_POST['$full_text_search'] : 0;
-
     
     if (isset($_POST['submit_fulltext_search'])) {
         if (!checkFulltextStringNotEmpty()) {
             $_SESSION["error_message"] = "Bitte geben Sie etwas in die Suche ein.";
+        } else {
+            $_SESSION['is_fulltext_search'] = true;
         }
 
 
     } else if (isset($_POST['submit_extended_search'])) {
         // ... 
+
+        $_SESSION['false'] = true;
     }
 
     function checkFulltextStringNotEmpty() {
         return ($_POST['full_text_search'] != '');
     }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +95,7 @@
                                 <div class="full-text-search-area">
 
                                     <!-- search-bar -->
-                                    <input type="text" name="$full_text_search" class="full-text-search-bar" placeholder="Finde deine Traumimmobilie hier ..">
+                                    <input type="text" name="full_text_search" class="full-text-search-bar" placeholder="Finde deine Traumimmobilie hier ..">
 
                                     <!-- submit -->
                                     <input type="submit" value="Suchen!" name="submit_fulltext_search">  
@@ -224,21 +224,30 @@
                             
                         </div>
                     </div>                   
-
                 </div>
 
+                <!-- check if error-message should be dispayed -->
+                <?php 
+                    if(isset($_SESSION["error_message"])) {
+                        echo '<div class="error-message">'.$_SESSION["error_message"].'</div>';
+                    }
+                ?>
 
                 <!-- RESULTS-AREA -->
                 <?php
 
-                    $do_favorite = true;
+                    if (isset($_SESSION['is_full_text_search'])) {
+                        if ($_SESSION['is_full_text_search'] == true) {
+                            showResultsForFullTextSearch();
+                        } else {
+                            showResultsForExtendedSearch();
+                        }
+                    }
 
-                    $full_text_search = "";
-
-
-                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    function showResultsForFullTextSearch() {
+                        $full_text_search = "";
                         echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
-                                                                               
+                                                                            
                         $sql_select = "SELECT * FROM property_offer";
 
                         echo '
@@ -257,11 +266,14 @@
                         </div>';
                     
                         // show results-area
-                        $do_favorite = true; 
-                        showResults($sql_select, $do_favorite);
+                        showResults($sql_select, true);
 
                         echo'</div>';       
-                        
+                            
+                    }
+
+                    function showResultsForExtendedSearch() {
+
                     }
 
                 ?>
