@@ -43,7 +43,7 @@
         $_SESSION['location'] = $_POST['location'] != '' ? $_POST['location'] : null; 
         $_SESSION['living_space'] = $_POST['location'] != '' ? $_POST['location'] : null; 
         $_SESSION['is_apartment'] = isset($_POST['is_apartment']) ? $_POST['is_apartment'] : null;
-        $_SESSION['offer_type'] = isset($_POST['offer_type']) ? $_POST['offer_type'] : null;
+        $_SESSION['is_for_rent'] = isset($_POST['offer_type']) ? $_POST['offer_type'] : null;
         $_SESSION['rooms'] = isset($_POST['rooms']) ? $_POST['rooms'] : null;
         $_SESSION['has_basement'] = isset($_POST['has_basement']) ? $_POST['has_basement'] : null; 
         $_SESSION['has_garden'] = isset($_POST['has_garden']) ? $_POST['has_garden'] : null; 
@@ -299,7 +299,18 @@
 
                         // set parameters for sql query
                         $price_min = $_SESSION['price_min'];
-
+                        $price_max = $_SESSION['price_max'];
+                        $location = $_SESSION['location'];
+                        $living_space = $_SESSION['location']; 
+                        $is_apartment = $_SESSION['is_apartment'];
+                        $is_for_rent = $_SESSION['is_for_rent'];
+                        $is_apartment = $_SESSION['is_apartment'];
+                        $rooms = $_SESSION['rooms'];
+                        $has_basement = $_SESSION['has_basement'];
+                        $has_garden = $_SESSION['has_garden'];
+                        $has_balcony = $_SESSION['has_balcony'];
+                        $has_balcony = $_SESSION['has_bathtub'];
+                        $has_lift = $_SESSION['has_lift'];    
                                                     
                         $sql_select = "SELECT * FROM property_offer WHERE price >= :price_min AND price <= :price_max"; // TODO: 
 
