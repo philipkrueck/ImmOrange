@@ -3,10 +3,12 @@
     include ('../includes/functions/private.php');
 
     // saves GET-Parameter
-    if(isset($_GET['city'])){
+    if($_GET['city'] == 'hamburg' || $_GET['city'] == 'berlin'){
         $get_result = $_GET['city'];
-    }elseif(isset($_GET['apartments'])){
+    }elseif($_GET['apartments'] == "0" || $_GET['apartments'] == "1"){
         $get_result = $_GET['apartments'];
+    }else{
+        die('Kein gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
     }
 
     // checking GET-Parameter and sets SQL
