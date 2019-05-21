@@ -4,13 +4,13 @@
     require_once('../includes/functions/pdo.php');
 
     function getOffer($offer_id) {
-        $offer_statement = pdo()->prepare("SELECT * FROM property_offer p LEFT OUTER JOIN realtor r ON p.realtor_id = r.realtor_id WHERE offer_id = :offer_id;");
+        $offer_statement = pdo()->prepare("SELECT offer_id, offer_name, price, qm, number_of_rooms, is_for_rent, is_apartment, construction_year, has_basement, has_garden, has_bathtub, has_elevator, has_balcony, city, p.creation_date, company_name, acc_id FROM property_offer p LEFT OUTER JOIN realtor r ON p.realtor_id = r.realtor_id LEFT OUTER JOIN account a ON r.realtor_id = a.realtor_id WHERE offer_id = :offer_id;");
         $offer_statement->bindParam(':offer_id', $offer_id);
         $offer_statement->execute();
         return $offer_statement->fetch();
     }
 
-    // getting offer based on GET-Parameter
+     // getting offer based on GET-Parameter
     $offer = getOffer($_GET['offer_id']);
 
     // checking the number of extras in offer
@@ -175,7 +175,7 @@
                     <h3>Interesse?</h3>
                     <h4>Besuchen Sie das Profil des Maklers!</h4>
                     <?php
-                        echo '<a href="account.php?realtor_id='.$offer["realtor_id"].'">';
+                        echo '<a href="account.php?acc_id='.$offer["acc_id"].'">';
                     ?>
                     <img src="../img/icons/Benutzer.png">                    
                         <span>
