@@ -1,15 +1,18 @@
 <?php
 
+    include('functions/image_source.php');
 
     function showResults($sql_select, $do_favorite) {
         // creates container for each entry in DB
         foreach (pdo()->query($sql_select) as $offer) {
 
+            $offer_id = $offer["offer_id"];
+
             echo '<div class="result-container">
             
             <!-- offer-image -->
             <div class="result-image-container">
-                <a href="/pages/offer.php?offer_id='.$offer["offer_id"].'"><img src="../temporary_assets/imm_1.jpg"></a>
+                <a href="/pages/offer.php?offer_id='.$offer_id.'"><img src="/includes/functions/image_source.php?offer_id='.$offer_id.'"></a>
             </div>
 
             <!-- offer-title -->
