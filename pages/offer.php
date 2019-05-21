@@ -10,6 +10,10 @@
         return $offer_statement->fetch();
     }
 
+    if(empty($_GET['offer_id'])){
+        die('Keine Immobilie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+    }
+
 
      // getting offer based on GET-Parameter
     $offer = getOffer($_GET['offer_id']);
