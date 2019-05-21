@@ -4,17 +4,18 @@
       <!-- Category-Area -->
       <div class="smallfooter">
 
-        <h4>  Entdecke unsere Inserate:</h4>
-        <p style="text-align: center; margin-left: 0px"> Häuser:  <img class="iconHouse" src="../img/icons/house.png"></p>
-        <p style="text-align: center; margin-left: -32px"> Wohnungen:   <img class="iconHouse" src="../img/icons/apartement.png"></p>
-        <p style="text-align: center; margin-left: 13px"> Suche:  <img class="iconHouse" src="../img/icons/lupe.png" ></p>
+        <h4><i>Kategorien:</i></h4>
+        <a href="/pages/category.php?apartments=0"><p style="text-align: center; margin-left: 0px"> Häuser  <img class="iconHouse" src="../img/icons/house.png"></p></a>
+        <a href="/pages/category.php?apartments=1"><p style="text-align: center; margin-left: -32px"> Wohnungen   <img class="iconHouse" src="../img/icons/apartement.png"></p></a>
+        <a href="/pages/category.php?city=hamburg"><p style="text-align: center; margin-left: -30px"> in Hamburg  <img class="iconHouse" src="../img/icons/location.png" ></p></a>
+        <a href="/pages/category.php?city=berlin"><p style="text-align: center; margin-left: -5px"> in Berlin  <img class="iconHouse" src="../img/icons/location.png" ></p></a>
 
       </div>
 
       <!-- Social-Media-Area -->
       <div class="smallfooter">
 
-        <h3>Finde uns auf:</h3>
+        <h3><i>Finde uns auf:</i></h3>
         <a href="https://www.facebook.com/"><img class="iconTIF" src="../img/icons/Facebook.png"></a>
         <a href="https://twitter.com/?lang=de"><img class="iconTIF" src="../img/icons/Twitter.png" ></a>
         <a href="https://www.instagram.com/?hl=de"><img class="iconTIF" src="../img/icons/instagram.png" ></a>
@@ -24,7 +25,7 @@
       <!-- Developer-Area -->
       <div class="smallfooter">
 
-        <h4>Kontaktiere die Entwickler:</h4>
+        <h4><i>Kontaktiere die Entwickler:</i></h4>
         <p style="text-align: center; margin-left: 5px">  Phillip: <img class="iconWP" src="../img/icons/whatsapp.png" ></p>
         <p style="text-align: center; margin-left: 0px">  Oliver: <img class="iconWP" src="../img/icons/whatsapp.png" ></p>
         <p style="text-align: center; margin-left: 0px">  Marcel: <img class="iconWP" src="../img/icons/whatsapp.png" ></p>

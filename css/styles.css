@@ -630,6 +630,11 @@ footer{
   text-align: center;
 }
 
+.smallfooter a{
+    color: white;
+    text-decoration: none;
+}
+
 .minifooter {
 
   text-align: center; vertical-align:middle;
