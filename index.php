@@ -32,6 +32,7 @@
     } else if (isset($_POST['submit_extended_search'])) {
         setSessionVariablesFromPost();
         $_SESSION['is_fulltext_search'] = false;
+        $_SESSION["fulltext_error_message"] = null;
         header("Location: index.php");
         return;
     }
@@ -175,7 +176,7 @@
 
                                 <!-- living-space -->
                                 <div class="living-space-input">
-                                    <input type="number" name="living_space" placeholder="Wohnfläche (qm)">
+                                    <input type="number" name="living_space" placeholder="Mindestwohnfläche (qm)">
                                 </div>
 
                             </div>
@@ -295,8 +296,12 @@
 
                     function showResultsForExtendedSearch() {
                         echo '<div class="results-area" id="results"><h2>Suchergebnisse</h2>';   
-                                                                            
-                        $sql_select = "SELECT * FROM property_offer"; // TODO: 
+
+                        // set parameters for sql query
+                        $price_min = $_SESSION['price_min'];
+
+                                                    
+                        $sql_select = "SELECT * FROM property_offer WHERE price >= :price_min AND price <= :price_max"; // TODO: 
 
                         echo '
                         <div class="result-breadcrum">';
