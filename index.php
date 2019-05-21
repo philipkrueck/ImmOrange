@@ -21,13 +21,18 @@
             $_SESSION["error_message"] = "Bitte geben Sie etwas in die Suche ein.";
         } else {
             $_SESSION['is_fulltext_search'] = true;
+            $_SESSION['full_text_search'] = $_POST['full_text_search'];
+            $_SESSION['error_message'] = null;
         }
-
+        header("Location: index.php");
+        return; 
 
     } else if (isset($_POST['submit_extended_search'])) {
         // ... 
 
         $_SESSION['false'] = true;
+        header("Location: index.php");
+        return; 
     }
 
     function checkFulltextStringNotEmpty() {
@@ -245,10 +250,9 @@
                     }
 
                     function showResultsForFullTextSearch() {
-                        $full_text_search = "";
-                        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
+                        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$_SESSION['full_text_search'].'"</h2>';   
                                                                             
-                        $sql_select = "SELECT * FROM property_offer";
+                        $sql_select = "SELECT * FROM property_offer"; // TODO: 
 
                         echo '
                         <div class="result-breadcrum">';
