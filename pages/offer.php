@@ -10,8 +10,14 @@
         return $offer_statement->fetch();
     }
 
+
      // getting offer based on GET-Parameter
     $offer = getOffer($_GET['offer_id']);
+
+    // checks if offer exists
+    if(empty($offer)){
+        die('Diese Immobilie existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
+    }
 
     // checking the number of extras in offer
     $extras_count = 0;
