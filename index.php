@@ -1,27 +1,48 @@
 <!-- PHP-AREA -->
 <?php
+    require_once('includes/functions/pdo.php');
 
-    //if errors appear, show all of them
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-    //setting all variables for the extended search
-    $location = (isset($_POST['location'])) ? $_POST['location'] : 0;
-    $purchase_type = (isset($_POST['purchase_type'])) ? $_POST['purchase_type'] : 0;
-    $offer_type = (isset($_POST['offer_type'])) ? $_POST['offer_type'] : 0;
-    $rooms = (isset($_POST['rooms'])) ? $_POST['rooms'] : 0;
-    $living_space = (isset($_POST['living_space'])) ? $_POST['living_space'] : 0;
-    $price_range = (isset($_POST['price_range'])) ? $_POST['price_range'] : 0;
-    $garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
-    $basement = (isset($_POST['basement'])) ? $_POST['basement'] : 0;
-    $balcony = (isset($_POST['balcony'])) ? $_POST['balcony'] : 0;
-    $bathtub = (isset($_POST['bathtub'])) ? $_POST['bathtub'] : 0;
-    $lift = (isset($_POST['lift'])) ? $_POST['lift'] : 0;
-    $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;
-    $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;
-    $full_text_search = (isset($_POST['$full_text_search'])) ? $_POST['$full_text_search'] : 0;;
-    
+    if (isset($_POST['submit_fulltext_search'])) {
+        if (!checkFulltextStringNotEmpty()) {
+            $_SESSION["fulltext_error_message"] = "Bitte geben Sie etwas in die Suche ein.";
+        } else {
+            $_SESSION['is_fulltext_search'] = true;
+            $_SESSION["fulltext_error_message"] = null;
+            $_SESSION['fulltext_search_string'] = $_POST['fulltext_search_string'];
+        }
+        header("Location: index.php?");
+        exit; 
 
+    } else if (isset($_POST['submit_extended_search'])) {
+        setSessionVariablesFromPost();
+        $_SESSION['is_fulltext_search'] = false;
+        $_SESSION["fulltext_error_message"] = null;
+        header("Location: index.php");
+        exit;
+    }
+
+    function setSessionVariablesFromPost() {
+        $_SESSION['price_min'] = $_POST['price_min']; 
+        $_SESSION['price_max'] = $_POST['price_max']; 
+        $_SESSION['city'] = $_POST['city'] != '' ? $_POST['city'] : null; 
+        $_SESSION['qm'] = $_POST['qm'] != '' ? $_POST['qm'] : null; 
+        $_SESSION['is_apartment'] = isset($_POST['is_apartment']) ? $_POST['is_apartment'] : null;
+        $_SESSION['is_for_rent'] = isset($_POST['is_for_rent']) ? $_POST['is_for_rent'] : null;
+        $_SESSION['number_of_rooms'] = isset($_POST['number_of_rooms']) ? $_POST['number_of_rooms'] : null;
+        $_SESSION['has_basement'] = isset($_POST['has_basement']) ? $_POST['has_basement'] : null; 
+        $_SESSION['has_garden'] = isset($_POST['has_garden']) ? $_POST['has_garden'] : null; 
+        $_SESSION['has_balcony'] = isset($_POST['has_balcony']) ? $_POST['has_balcony'] : null;
+        $_SESSION['has_bathtub'] = isset($_POST['has_bathtub']) ? $_POST['has_bathtub'] : null;
+        $_SESSION['has_lift'] = isset($_POST['has_lift']) ? $_POST['has_lift'] : null;
+    }
+
+    function checkFulltextStringNotEmpty() {
+        return ($_POST['fulltext_search_string'] != '');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +61,7 @@
             include ('includes/features/combobox.php');
             include ('includes/features/price_range.php');
             include ('includes/features/search_tabs.php');
-            require_once('includes/functions/pdo.php');
+            include ('includes/results.php');
         ?>
 
         <!-- Link-Relations -->
@@ -76,23 +97,23 @@
                             <li><a href="#tabs-2">Erweiterte Suche</a></li>
                         </ul>
 
-                        <!-- EXTENDED-SEARCH-AREA -->
+                        <!-- FULL-TEXT-SEARCH-AREA -->
                         <div id="tabs-1">
 
                             <form action="#results" method="POST">
                                 <div class="full-text-search-area">
 
                                     <!-- search-bar -->
-                                    <input type="text" name="$full_text_search" class="full-text-search-bar" placeholder="Finde deine Traumimmobilie hier ..">
+                                    <input type="text" name="fulltext_search_string" class="full-text-search-bar" placeholder="Finde deine Traumimmobilie hier ..">
 
                                     <!-- submit -->
-                                    <input type="submit" value="Suchen!">  
+                                    <input type="submit" value="Suchen!" name="submit_fulltext_search">  
                                 </div>    
                             </form>
 
                         </div>
 
-                        <!-- FULL-TEXT-SEARCH-AREA -->
+                        <!-- EXTENDED-SEARCH-AREA -->
                         <div id="tabs-2">
 
                         <form action="#results" method="POST" class="extended-search">
@@ -102,22 +123,21 @@
 
                                 <!-- location -->
                                 <div class="location-input">
-                                    <input type="text" id="tags" name="location" placeholder="Ort" >
+                                    <input type="text" id="tags" name="city" placeholder="Ort" >
                                 </div>
 
                                 <!-- purchase-type -->
                                 <div class="purchase-type-input">
-                                    <select id="purchase-type-input" name="purchase_type">
+                                    <select id="purchase-type-input" name="is_for_rent">
                                         <option disabled selected>mieten oder kaufen</option>
                                         <option>mieten</option>
                                         <option>kaufen</option>
-                                        <option>egal</option>
                                     </select>
                                 </div>
 
                                 <!-- offer-type -->
                                 <div class="offer-type-input">
-                                    <select id="offer-type-input" name="offer_type">
+                                    <select id="offer-type-input" name="is_apartment">
                                         <option disabled selected>Immobilienart</option>
                                         <option>Wohnung</option>
                                         <option>Haus</option>
@@ -130,7 +150,7 @@
 
                                 <!-- rooms -->
                                 <div class="rooms-input">
-                                    <select id="rooms-input" name="rooms">
+                                    <select id="rooms-input" name="number_of_rooms">
                                         <option disabled selected>Zimmer</option>
                                         <option>1</option>
                                         <option>2</option>
@@ -142,7 +162,7 @@
 
                                 <!-- living-space -->
                                 <div class="living-space-input">
-                                    <input type="number" name="living_space" placeholder="Wohnfläche (qm)">
+                                    <input type="number" name="qm" placeholder="Mindestwohnfläche (qm)">
                                 </div>
 
                             </div>
@@ -172,14 +192,14 @@
                                 <div class="checkbox-container">
                                     <img src="../img/icons/basement.png" class="checkbox-icon">
                                     <span class="checkbox-description">Keller</span>
-                                    <input type="checkbox" name="basement" value="true">
+                                    <input type="checkbox" name="has_basement" value="true">
                                 </div>
 
                                 <!-- garden -->
                                 <div class="checkbox-container">
                                     <img src="../img/icons/botanical.png" class="checkbox-icon">
                                     <span class="checkbox-description">Garten</span>
-                                    <input type="checkbox" name="garden"  value="true">
+                                    <input type="checkbox" name="has_garden"  value="true">
                                 </div>
 
                                 <!-- balcony -->
@@ -206,48 +226,29 @@
 
                             <!-- fifth row -->
                             <div class="extended-search fifth-row">
-                                <input type="submit" value="Suchen!"> 
+                                <input type="submit" value="Suchen!" name="submit_extended_search"> 
                             </div>
                             </form>
                             
                         </div>
                     </div>                   
-
                 </div>
 
-
                 <!-- RESULTS-AREA -->
-                <?php
 
-                    $do_favorite = true;
-
-                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$full_text_search.'"</h2>';   
-                                                                               
-                        $sql_select = "SELECT * FROM property_offer";
-
-                        echo '
-                        <div class="result-breadcrum">';
-                            $counter = 0;
-                            foreach (pdo()->query($sql_select) as $offer) {
-                                $counter++;
-                            }
-        
-                            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
-                            <!-- <select>
-                                <option>neuste zuerst</option>
-                                <option>Preis aufsteigend</option>
-                                <option>Preis absteigend</option>
-                            </select> -->
-                        </div>';
-                    
-                        // includes results-area
-                        include ('includes/results.php');
-
-                        echo'</div>';       
-                        
+                 <!-- check if error-message should be dispayed -->
+                 <?php 
+                    if(isset($_SESSION["fulltext_error_message"])) {
+                        echo '<div class="error-message">'.$_SESSION["fulltext_error_message"].'</div>';
                     }
 
+                    if (isset($_SESSION['is_fulltext_search']) and !isset($_SESSION["fulltext_error_message"])) {
+                        if ($_SESSION['is_fulltext_search']) {
+                            showResultsForFullTextSearch();
+                        } else {
+                            showResultsForExtendedSearch();
+                        }
+                    }
                 ?>
 
                 <!-- PROMOTED-AREA -->

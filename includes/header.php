@@ -7,8 +7,6 @@
 <!-- USER-AREA-->
 <?php
 
-  session_start();
-
   if(isset($_SESSION['acc_id'])) {
 
     echo '
@@ -59,7 +57,7 @@
 
 <!--SEARCH-AREA-->
 <form action="/#results" method="POST">
-  <input type="text" name="$full_text_search" value="" class="navsearch" placeholder="Suche..">
-  <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1">
+  <input type="text" name="fulltext_search_string" value="" class="navsearch" placeholder="Suche..">
+  <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" name="submit_fulltext_search">
 </form>
 
