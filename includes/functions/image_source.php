@@ -20,8 +20,9 @@
         header("Content-type: ".$row['image_mime']);
         print $row['image_data']; 
         exit; 
-    } echo {
+    } else {
         // todo: display alternative image
+        echo "other image";
     }
 
 ?>
