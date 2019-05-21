@@ -1,6 +1,38 @@
 <!-- PHP-AREA -->
 <?php
 
+    include_once('../includes/functions/pdo.php');
+
+    // get account-id from URL
+    $curr_acc_id = $_GET['acc_id'];
+
+    // get realtor-object
+    function getRealtor($acc_id){
+        $realtor_statement = pdo()->prepare("SELECT acc_id, acc_email, acc_password, a.realtor_id, first_name, last_name, creation_date, tel_number, company_name FROM account a LEFT JOIN realtor r ON a.realtor_id = r.realtor_id WHERE a.acc_id = :acc_id;");
+        $realtor_statement->bindParam(':acc_id', $acc_id);
+        $realtor_statement->execute();
+        return $realtor_statement->fetch();
+    }
+
+    $realtor = getRealtor($curr_acc_id);
+
+    $realtor_id = $realtor["realtor_id"];  
+    
+    // converting Creation-Date
+    $creation_date = substr($realtor["creation_date"],0,10);
+
+    // set sql-statement for results
+    $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$realtor_id'";
+
+    // user can make offer favorite
+    $do_favorite = true;
+
+    // count offers
+    $counter = 0;
+    foreach (pdo()->query($sql_select) as $offer) {
+        $counter++;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +46,7 @@
 
         <!-- Link-Relations -->
         <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/pages/account.css">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> 
 
     </head>
@@ -34,13 +67,58 @@
             <!-- CONTENT-AREA -->
             <div class="content">          
 
-                <p style="background-color: rgba(0, 101, 114, 0.65);">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-                et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed 
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
-                takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                <!-- REALTOR-INFO-AREA -->
+                <h2><?php echo  $realtor["company_name"] ?></h2>
+
+                <div class="realtor-infos">
+                    <div class="left-column">
+
+                        <!-- User-Icon -->
+                        <img src="../img/icons/benutzer.png">
+
+                        <!-- Realtor-Name -->
+                        <span class="name"><?php echo $realtor["first_name"].' '.$realtor["last_name"] ?></span>
+
+                    </div>
+
+                    <div class="right-column">
+
+                        <!-- Realtor-Email -->
+                        <img src="../img/icons/email.png">
+                        <span><b><?php echo $realtor["acc_email"] ?></b></span>  
+                        
+                        <!-- Realtor-Phone -->
+                        <img src="../img/icons/phone.png">
+                        <span><b><?php echo $realtor["tel_number"] ?></b></span>
+
+                        <!-- Realtor-Offer-Count -->
+                        <img src="../img/icons/house.png">
+                        <span>Anzahl Immobilien: <b><?php echo $counter ?></b></span>
+
+                        <!-- Realtor-User-Since -->
+                        <img src="../img/icons/add-user.png">
+                        <span>Mitglied seit: <b><?php echo $creation_date ?></b></span>
+                    
+                        
+                    </div>                    
+
+                </div>
+
+
+                <!-- RESULTS-AREA -->
+                <h2>Alle Immobilien dieses Anbieters:</h2>
+
+                <?php
+                    //check if realtor has offers
+                    if($counter > 0){
+                        include ('../includes/results.php');
+                    }else{
+                        echo '
+                            <div class="no-offers">
+                                <span>Dieser Makler bietet momentan keine Immobilien an.</span>      
+                            </div>';
+                    }
+                ?>
 
             </div>
         </main>
