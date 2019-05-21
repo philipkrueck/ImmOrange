@@ -4,7 +4,11 @@
     include_once('../includes/functions/pdo.php');
 
     // get account-id from URL
-    $curr_acc_id = $_GET['acc_id'];
+    if(isset($_GET['acc_id'])){
+        $curr_acc_id = $_GET['acc_id'];
+    }else{
+        die('Kein Makler ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+    }
 
     // get realtor-object
     function getRealtor($acc_id){
@@ -16,7 +20,17 @@
 
     $realtor = getRealtor($curr_acc_id);
 
+    // checks if realtor exists
+    if(empty($realtor)){
+        die('Dieses Makler-Profil existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
+    }
+
     $realtor_id = $realtor["realtor_id"];  
+
+    // checks if Account is Realtor
+    if(empty($realtor_id)){
+        die('Diese Person ist kein Makler. <a href="/index.php">Zurück zur Homepage</a>');
+    }
     
     // converting Creation-Date
     $creation_date = substr($realtor["creation_date"],0,10);
