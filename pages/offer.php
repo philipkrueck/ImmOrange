@@ -172,10 +172,10 @@
                 <div class="realtor-info">
                     <h3>Interesse?</h3>
                     <h4>Besuchen Sie das Profil des Maklers!</h4>
-                    <img src="../img/icons/Benutzer.png">
                     <?php
                         echo '<a href="account.php?realtor_id='.$offer["realtor_id"].'">';
                     ?>
+                    <img src="../img/icons/Benutzer.png">                    
                         <span>
                             <?php
                                 echo $offer['company_name'];
