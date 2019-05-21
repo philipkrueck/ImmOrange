@@ -241,9 +241,6 @@
                     if(isset($_SESSION["fulltext_error_message"])) {
                         echo '<div class="error-message">'.$_SESSION["fulltext_error_message"].'</div>';
                     }
-                ?>
-
-                <?php
 
                     if (isset($_SESSION['is_fulltext_search']) and !isset($_SESSION["fulltext_error_message"])) {
                         if ($_SESSION['is_fulltext_search']) {
@@ -252,117 +249,6 @@
                             showResultsForExtendedSearch();
                         }
                     }
-
-                    function showResultsForFullTextSearch() {
-                        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$_SESSION['fulltext_search_string'].'"</h2>';   
-                                                                            
-                        $sql_select = "SELECT * FROM property_offer"; // TODO: change this sql statement for full text search 
-                    
-                        // show results-area
-                        showResultsHeader($sql_select);
-                        showResults($sql_select, true);
-
-                        echo'</div>';       
-                            
-                    }
-
-                    function showResultsForExtendedSearch() {
-                        echo '<div class="results-area" id="results"><h2>Suchergebnisse</h2>';   
-
-                        // set parameters for sql query
-                        $price_min = $_SESSION['price_min'];
-                        $price_max = $_SESSION['price_max'];
-                        $city = $_SESSION['city'];
-                        $qm = $_SESSION['qm'];
-                        $number_of_rooms = $_SESSION['number_of_rooms'];
-                        $has_basement = $_SESSION['has_basement'];
-                        $has_garden = $_SESSION['has_garden'];
-                        $has_bathtub = $_SESSION['has_bathtub'];
-                        $has_balcony = $_SESSION['has_bathtub'];
-                        $has_lift = $_SESSION['has_lift'];
-
-                        if (isset($_SESSION['is_apartment'])) {
-                            if ($_SESSION['is_apartment'] == "Wohnung") {
-                                $is_apartment = true;
-                            } else {
-                                $is_apartment = false; 
-                            }
-                        }
-                        
-                        $where_clause = array();
-                        $where_clause[] = "price >= ".$price_min;
-                        if ($price_max != "4000") {
-                            $where_clause[] = "price <= ".$price_max;
-                        }
-                        if (isset($_SESSION['is_for_rent'])) {
-                            if ($_SESSION['is_for_rent'] == "mieten") {
-                                $where_clause[] = "is_apartment = true";
-                            } else {
-                                $where_clause[] = "is_apartment = false";
-                            }
-                        }
-                        if (isset($_SESSION['is_apartment'])) {
-                            if ($_SESSION['is_apartment'] == "Wohnung") {
-                                $where_clause[] = "is_for_rent = true";
-                            } else {
-                                $where_clause[] = "is_for_rent = false";
-                            }
-                        }
-                        if (!empty($city)) {
-                            $where_clause[] = "city = '".$city."'";
-                        }
-                        if (!empty($qm)) {
-                            $where_clause[] = "qm >= '".$qm."'";
-                        }
-                        if (!empty($number_of_rooms)) {
-                            if ($number_of_rooms == "> 4") {
-                                $where_clause[] = "number_of_rooms > 4";
-                            } else {
-                                $where_clause[] = "number_of_rooms = '".$number_of_rooms."'";
-                            }
-                        }
-                        if (!empty($has_basement)) {
-                            $where_clause[] = "has_basement = true";
-                        }
-                        if (!empty($has_garden)) {
-                            $where_clause[] = "has_garden = true";
-                        }
-                        if (!empty($has_balcony)) {
-                            $where_clause[] = "has_balcony = true";
-                        }
-                        if (!empty($has_bathtub)) {
-                            $where_clause[] = "has_bathtub = true";
-                        }
-                        if (!empty($has_lift)) {
-                            $where_clause[] = "has_lift = true";
-                        }
-
-                        $sql_select = "SELECT * FROM property_offer WHERE ".join(" AND ", $where_clause).";";
-                    
-                        // show results-area
-                        showResultsHeader($sql_select);
-
-                        showResults($sql_select, true);
-
-                        echo'</div>';
-                    }
-
-                    function showResultsHeader($sql_select) {
-                        echo '<div class="result-breadcrum">';
-                            $counter = 0;
-                            foreach (pdo()->query($sql_select) as $offer) {
-                                $counter++;
-                            }
-        
-                            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
-                            <!-- <select>
-                                <option>neuste zuerst</option>
-                                <option>Preis aufsteigend</option>
-                                <option>Preis absteigend</option>
-                            </select> -->
-                        </div>';
-                    }
-
                 ?>
 
                 <!-- PROMOTED-AREA -->
