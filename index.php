@@ -1,11 +1,11 @@
 <!-- PHP-AREA -->
 <?php
     //setting all variables for the extended search
-    // $location = (isset($_POST['location'])) ? $_POST['location'] : 0;
+    // $city = (isset($_POST['city'])) ? $_POST['city'] : 0;
     // $purchase_type = (isset($_POST['purchase_type'])) ? $_POST['purchase_type'] : 0;
     // $offer_type = (isset($_POST['offer_type'])) ? $_POST['offer_type'] : 0;
-    // $rooms = (isset($_POST['rooms'])) ? $_POST['rooms'] : 0;
-    // $living_space = (isset($_POST['living_space'])) ? $_POST['living_space'] : 0;
+    // $number_of_rooms = (isset($_POST['number_of_rooms'])) ? $_POST['number_of_rooms'] : 0;
+    // $qm = (isset($_POST['qm'])) ? $_POST['qm'] : 0;
     // $price_range = (isset($_POST['price_range'])) ? $_POST['price_range'] : 0;
     // $garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
     // $basement = (isset($_POST['basement'])) ? $_POST['basement'] : 0;
@@ -27,24 +27,24 @@
             $_SESSION['fulltext_search_string'] = $_POST['fulltext_search_string'];
         }
         header("Location: index.php?");
-        return; 
+        exit; 
 
     } else if (isset($_POST['submit_extended_search'])) {
         setSessionVariablesFromPost();
         $_SESSION['is_fulltext_search'] = false;
         $_SESSION["fulltext_error_message"] = null;
         header("Location: index.php");
-        return;
+        exit;
     }
 
     function setSessionVariablesFromPost() {
         $_SESSION['price_min'] = $_POST['price_min']; 
         $_SESSION['price_max'] = $_POST['price_max']; 
-        $_SESSION['location'] = $_POST['location'] != '' ? $_POST['location'] : null; 
-        $_SESSION['living_space'] = $_POST['location'] != '' ? $_POST['location'] : null; 
+        $_SESSION['city'] = $_POST['city'] != '' ? $_POST['city'] : null; 
+        $_SESSION['qm'] = $_POST['qm'] != '' ? $_POST['qm'] : null; 
         $_SESSION['is_apartment'] = isset($_POST['is_apartment']) ? $_POST['is_apartment'] : null;
-        $_SESSION['is_for_rent'] = isset($_POST['offer_type']) ? $_POST['offer_type'] : null;
-        $_SESSION['rooms'] = isset($_POST['rooms']) ? $_POST['rooms'] : null;
+        $_SESSION['is_for_rent'] = isset($_POST['is_for_rent']) ? $_POST['is_for_rent'] : null;
+        $_SESSION['number_of_rooms'] = isset($_POST['number_of_rooms']) ? $_POST['number_of_rooms'] : null;
         $_SESSION['has_basement'] = isset($_POST['has_basement']) ? $_POST['has_basement'] : null; 
         $_SESSION['has_garden'] = isset($_POST['has_garden']) ? $_POST['has_garden'] : null; 
         $_SESSION['has_balcony'] = isset($_POST['has_balcony']) ? $_POST['has_balcony'] : null;
@@ -136,7 +136,7 @@
 
                                 <!-- location -->
                                 <div class="location-input">
-                                    <input type="text" id="tags" name="location" placeholder="Ort" >
+                                    <input type="text" id="tags" name="city" placeholder="Ort" >
                                 </div>
 
                                 <!-- purchase-type -->
@@ -145,7 +145,6 @@
                                         <option disabled selected>mieten oder kaufen</option>
                                         <option>mieten</option>
                                         <option>kaufen</option>
-                                        <option>egal</option>
                                     </select>
                                 </div>
 
@@ -164,7 +163,7 @@
 
                                 <!-- rooms -->
                                 <div class="rooms-input">
-                                    <select id="rooms-input" name="rooms">
+                                    <select id="rooms-input" name="number_of_rooms">
                                         <option disabled selected>Zimmer</option>
                                         <option>1</option>
                                         <option>2</option>
@@ -176,7 +175,7 @@
 
                                 <!-- living-space -->
                                 <div class="living-space-input">
-                                    <input type="number" name="living_space" placeholder="Mindestwohnfläche (qm)">
+                                    <input type="number" name="qm" placeholder="Mindestwohnfläche (qm)">
                                 </div>
 
                             </div>
@@ -270,24 +269,10 @@
                     function showResultsForFullTextSearch() {
                         echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$_SESSION['fulltext_search_string'].'"</h2>';   
                                                                             
-                        $sql_select = "SELECT * FROM property_offer"; // TODO: 
-
-                        echo '
-                        <div class="result-breadcrum">';
-                            $counter = 0;
-                            foreach (pdo()->query($sql_select) as $offer) {
-                                $counter++;
-                            }
-        
-                            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
-                            <!-- <select>
-                                <option>neuste zuerst</option>
-                                <option>Preis aufsteigend</option>
-                                <option>Preis absteigend</option>
-                            </select> -->
-                        </div>';
+                        $sql_select = "SELECT * FROM property_offer"; // TODO: change this sql statement for full text search 
                     
                         // show results-area
+                        showResultsHeader($sql_select);
                         showResults($sql_select, true);
 
                         echo'</div>';       
@@ -300,22 +285,83 @@
                         // set parameters for sql query
                         $price_min = $_SESSION['price_min'];
                         $price_max = $_SESSION['price_max'];
-                        $location = $_SESSION['location'];
-                        $living_space = $_SESSION['location']; 
-                        $is_apartment = $_SESSION['is_apartment'];
-                        $is_for_rent = $_SESSION['is_for_rent'];
-                        $is_apartment = $_SESSION['is_apartment'];
-                        $rooms = $_SESSION['rooms'];
+                        $city = $_SESSION['city'];
+                        $qm = $_SESSION['qm']; 
+                        $number_of_rooms = $_SESSION['number_of_rooms'];
                         $has_basement = $_SESSION['has_basement'];
                         $has_garden = $_SESSION['has_garden'];
-                        $has_balcony = $_SESSION['has_balcony'];
+                        $has_bathtub = $_SESSION['has_bathtub'];
                         $has_balcony = $_SESSION['has_bathtub'];
-                        $has_lift = $_SESSION['has_lift'];    
-                                                    
-                        $sql_select = "SELECT * FROM property_offer WHERE price >= :price_min AND price <= :price_max"; // TODO: 
+                        $has_lift = $_SESSION['has_lift'];
 
-                        echo '
-                        <div class="result-breadcrum">';
+                        if (isset($_SESSION['is_apartment'])) {
+                            if ($_SESSION['is_apartment'] == "Wohnung") {
+                                $is_apartment = true;
+                            } else {
+                                $is_apartment = false; 
+                            }
+                        }
+                        
+                        $where_clause = array();
+                        $where_clause[] = "price >= ".$price_min;
+                        if ($price_max != "4000") {
+                            $where_clause[] = "price <= ".$price_max;
+                        }
+                        if (isset($_SESSION['is_for_rent'])) {
+                            if ($_SESSION['is_for_rent'] == "mieten") {
+                                $where_clause[] = "is_apartment = true";
+                            } else {
+                                $where_clause[] = "is_apartment = false";
+                            }
+                        }
+                        if (isset($_SESSION['is_apartment'])) {
+                            if ($_SESSION['is_apartment'] == "Wohnung") {
+                                $where_clause[] = "is_for_rent = true";
+                            } else {
+                                $where_clause[] = "is_for_rent = false";
+                            }
+                        }
+                        if (!empty($city)) {
+                            $where_clause[] = "city = '".$city."'";
+                        }
+                        if (!empty($qm)) {
+                            $where_clause[] = "qm >= '".$qm."'";
+                        }
+                        if (!empty($number_of_rooms)) {
+                            if ($number_of_rooms == "> 4") {
+                                $where_clause[] = "number_of_rooms > 4";
+                            } else {
+                                $where_clause[] = "number_of_rooms = '".$number_of_rooms."'";
+                            }
+                        }
+                        if (!empty($has_basement)) {
+                            $where_clause[] = "has_basement = true";
+                        }
+                        if (!empty($has_garden)) {
+                            $where_clause[] = "has_garden = true";
+                        }
+                        if (!empty($has_balcony)) {
+                            $where_clause[] = "has_balcony = true";
+                        }
+                        if (!empty($has_bathtub)) {
+                            $where_clause[] = "has_bathtub = true";
+                        }
+                        if (!empty($has_lift)) {
+                            $where_clause[] = "has_lift = true";
+                        }
+
+                        $sql_select = "SELECT * FROM property_offer WHERE ".join(" AND ", $where_clause).";";
+                    
+                        // show results-area
+                        showResultsHeader($sql_select);
+
+                        showResults($sql_select, true);
+
+                        echo'</div>';
+                    }
+
+                    function showResultsHeader($sql_select) {
+                        echo '<div class="result-breadcrum">';
                             $counter = 0;
                             foreach (pdo()->query($sql_select) as $offer) {
                                 $counter++;
@@ -328,11 +374,6 @@
                                 <option>Preis absteigend</option>
                             </select> -->
                         </div>';
-                    
-                        // show results-area
-                        showResults($sql_select, true);
-
-                        echo'</div>';
                     }
 
                 ?>
