@@ -1,6 +1,30 @@
 <!-- PHP-AREA -->
 <?php
     include ('../includes/functions/private.php');
+
+    if (isset($_GET['delete_offer_id'])) {
+        // check that offer id is associated with logged in realtor
+        $offer_id = $_GET['delete_offer_id'];
+        $offer = getOffer($offer_id);
+        if($offer['realtor_id'] != $_SESSION['realtor_id']) {
+            die('Sie haben keine Berechtigung zum Bearbeiten. Zurück zur <a href="../../index.php">Homepage</a>');
+            return;
+        }
+        deletePropertyOffer($offer_id);
+    }
+
+    function deletePropertyOffer($offer_id) {
+        $delete_property_stmt = pdo()->prepare("DELETE FROM property_offer WHERE offer_id = :offer_id;");
+        $delete_property_stmt->bindParam(':offer_id', $offer_id);
+        $delete_property_stmt->execute();
+    }
+
+    function getOffer($offer_id) {
+        $offer_statement = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id;");
+        $offer_statement->bindParam(':offer_id', $offer_id);
+        $offer_statement->execute();
+        return $offer_statement->fetch();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +111,9 @@
                                     <a href="edit_offer.php?offer_id='.$offer['offer_id'].'">
                                         <img src="../img/icons/edit.png" title="bearbeiten">
                                     </a>
-                                    <img class="delete" src="../img/icons/delete.png" title="löschen">                        
+                                    <a href="myoffers.php?delete_offer_id='.$offer['offer_id'].'">
+                                        <img class="delete" src="../img/icons/delete.png" title="löschen">                        
+                                    </a>
                                 </div>';
                             }
                         ?>   
