@@ -15,6 +15,7 @@
     // $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;
     // $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;
     // $full_text_search = (isset($_POST['$full_text_search'])) ? $_POST['$full_text_search'] : 0;
+
     
     if (isset($_POST['submit_fulltext_search'])) {
         if (!checkFulltextStringNotEmpty()) {
@@ -50,6 +51,7 @@
             include ('includes/features/combobox.php');
             include ('includes/features/price_range.php');
             include ('includes/features/search_tabs.php');
+            include ('includes/results.php');
             require_once('includes/functions/pdo.php');
         ?>
 
@@ -254,8 +256,9 @@
                             </select> -->
                         </div>';
                     
-                        // includes results-area
-                        include ('includes/results.php');
+                        // show results-area
+                        $do_favorite = true; 
+                        showResults($sql_select, $do_favorite);
 
                         echo'</div>';       
                         
