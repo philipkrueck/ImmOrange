@@ -25,7 +25,7 @@
     $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$realtor_id'";
 
     // user can make offer favorite
-    $do_favorite = true;
+    $do_favorite = false;
 
     // count offers
     $counter = 0;
