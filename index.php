@@ -1,23 +1,11 @@
 <!-- PHP-AREA -->
 <?php
-    //setting all variables for the extended search
-    // $city = (isset($_POST['city'])) ? $_POST['city'] : 0;
-    // $purchase_type = (isset($_POST['purchase_type'])) ? $_POST['purchase_type'] : 0;
-    // $offer_type = (isset($_POST['offer_type'])) ? $_POST['offer_type'] : 0;
-    // $number_of_rooms = (isset($_POST['number_of_rooms'])) ? $_POST['number_of_rooms'] : 0;
-    // $qm = (isset($_POST['qm'])) ? $_POST['qm'] : 0;
-    // $price_range = (isset($_POST['price_range'])) ? $_POST['price_range'] : 0;
-    // $garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
-    // $basement = (isset($_POST['basement'])) ? $_POST['basement'] : 0;
-    // $balcony = (isset($_POST['balcony'])) ? $_POST['balcony'] : 0;
-    // $bathtub = (isset($_POST['bathtub'])) ? $_POST['bathtub'] : 0;
-    // $lift = (isset($_POST['lift'])) ? $_POST['lift'] : 0;
-    // $price_min = (isset($_POST['price_min'])) ? $_POST['price_min'] : 0;
-    // $price_max = (isset($_POST['price_max'])) ? $_POST['price_max'] : 0;
-    // $full_text_search = (isset($_POST['$full_text_search'])) ? $_POST['$full_text_search'] : 0;
+    require_once('includes/functions/pdo.php');
 
-    session_start();
-    
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     if (isset($_POST['submit_fulltext_search'])) {
         if (!checkFulltextStringNotEmpty()) {
             $_SESSION["fulltext_error_message"] = "Bitte geben Sie etwas in die Suche ein.";
@@ -74,7 +62,6 @@
             include ('includes/features/price_range.php');
             include ('includes/features/search_tabs.php');
             include ('includes/results.php');
-            require_once('includes/functions/pdo.php');
         ?>
 
         <!-- Link-Relations -->
@@ -286,7 +273,7 @@
                         $price_min = $_SESSION['price_min'];
                         $price_max = $_SESSION['price_max'];
                         $city = $_SESSION['city'];
-                        $qm = $_SESSION['qm']; 
+                        $qm = $_SESSION['qm'];
                         $number_of_rooms = $_SESSION['number_of_rooms'];
                         $has_basement = $_SESSION['has_basement'];
                         $has_garden = $_SESSION['has_garden'];
