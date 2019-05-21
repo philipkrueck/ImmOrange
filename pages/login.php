@@ -1,12 +1,68 @@
 <!-- PHP-AREA -->
 <?php
-
-    //if errors appear, show all of them
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1'); 
+    include ('../includes/functions/random_id.php');
+    require_once('../includes/functions/pdo.php');
+    include ('../includes/functions/login_helpers.php');
+    include ('../includes/functions/signup_helpers.php');
 
     //starting session to save login-cookie
     session_start();
+    $_SESSION['login_error_message'] = null;
+    $_SESSION['signup_error_message'] = null; 
+
+    if (isset($_POST['submit'])) {
+        if (isset($_GET['login'])) {
+            login();
+        } else if (isset($_GET['signup'])) {
+            signup();
+        }
+    }
+
+    function login() {
+        if (!checkLoginPostParameters()) {
+            $_SESSION['login_error_message'] = "Bitte gib sowohl eine Email, <br> als auch ein Passwort ein.";
+            return; 
+        }
+        setLoginSessionVariables();
+        if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
+            header("Location: /?logged_in=true");
+            return;
+        } else {
+            $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
+        }
+    }
+
+    function signup() {
+        if (!checkSignupPostParameters()) {
+            $_SESSION['signup_error_message'] = "Bitte fülle alle Felder aus.";
+            return; 
+        }
+        setSignupSessionVariables();
+        // check email format
+        if (!emailFormatIsCorrect($_SESSION['email'])) {
+            $_SESSION['signup_error_message'] = "Bitte eine gültige eMail angeben.";
+            return; 
+        }
+
+        // check passwords are matching
+        if (!passwordsAreMatching($_SESSION['password'], $_SESSION['password_2'])) {
+            $_SESSION['signup_error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
+            return;
+        }
+
+        // check if email already exists
+        if (emailAlreadyExists($_SESSION['email'])) {
+            $_SESSION['signup_error_message'] = "Die eMail existiert bereits.";
+            return; 
+        }
+
+        if (!couldRegisterUserFromSessionVariables()) {
+            $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
+            return;
+        }
+        header("Location: /?signed_up=true");
+        return;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +78,6 @@
         <?php 
             include ('../includes/features/jquery.php');
             include ('../includes/features/search_tabs.php');
-            include ('../includes/functions/random_id.php');
-            require_once('../includes/functions/pdo.php');
-            include ('../includes/functions/login.php');
         ?>
 
         <!-- Scripts --> 
@@ -80,12 +133,12 @@
 
                             <!-- check if error-message should be dispayed -->
                             <?php 
-                                if(isset($errorMessage)) {
-                                    echo '<div class="error-message">'.$errorMessage.'</div>';
+                                if(isset($_SESSION['login_error_message'])) {
+                                    echo '<div class="error-message">'.$_SESSION['login_error_message'].'</div>';
                                 }
                             ?>
                            
-                            <input type="submit" value="Login!"> 
+                            <input type="submit" name="submit" value="Login!"> 
                         </form>
 
                     </div>
@@ -95,9 +148,14 @@
 
                         <form action="?signup=1#tabs-2" method="POST" class="signup-form">
 
-                            <!-- includes the signup-function -->
                             <?php
-                                include('../includes/functions/signup.php');
+                                if(isset($_SESSION['signup_error_message'])) {
+                                    echo '<div class="error-message">'.$_SESSION['signup_error_message'].'</div>';
+                                }
+                                
+                                if (isset($_GET['registration'])) {
+                                    echo '<div class="success-message">'.'Erfolgreich registriert. <b><a href="/pages/login.php">Hier anmelden</a><b>.'.'</div>';
+                                }
                             ?>
 
                             <!-- inputs for user-information -->
@@ -120,7 +178,7 @@
                             <input type="text" maxlength="25" id="tel_number" placeholder="Telefonnummer*" name="tel_number" style="display:none;">
 
                             <!-- submit -->
-                            <input type="submit" value="Registrieren!">     
+                            <input type="submit" name="submit" value="Registrieren!">     
                         </form>
                     </div>
                 </div> 
