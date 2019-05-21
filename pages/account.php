@@ -38,7 +38,7 @@
     // set sql-statement for results
     $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$realtor_id'";
 
-    // user can make offer favorite
+    // user cannot make offer favorite
     $do_favorite = false;
 
     // count offers
