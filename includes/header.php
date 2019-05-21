@@ -18,7 +18,7 @@
           <div class="dropdown-content">';               
               
               // Select realtor_id from account where account_id = :account_id
-              $get_realtor_id_statement = pdo()->prepare("SELECT realtor_id FROM account WHERE acc_id = :acc_id");
+              $get_realtor_id_statement = pdo()->prepare("SELECT realtor_id, acc_id FROM account WHERE acc_id = :acc_id");
               $result = $get_realtor_id_statement->execute(array('acc_id' => $_SESSION['acc_id']));
               $realtor_id_array = $get_realtor_id_statement->fetch();
 
@@ -36,7 +36,7 @@
                     </div>
                     
                     <div class="in-dropDIV">
-                      <a href="/pages/account.php"><p class="drop-in">Mein Profil</p></a>
+                      <a href="/pages/account.php?acc_id='.$realtor_id_array['acc_id'].'"><p class="drop-in">Mein Profil</p></a>
                     </div>';
               }
 
