@@ -123,6 +123,8 @@
                         echo '  
                     </div>';
 
+                    
+
                 ?> 
 
                 <!-- offer-additional-info -->
@@ -183,6 +185,15 @@
                         </span>
                     </a>
                 </div>
+
+                
+                <!-- includes function to favorite offer -->
+                <?php
+                    
+                    if($do_favorite){
+                        include ('../includes/functions/toggle_favorite.php');
+                    }
+                ?>
                 
 
             </div>
@@ -195,14 +206,6 @@
             ?>
         </footer>
     
-    </body>
-
-    <!-- includes function to favorite offer -->
-    <?php
-
-        if($do_favorite){
-            include ('../includes/functions/toggle_favorite.php');
-        }
-    ?>   
+    </body>  
 
 </html> 
