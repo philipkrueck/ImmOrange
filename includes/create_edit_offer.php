@@ -10,10 +10,11 @@
 <div class="content">
 
 <?php 
+    $offer_id = $_GET['offer_id'];
     $title = $page_is_in_edit_ui == true ? "Immobilie bearbeiten" : "Immobilie inserieren";
     $button_title = $page_is_in_edit_ui == true ? "Bestätigen" : "Inserieren";
     $button_name = $page_is_in_edit_ui == true ? "Bestätigen" : "create_offer_submit";
-    $form_action = $page_is_in_edit_ui == true ? "edit_offer.php?offer_id=".$_GET['offer_id'] : "create_offer.php";
+    $form_action = $page_is_in_edit_ui == true ? "edit_offer.php?offer_id=".$offer_id : "create_offer.php";
 
     // set default values for fields
     $offer_name = isset($offer['offer_name']) ? $offer['offer_name'] : ''; 
@@ -32,6 +33,7 @@
     $zip = isset($offer['zip']) ? $offer['zip'] : null;
     $city = isset($offer['city']) ? $offer['city'] : null;
     $country = isset($offer['country']) ? $offer['country'] : null;
+    $image_source = $page_is_in_edit_ui ? "/includes/functions/image_source.php?offer_id=".$offer_id : ""; 
 ?>
 
 <!-- CREATE-OFFER-AREA -->
@@ -92,7 +94,7 @@
 
         <!-- image-preview -->
         <div class="image-preview">
-            <img src="" id="offer-img-tag"/>
+            <img src=<?php echo $image_source ?> id="offer-img-tag"/>
         </div>
     </div>
 
