@@ -1,7 +1,5 @@
 <?php
 
-    include('functions/image_source.php');
-
     function showResults($sql_select, $do_favorite) {
         // creates container for each entry in DB
         foreach (pdo()->query($sql_select) as $offer) {
