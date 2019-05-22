@@ -2,6 +2,7 @@
 <?php
 
     include_once('../includes/functions/pdo.php');
+    include ('../includes/results.php');
 
     // get account-id from URL
     if(isset($_GET['acc_id'])){
@@ -125,7 +126,7 @@
                 <?php
                     //check if realtor has offers
                     if($counter > 0){
-                        include ('../includes/results.php');
+                        showResults($sql_select, $do_favorite);                        
                     }else{
                         echo '
                             <div class="no-offers">
