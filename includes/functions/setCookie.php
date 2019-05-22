@@ -1,16 +1,11 @@
 <?php
-    session_start();
-    if (!isset($_GET['offer_id'])) {
-        // redirect to caller page 
-        echo "redirect"; // header
-        exit;
+    function toggleCookie($offer_id) {
+        if (isset($_COOKIE['favorites'])) {
+            if ($_COOKIE['favorites'] == $offer_id) {
+                setcookie("favorites", 0, time() + 360000);
+                return;
+            }
+        } 
+        setcookie("favorites", $offer_id, time() + 360000);
     }
-
-    if (isset($_COOKIE['favorites'])) {
-        setcookie("favorites", $_GET['offer_id'], time() - 3600);
-    } else {
-        setcookie("favorites", $_GET['offer_id'], time() + 3600 * 24 * 30);
-    }
-    header("Location: ".$_SESSION['current_results_url']);
-    return;
 ?>

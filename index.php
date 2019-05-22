@@ -1,9 +1,14 @@
 <!-- PHP-AREA -->
 <?php
     require_once('includes/functions/pdo.php');
+    include('includes/functions/setCookie.php');
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
+    }
+
+    if (isset($_GET['favorite_id'])) {
+        toggleCookie($_GET['favorite_id']);
     }
 
     if (isset($_POST['submit_fulltext_search'])) {

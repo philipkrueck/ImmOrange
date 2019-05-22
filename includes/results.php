@@ -18,7 +18,7 @@
             </div>
 
             <!-- offer-title -->
-            <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$offer_id.'">'.$offer_id.'</a></h3>
+            <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$offer_id.'">'.$offer['offer_name'].'</a></h3>
 
             <!-- favorite-icon -->
             '; 
@@ -26,12 +26,12 @@
                 // assuming user is not logged in
                 $image_source = "../img/icons/heart_white.png";
                 if (isset($_COOKIE['favorites'])) {
-                    if ($_COOKIE['offer_id'] == $offer_id) {
+                    if ($_COOKIE['favorites'] == $offer_id) {
                         $image_source = "../img/icons/heart_orange.png";
                     } 
                 }
 
-                echo '<a href="/includes/functions/setCookie.php?offer_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
+                echo '<a href="index.php?favorite_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
             }
 
             echo '
