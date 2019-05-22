@@ -70,9 +70,11 @@
     }
 
     function showResultsForFullTextSearch() {
-        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$_SESSION['fulltext_search_string'].'"</h2>';   
+        echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$_SESSION['fulltext_search_string'].'"</h2>'; 
+        
+        $search_string = $_SESSION['fulltext_search_string'];
                                                             
-        $sql_select = "SELECT * FROM property_offer"; // TODO: change this sql statement for full text search 
+        $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, zip, city, country) AGAINST ('$search_string' IN NATURAL LANGUAGE MODE) "; 
     
         // show results-area
         showResultsHeader($sql_select);
