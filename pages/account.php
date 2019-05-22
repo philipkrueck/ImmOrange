@@ -34,7 +34,12 @@
     }
     
     // converting Creation-Date
-    $creation_date = substr($realtor["creation_date"],0,10);
+    $creation_date_without_time = substr($realtor["creation_date"],0,10);
+    $creation_date_splitted = explode('-', $creation_date_without_time);
+    $date = $creation_date_splitted[2];
+    $month = $creation_date_splitted[1];
+    $year = $creation_date_splitted[0];
+    $creation_date = $date.'.'.$month.'.'.$year;
 
     // set sql-statement for results
     $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$realtor_id'";

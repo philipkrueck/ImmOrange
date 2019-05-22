@@ -45,7 +45,12 @@
     $do_favorite = true;
 
     // converting Creation-Date
-    $creation_date = substr($offer["creation_date"],0,10);
+    $creation_date_without_time = substr($offer["creation_date"],0,10);
+    $creation_date_splitted = explode('-', $creation_date_without_time);
+    $date = $creation_date_splitted[2];
+    $month = $creation_date_splitted[1];
+    $year = $creation_date_splitted[0];
+    $creation_date = $date.'.'.$month.'.'.$year;
 
     // check if offer is for rent
     if($offer["is_for_rent"]){
