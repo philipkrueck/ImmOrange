@@ -34,7 +34,7 @@ CREATE TABLE property_offer (
   image_data LONGBLOB NOT NULL,
   creation_date DATETIME DEFAULT now() NOT NULL,
   FOREIGN KEY(realtor_id) REFERENCES realtor(realtor_id),
-  FULLTEXT (offer_name, street, city, country)
+  FULLTEXT (offer_name, street, zip, city, country)
 ) ENGINE=MyISAM CHARSET=utf8mb4;
 
 CREATE TABLE account (
