@@ -22,7 +22,7 @@
         $_SESSION['number_of_rooms'] = $_POST['number_of_rooms'];
         $_SESSION['qm'] = $_POST['qm'];
         $_SESSION['price'] = $_POST['price'];
-        $_SESSION['construction_year'] = '1998';
+        $_SESSION['construction_year'] = $_POST['construction_year'];
         $_SESSION['street'] = $_POST['street'];
         $_SESSION['house_number'] = $_POST['house_number'];
         $_SESSION['zip'] = $_POST['zip'];
