@@ -1,6 +1,10 @@
 <?php
 
     function showResults($sql_select, $do_favorite) {
+
+        // set session variable for current results page
+        $_SESSION['current_results_url'] = $_SERVER['REQUEST_URI'];
+
         // creates container for each entry in DB
         foreach (pdo()->query($sql_select) as $offer) {
 
@@ -14,11 +18,20 @@
             </div>
 
             <!-- offer-title -->
-            <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$offer["offer_id"].'">'.$offer["offer_name"].'</a></h3>
+            <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$offer_id.'">'.$offer_id.'</a></h3>
 
             <!-- favorite-icon -->
-            '; if($do_favorite){            
-                echo '<img src="../img/icons/heart_white.png" class="heart-icon" id="heart-icon" onclick="toggleFavorite()">';
+            '; 
+            if($do_favorite){
+                // assuming user is not logged in
+                $image_source = "../img/icons/heart_white.png";
+                if (isset($_COOKIE['favorites'])) {
+                    if ($_COOKIE['offer_id'] == $offer_id) {
+                        $image_source = "../img/icons/heart_orange.png";
+                    } 
+                }
+
+                echo '<a href="/includes/functions/setCookie.php?offer_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
             }
 
             echo '
@@ -62,10 +75,6 @@
 
         </div>';
 
-        }
-        // includes function to favorite offer
-        if($do_favorite){
-            include ('includes/functions/toggle_favorite.php');
         }
     }
 
