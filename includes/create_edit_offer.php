@@ -28,6 +28,7 @@
     $has_elevator = isset($offer['has_elevator']) ? $offer['has_elevator'] : null;
     $has_bathtub = isset($offer['has_bathtub']) ? $offer['has_bathtub'] : null;
     $street = isset($offer['street']) ? $offer['street'] : null;
+    $construction_year = isset($offer['construction_year']) ? $offer['construction_year'] : null;
     $house_number = isset($offer['house_number']) ? $offer['house_number'] : null;
     $zip = isset($offer['zip']) ? $offer['zip'] : null;
     $city = isset($offer['city']) ? $offer['city'] : null;
@@ -66,16 +67,6 @@
             </select>
         </div>
 
-        <!-- rooms -->
-        <div class="rooms-input">
-            <input type="number" name="number_of_rooms" placeholder="Raumanzahl" value="<?php echo $number_of_rooms ?>">
-        </div>
-
-        <!-- living-space -->
-        <div class="living-space-input">
-            <input type="number" name="qm" placeholder="Wohnfläche (qm)" value="<?php echo $qm ?>">
-        </div>
-
         <!-- price -->
         <div class="price-input">
             <input type="number" name="price" placeholder="Preis (€)" value="<?php echo $price ?>">
@@ -89,6 +80,25 @@
                     readURL(this);
                 });
             </script>
+        </div>
+
+        <div class="small-inputs">
+
+            <!-- rooms -->
+            <div class="rooms-input">
+                <input type="number" name="number_of_rooms" placeholder="Raumanzahl" value="<?php echo $number_of_rooms ?>">
+            </div>
+
+            <!-- living-space -->
+            <div class="living-space-input">
+                <input type="number" name="qm" placeholder="Wohnfläche (qm)" value="<?php echo $qm ?>">
+            </div>
+            
+            <!-- living-space -->
+            <div class="construction-year-input">
+                <input type="number" name="construction_year" placeholder="Bauhjahr" min="1800" max="2019" value="<?php echo $construction_year ?>">
+            </div>   
+
         </div>
 
         <!-- image-preview -->
