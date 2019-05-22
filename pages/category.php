@@ -2,6 +2,9 @@
 <?php
     include ('../includes/functions/private.php');
 
+    // includes results-area
+    include ('../includes/results.php');
+
     // saves GET-Parameter
     if($_GET['city'] == 'hamburg' || $_GET['city'] == 'berlin'){
         $get_result = $_GET['city'];
@@ -94,11 +97,9 @@
                     <!-- RESULTS-AREA -->
                     <div class="results-area" id="results">
 
-                        <?php                        
+                        <?php                      
 
-                            // includes results-area
-                            include ('../includes/results.php');
-    
+                            showResults($sql_select, $do_favorite);    
 
                         ?>
 

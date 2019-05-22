@@ -2,6 +2,9 @@
 <?php
     include ('../includes/functions/private.php');
 
+    // includes results-area
+    include ('../includes/results.php');
+
     if (isset($_GET['delete_offer_id'])) {
         // check that offer id is associated with logged in realtor
         $offer_id = $_GET['delete_offer_id'];
@@ -97,8 +100,7 @@
 
                         <?php                        
 
-                            // includes results-area
-                            include ('../includes/results.php');
+                            showResults($sql_select, $do_favorite);
 
                             echo'</div>';     
 
