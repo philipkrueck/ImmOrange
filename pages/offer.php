@@ -102,7 +102,7 @@
                     
                     <!-- offer-image -->
                     <div class="result-image-container">
-                        <a href="/pages/offer.php?offer_id='.$offer["offer_id"].'"><img src="../temporary_assets/imm_1.jpg"></a>
+                        <a href="/pages/offer.php?offer_id='.$offer["offer_id"].'"><img src="/includes/functions/image_source.php?offer_id='.$offer["offer_id"].'"></a>
                     </div>
 
                     <!-- offer-title -->
