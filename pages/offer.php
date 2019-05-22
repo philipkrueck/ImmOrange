@@ -97,12 +97,12 @@
             
                 <!-- offer-summary -->
                 <?php
-
+                    $offer_id = $offer["offer_id"];
                     echo '<div class="result-container">
                     
                     <!-- offer-image -->
                     <div class="result-image-container">
-                        <a href="/pages/offer.php?offer_id='.$offer["offer_id"].'"><img src="/includes/functions/image_source.php?offer_id='.$offer["offer_id"].'"></a>
+                        <a href="/pages/offer.php?offer_id='.$offer_id.'"><img src="/includes/functions/image_source.php?offer_id='.$offer_id.'"></a>
                     </div>
 
                     <!-- offer-title -->
