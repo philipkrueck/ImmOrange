@@ -28,7 +28,7 @@
                 if (in_array($offer_id, $favorites)) {
                     $image_source = "../img/icons/heart_orange.png";
                 }
-                echo '<a href="index.php?favorite_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
+                echo '<a href="/pages/category.php?city=hamburg&favorite_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
             }
 
             echo '
