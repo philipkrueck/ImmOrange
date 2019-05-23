@@ -22,16 +22,12 @@
 
             <!-- favorite-icon -->
             '; 
+            $image_source = "../img/icons/heart_white.png";
             if($do_favorite){
-                // assuming user is not logged in
-                $image_source = "../img/icons/heart_white.png";
-                if (isset($_COOKIE['favorites'])) {
-                    $favorites_array = json_decode($_COOKIE['favorites']);
-                    if (in_array($offer_id, $favorites_array)) {
-                        $image_source = "../img/icons/heart_orange.png";
-                    }
+                $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
+                if (in_array($offer_id, $favorites)) {
+                    $image_source = "../img/icons/heart_orange.png";
                 }
-
                 echo '<a href="index.php?favorite_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
             }
 
