@@ -28,7 +28,10 @@
                 if (in_array($offer_id, $favorites)) {
                     $image_source = "../img/icons/heart_orange.png";
                 }
-                echo '<a href="/pages/category.php?city=hamburg&favorite_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
+                // destination url specifies which page to load, but removes get parameter 'favorite_id', if it is currently set
+                $destination_url = preg_replace("/[\?|\&]favorite_id.*/", "", $_SERVER['REQUEST_URI']);
+                $combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['favorite_id']))) ? "?" : "&";
+                echo '<a href="'.$destination_url.$combination_character.'favorite_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
             }
 
             echo '

@@ -7,6 +7,7 @@
         session_start();
     }
 
+    // check if favorite was selected and if so, toggle in cookie
     $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
     if ($favorite_id) {
         toggleFavorite($favorite_id);
