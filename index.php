@@ -1,26 +1,15 @@
 <!-- PHP-AREA -->
 <?php
     require_once('includes/functions/pdo.php');
+    include('includes/functions/manage_wishlist.php');
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
 
-    $favId = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
-    $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
-    if ($favId) {
-        if (!in_array($favId, $favorites)) {
-            $favorites[] = $favId;
-            setcookie('favorites', json_encode($favorites), time() + (86400 * 30), "/"); // 86400 = 1 day
-            $_COOKIE['favorites'] = json_encode($favorites);
-        }
-        else {
-            $idx = array_search($favId, $favorites);
-            unset($favorites[$idx]);
-            $favorites = array_values($favorites);
-            setcookie('favorites', json_encode($favorites), time() + (86400 * 30), "/"); // 86400 = 1 day
-            $_COOKIE['favorites'] = json_encode($favorites);
-        }
+    $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
+    if ($favorite_id) {
+        toggleFavorite($favorite_id);
     }
 
     if (isset($_POST['submit_fulltext_search'])) {
