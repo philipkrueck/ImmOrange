@@ -24,7 +24,7 @@
     }
     
     // toggle favorite if get param is set
-    $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
+    $favorite_id = isset($_GET['favorite']) ? $_GET['offer_id'] : null;
     if ($favorite_id) {
         toggleFavorite($favorite_id);
     }
@@ -121,7 +121,7 @@
                     if (in_array($offer_id, $favorites)) {
                         $image_source = "../img/icons/heart_orange.png";
                     }
-                    echo '<a href="offer.php?offer_id='.$offer_id.'&favorite_id='.$offer_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
+                    echo '<a href="offer.php?offer_id='.$offer_id.'&favorite" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
 
                     echo '
                     <!-- offer-price -->
