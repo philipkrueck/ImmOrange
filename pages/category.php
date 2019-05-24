@@ -1,6 +1,7 @@
 <!-- PHP-AREA -->
 <?php
-    include ('../includes/functions/private.php');
+    error_reporting(E_ALL ^ E_NOTICE);
+    include ('../includes/functions/pdo.php');
     include ('../includes/functions/manage_wishlist.php');
 
     // includes results-area
