@@ -4,7 +4,7 @@
     $page_entries = 2;
 
     // decides, which character should be used for GET
-    $combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['page']))) ? "?" : "&";
+    $paging_combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['page']))) ? "?" : "&";
 
     // deletes every "page=x" in URL
     $paging_url = preg_replace("/[\?|\&]page.*/", "", $_SERVER['REQUEST_URI']);

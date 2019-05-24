@@ -82,7 +82,7 @@
         echo '
             <div class="paging-container">
                 <div class="back">
-                    <span ';  if($is_first_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$combination_character.'page='.$page_back.'">
+                    <span ';  if($is_first_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_back.'">
                         🡄 zurück
                     </a></span>
                     
@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="next">
-                    <span ';  if($is_last_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$combination_character.'page='.$page_next.'">
+                    <span ';  if($is_last_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_next.'">
                         nächste 🡆
                     </a></span>
                 </div>
