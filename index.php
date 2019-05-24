@@ -263,7 +263,7 @@
                     <h2>Promoted</h2>    
 
                     <?php
-                        include('includes/features/product_slider.php');
+                        //include('includes/features/product_slider.php');
                     ?>
 
                 </div>
