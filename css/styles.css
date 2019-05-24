@@ -510,8 +510,11 @@ main .content{
 
     .result-container .heart-icon{
         position: absolute;
-        margin-left: 840px;
+        margin-left: 820px;
         margin-top: 25px;
+    }
+
+    .result-container .heart-icon img{
         width: 35px;
         cursor: pointer;
     }

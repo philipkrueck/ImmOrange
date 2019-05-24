@@ -2,6 +2,7 @@
 <?php
 
     require_once('../includes/functions/pdo.php');
+    include('../includes/functions/manage_wishlist.php');
 
     function getOffer($offer_id) {
         $offer_statement = pdo()->prepare("SELECT offer_id, offer_name, price, qm, number_of_rooms, is_for_rent, is_apartment, construction_year, has_basement, has_garden, has_bathtub, has_elevator, has_balcony, city, p.creation_date, company_name, acc_id FROM property_offer p LEFT OUTER JOIN realtor r ON p.realtor_id = r.realtor_id LEFT OUTER JOIN account a ON r.realtor_id = a.realtor_id WHERE offer_id = :offer_id;");
@@ -14,13 +15,18 @@
         die('Keine Immobilie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
     }
 
-
      // getting offer based on GET-Parameter
     $offer = getOffer($_GET['offer_id']);
 
     // checks if offer exists
     if(empty($offer)){
         die('Diese Immobilie existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
+    }
+    
+    // toggle favorite if get param is set
+    $favorite_id = isset($_GET['favorite']) ? $_GET['offer_id'] : null;
+    if ($favorite_id) {
+        toggleFavorite($favorite_id);
     }
 
     // checking the number of extras in offer
@@ -114,9 +120,13 @@
                     <h3 class="result-title">'.$offer["offer_name"].'</h3>
 
                     <!-- favorite-icon -->
-                    '; if($do_favorite){            
-                        echo '<img src="../img/icons/heart_white.png" class="heart-icon" id="heart-icon" onclick="toggleFavorite()">';
+                    ';        
+                    $image_source = "../img/icons/heart_white.png";   
+                    $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
+                    if (in_array($offer_id, $favorites)) {
+                        $image_source = "../img/icons/heart_orange.png";
                     }
+                    echo '<a href="offer.php?offer_id='.$offer_id.'&favorite" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
 
                     echo '
                     <!-- offer-price -->

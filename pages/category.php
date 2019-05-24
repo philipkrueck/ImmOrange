@@ -1,9 +1,16 @@
 <!-- PHP-AREA -->
 <?php
     include ('../includes/functions/private.php');
+    include ('../includes/functions/manage_wishlist.php');
 
     // includes results-area
     include ('../includes/results.php');
+
+    // check if favorite was selected and if so, toggle in cookie
+    $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
+    if ($favorite_id) {
+        toggleFavorite($favorite_id);
+    }
 
     // saves GET-Parameter
     if($_GET['city'] == 'hamburg' || $_GET['city'] == 'berlin'){
@@ -40,13 +47,7 @@
     }
 
     // counts results
-    $counter = 0;
-    foreach (pdo()->query($sql_select) as $offer) {
-        $counter++;
-    }
-
-    // can be set as favorite
-    $do_favorite = false;
+    $counter = getResultsCount($sql_select);
 
 ?>
 
@@ -99,7 +100,7 @@
 
                         <?php                      
 
-                            showResults($sql_select, $do_favorite);    
+                            showResults($sql_select, true);    
 
                         ?>
 
