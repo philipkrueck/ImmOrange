@@ -635,6 +635,11 @@ main .content{
         border-radius: 3px;
     }
 
+    .arrow{
+        font-weight: bold;
+        margin: 5px;
+    }
+
 
 
     /**************************************************
