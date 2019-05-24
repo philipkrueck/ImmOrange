@@ -53,8 +53,8 @@
         <div class="is_apartment-input">
             <select id="offer-type-input" name="is_apartment" >
                 <option disabled selected>Haus oder Wohnung</option>
-                <option <?php echo ($is_apartment == true) ? ' selected' : ''?>>Wohnung</option>
-                <option <?php echo ($is_apartment == false) ? ' selected' : ''?>>Haus</option>
+                <option <?php if ($is_apartment) echo ($is_apartment == true) ? ' selected' : ''?>>Wohnung</option>
+                <option <?php if ($is_apartment) echo ($is_apartment == false) ? ' selected' : ''?>>Haus</option>
             </select>
         </div>
 
@@ -62,8 +62,8 @@
         <div class="is_for_rent-input">
             <select id="purchase-type-input" name="is_for_rent" >
                 <option disabled selected>mieten oder kaufen</option>
-                <option <?php echo ($is_for_rent == true) ? ' selected' : ''?>>mieten</option>
-                <option <?php echo ($is_for_rent == false) ? ' selected' : ''?>>kaufen</option>
+                <option <?php if ($is_for_rent) echo ($is_for_rent == true) ? ' selected' : ''?>>mieten</option>
+                <option <?php if ($is_for_rent) echo ($is_for_rent == false) ? ' selected' : ''?>>kaufen</option>
             </select>
         </div>
 
