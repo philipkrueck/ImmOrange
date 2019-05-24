@@ -10,6 +10,7 @@
 <div class="content">
 
 <?php 
+    $offer_id = isset($_GET['offer_id']) ? $_GET['offer_id'] : "";
     $title = $page_is_in_edit_ui == true ? "Immobilie bearbeiten" : "Immobilie inserieren";
     $button_title = $page_is_in_edit_ui == true ? "Bestätigen" : "Inserieren";
     $button_name = $page_is_in_edit_ui == true ? "Bestätigen" : "create_offer_submit";
@@ -33,7 +34,7 @@
     $zip = isset($offer['zip']) ? $offer['zip'] : null;
     $city = isset($offer['city']) ? $offer['city'] : null;
     $country = isset($offer['country']) ? $offer['country'] : null;
-    $image_source = $page_is_in_edit_ui ? "/includes/functions/image_source.php?offer_id=".$_GET['offer_id'] : "''"; 
+    $image_source = $page_is_in_edit_ui ? "/includes/functions/image_source.php?offer_id=".$offer_id : "''"; 
 ?>
 
 <!-- CREATE-OFFER-AREA -->
@@ -53,8 +54,8 @@
         <div class="is_apartment-input">
             <select id="offer-type-input" name="is_apartment" >
                 <option disabled selected>Haus oder Wohnung</option>
-                <option <?php echo ($is_apartment == true) ? ' selected' : ''?>>Wohnung</option>
-                <option <?php echo ($is_apartment == false) ? ' selected' : ''?>>Haus</option>
+                <option <?php if ($is_apartment) echo ($is_apartment == true) ? ' selected' : ''?>>Wohnung</option>
+                <option <?php if ($is_apartment) echo ($is_apartment == false) ? ' selected' : ''?>>Haus</option>
             </select>
         </div>
 
@@ -62,8 +63,9 @@
         <div class="is_for_rent-input">
             <select id="purchase-type-input" name="is_for_rent" >
                 <option disabled selected>mieten oder kaufen</option>
-                <option <?php echo ($is_for_rent == true) ? ' selected' : ''?>>mieten</option>
-                <option <?php echo ($is_for_rent == false) ? ' selected' : ''?>>kaufen</option>
+                <option <?php if ($is_for_rent) echo ($is_for_rent == true) ? ' selected' : ''?>>mieten</option>
+                <option <?php if ($is_for_rent) 
+                echo ($is_for_rent == false) ? ' selected' : ''?>>kaufen</option>
             </select>
         </div>
 
