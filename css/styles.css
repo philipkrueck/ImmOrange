@@ -17,6 +17,20 @@ body{
     background-size: cover;
 }
 
+.error-message{
+    color: white;
+    background-color: red;
+    display: block;
+    border-radius: 50px;
+    font-size: 15px;
+    display: block;
+    font-weight: bold;
+    font-family: 'Open Sans';
+    max-height: 41px;
+    padding: 8px;
+    text-align: center;
+}
+
     /**************************************************
                     Font Sytles
     ***************************************************/
