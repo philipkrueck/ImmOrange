@@ -110,7 +110,11 @@
     </head>
 
     <!-- BODY-AREA -->
-    <body>
+    <body class="login-page">
+
+        <a href="/">
+            <img src="../img/logo.png" class="login-logo">
+        </a>
 
         <!-- MAIN-AREA -->
         <main>

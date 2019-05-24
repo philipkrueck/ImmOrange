@@ -1,7 +1,7 @@
 <!--LOGO-->
-  <a href="/"><h1 class="logo">
-      <span>Imm</span><span>Orange</span>
-  </h1></a>
+  <a href="/">
+    <img src="../img/logo.png" class="logo">
+  </a>
 
 
 <!-- USER-AREA-->
