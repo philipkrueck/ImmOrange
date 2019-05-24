@@ -108,7 +108,9 @@
 
                     <div class="edit-delete-area">
                         <?php
-                            foreach (pdo()->query($sql_select) as $offer) {
+                            include ('../includes/functions/paging.php');
+                            
+                            foreach (pdo()->query($sql_select_with_paging) as $offer) {
                                 echo '<div class="edit-delete-container">
                                     <a href="edit_offer.php?offer_id='.$offer['offer_id'].'">
                                         <img src="../img/icons/edit.png" title="bearbeiten">
