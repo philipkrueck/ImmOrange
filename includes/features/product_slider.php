@@ -1,3 +1,26 @@
+<?php
+	$sql_select_newest = "SELECT * FROM property_offer ORDER BY creation_date DESC LIMIT 3;";
+
+	$newest_offers = getPropertyOffers($sql_select_newest);
+
+	$hamburg_offers = getPropertyOffers(getSqlSelectString("Hamburg"));
+	$berlin_offers = getPropertyOffers(getSqlSelectString("Berlin"));
+	$munich_offers = getPropertyOffers(getSqlSelectString("München"));
+
+	function getPropertyOffers($sql_select) {
+		$offers = array();
+		foreach (pdo()->query($sql_select) as $offer) {
+			array_push($offers, $offer);
+		}
+		return $offers; 
+	}
+
+	function getSqlSelectString($city) {
+		return "SELECT * FROM property_offer WHERE city = '$city' ORDER BY creation_date DESC LIMIT 3;";
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -5,28 +28,46 @@
 		<script src="/js/features/product_slider_js/modernizr.custom.63321.js"></script>
 	</head>
 	<body>
+
+		<?php 
+			function showSliderOfferList($offers) {
+				foreach ($offers as $offer) {
+					echo '
+					<li>
+						<a href="/pages/offer.php?offer_id='.$offer['offer_id'].'"><img src="/includes/functions/image_source.php?offer_id='.$offer['offer_id'].'" alt="img01">
+							<h4>'.$offer['offer_name'].'</h4>
+							<h6>Preis: '.$offer['price'].'</h6>
+							<h6>QM: '.$offer['qm'].'</h6>
+							<h6>Zimmeranzahl: '.$offer['number_of_rooms'].'</h6>
+						</a>
+					</li>
+					';
+				}
+			}
+		?>
+
 		<div class="container">	
 			<div class="main">
 				<div id="mi-slider" class="mi-slider">
 				<ul>
-					<li><a href="#"><img src="/temporary_assets/imm_1.jpg" alt="img01"><h4>Neueste 1</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_2.jpg" alt="img02"><h4>Neueste 2</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_3.jpg" alt="img03"><h4>Neueste 3</h4></a></li>
+					<?php 
+						showSliderOfferList($newest_offers);
+					?>
 				</ul>
 				<ul>
-					<li><a href="#"><img src="/temporary_assets/imm_6.jpg" alt="img06"><h4>Hamgurg 2</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_4.jpg" alt="img07"><h4>Hamburg 3</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_3.jpg" alt="img08"><h4>Hamburg 4</h4></a></li>
+					<?php 
+						showSliderOfferList($hamburg_offers);
+					?>
 				</ul>
 				<ul>
-					<li><a href="#"><img src="/temporary_assets/imm_1.jpg" alt="img09"><h4>Berlin 1</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_2.jpg" alt="img10"><h4>Berlin 2</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_3.jpg" alt="img11"><h4>Berlin 3</h4></a></li>
+					<?php 
+						showSliderOfferList($berlin_offers);
+					?>
 				</ul>
 				<ul>
-					<li><a href="#"><img src="/temporary_assets/imm_6.jpg" alt="img12"><h4>München 1</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_4.jpg" alt="img13"><h4>München 2</h4></a></li>
-					<li><a href="#"><img src="/temporary_assets/imm_5.jpg" alt="img14"><h4>München 3</h4></a></li>
+					<?php 
+						showSliderOfferList($munich_offers);
+					?>
 				</ul>
 				<nav>
 					<a href="#">Neueste</a>
