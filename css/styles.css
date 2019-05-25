@@ -606,6 +606,55 @@ main .content{
         margin-right: 0px;
     }
 
+    /**************************************************
+                Paging Sytles
+    ***************************************************/
+    .paging-container{
+        display: grid;
+        grid-template-columns: 175px 510px 175px;
+        grid-gap: 20px;
+
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    .paging-container a{
+        color: white;
+        text-decoration: none;
+    }
+
+    .back{
+        grid-column: 1/2;
+
+        background-color: rgba(0, 101, 114, 0.65);
+        padding: 30px 10px;
+        border-radius: 3px;
+    }
+
+    .current{
+        grid-column: 2/3;
+
+        background-color: rgba(0, 101, 114, 0.65);
+        padding: 30px 10px;
+        border-radius: 3px;
+    }
+
+    .next{
+        grid-column: 3/4;
+
+        background-color: rgba(0, 101, 114, 0.65);
+        padding: 30px 10px;
+        border-radius: 3px;
+    }
+
+    .arrow{
+        font-weight: bold;
+        margin: 5px;
+    }
+
+
 
     /**************************************************
                  Promoted-Area Sytles

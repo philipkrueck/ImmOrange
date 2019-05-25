@@ -2,11 +2,13 @@
 
     function showResults($sql_select, $do_favorite) {
 
+        include ('functions/paging.php');
+
         // set session variable for current results page
         $_SESSION['current_results_url'] = $_SERVER['REQUEST_URI'];
 
         // creates container for each entry in DB
-        foreach (pdo()->query($sql_select) as $offer) {
+        foreach (pdo()->query($sql_select_with_paging) as $offer) {
 
             $offer_id = $offer["offer_id"];
 
@@ -76,6 +78,27 @@
         </div>';
 
         }
+        
+        echo '
+            <div class="paging-container">
+                <div class="back">
+                    <span ';  if($is_first_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_back.'">
+                    <span class="arrow">&larr;</span> zurück
+                    </a></span>
+                    
+                </div>
+
+                <div class="current">
+                    <span>Seite '.$page_current.' von '.$page_count.'</span>
+                </div>
+
+                <div class="next">
+                    <span ';  if($is_last_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_next.'">
+                        nächste <span class="arrow">&rarr;</span>
+                    </a></span>
+                </div>
+            </div>
+        ';
     }
 
     function showFavoriteResults($favorite_ids) {
@@ -154,12 +177,13 @@
         }
     }
 
+
     function showResultsForFullTextSearch() {
         echo '<div class="results-area" id="results"><h2>Suchergebnisse für "'.$_SESSION['fulltext_search_string'].'"</h2>'; 
         
         $search_string = $_SESSION['fulltext_search_string'];
                                                             
-        $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, zip, city, country) AGAINST ('$search_string' IN NATURAL LANGUAGE MODE) "; 
+        $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, zip, city, country) AGAINST ('$search_string' IN NATURAL LANGUAGE MODE) ";
     
         // show results-area
         showResultsHeader($sql_select);
@@ -240,7 +264,8 @@
             $where_clause[] = "has_lift = true";
         }
 
-        $sql_select = "SELECT * FROM property_offer WHERE ".join(" AND ", $where_clause).";";
+        $sql_select = 'SELECT * FROM property_offer WHERE '.join(' AND ', $where_clause);
+
     
         // show results-area
         showResultsHeader($sql_select);
