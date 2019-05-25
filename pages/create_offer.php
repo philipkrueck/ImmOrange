@@ -95,7 +95,7 @@
     <head>
 
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title>Immobilie inserieren  ∙  ImmOrange GmbH</title>
 
         <!-- Includes -->
         <?php

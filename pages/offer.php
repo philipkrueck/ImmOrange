@@ -86,7 +86,7 @@
     <head>
     
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title><?php echo  $offer["offer_name"] ?>  ∙  ImmOrange GmbH</title>
 
         <!-- Link-Relations -->
         <link rel="stylesheet" href="../css/styles.css">

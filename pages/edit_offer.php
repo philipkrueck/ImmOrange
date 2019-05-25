@@ -113,7 +113,7 @@
     <head>
         
         <!-- Homepage-Title -->
-        <title>Immobilie bearbeiten</title>
+        <title>Immobilie bearbeiten  ∙  ImmOrange GmbH</title>
 
         <!-- Link-Relations -->
         <link rel="stylesheet" href="../css/styles.css">
