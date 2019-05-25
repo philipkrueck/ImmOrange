@@ -33,8 +33,8 @@
         $_SESSION['zip'] = $_POST['zip'];
         $_SESSION['city'] = $_POST['city'];
         $_SESSION['country'] = $_POST['country'];
-        $_SESSION['is_apartment'] = isset($_POST["is_apartment"]) ? 1 : 0;
-        $_SESSION['is_for_rent'] = isset($_POST["is_for_rent"]) ? 1 : 0;
+        $_SESSION['is_apartment'] = $_POST["is_apartment"] == "Wohnung" ? 1 : 0;
+        $_SESSION['is_for_rent'] = $_POST["is_for_rent"] == "mieten" ? 1 : 0;
         $_SESSION['has_basement'] = isset($_POST["has_basement"]) ? 1 : 0;
         $_SESSION['has_garden'] = isset($_POST["has_garden"]) ? 1 : 0;
         $_SESSION['has_balcony'] = isset($_POST["has_balcony"]) ? 1 : 0;
@@ -80,7 +80,10 @@
             ($_POST['house_number'] != '') and
             ($_POST['zip'] != '') and
             ($_POST['city'] != '') and
-            ($_POST['country'] != '')
+            ($_POST['country'] != '') and
+            ($_FILES['picture']['name'] != '') and
+            ($_FILES['picture']['type'] != '') and
+            ($_FILES['picture']['tmp_name'] != '')
         ) {
             return true;
         }
