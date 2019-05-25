@@ -73,7 +73,9 @@
 
         <!-- Link-Relations -->
         <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />        
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> 
+        <link rel="stylesheet" type="text/css" href="/css/features/product_slider_styles.css" />
+		<script src="/js/features/product_slider_js/modernizr.custom.63321.js"></script>       
         
 
     </head>
@@ -263,7 +265,7 @@
                     <h2>Promoted</h2>    
 
                     <?php
-                        //include('includes/features/product_slider.php');
+                        include('includes/features/product_slider.php');
                     ?>
 
                 </div>
