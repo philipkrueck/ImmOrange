@@ -39,6 +39,11 @@
 	width: 260px;
 }
 
+.mi-slider li.error {
+    margin-top: 200px;
+    margin-left: 270px;
+}
+
 .no-js .mi-slider ul li {
 	-webkit-transform: translateX(0);
 	transform: translateX(0);
