@@ -790,3 +790,35 @@ footer{
     background: none !important;
     color: black !important;
 }
+
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front {
+    top: 110px !important;
+    left: 20px !important;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: .4em 1em;
+    position: relative;
+    padding-top: 1.4em;
+    text-align: center
+}
+
+button.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+    display: none;
+}
+
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front {
+    background-color: #02dd40;
+    color: white;
+}
+
+.ui-dialog .ui-dialog-title {
+    float: none;
+    margin: .1em 0;
+    white-space: nowrap;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+    font-family: 'Open Sans';
+}
