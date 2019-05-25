@@ -21,22 +21,27 @@
 
 
 	function showSliderOfferList($offers) {
-		foreach ($offers as $offer) {
-			echo '
-			<li>
-				<a href="/pages/offer.php?offer_id='.$offer['offer_id'].'">
-					<div class="promoted-img-container">
-						<img src="/includes/functions/image_source.php?offer_id='.$offer['offer_id'].'" alt="img01">
-					</div>
-					<h4>'.$offer['offer_name'].'</h4>
-					<div class="info-container">
-						<span class="info">'.$offer['price'].' €</span>
-						<span class="info">'.$offer['qm'].' qm</span>
-						<span class="info">'.$offer['number_of_rooms'].' Zimmer</span>
-					</div>
-				</a>
-			</li>
-			';
+
+		if (empty($offers)) {
+			echo '<li class="error">Es sind noch keine Angebote verfügbar.</li>';
+		} else {
+			foreach ($offers as $offer) {
+				echo '
+				<li>
+					<a href="/pages/offer.php?offer_id='.$offer['offer_id'].'">
+						<div class="promoted-img-container">
+							<img src="/includes/functions/image_source.php?offer_id='.$offer['offer_id'].'" alt="img01">
+						</div>
+						<h4>'.$offer['offer_name'].'</h4>
+						<div class="info-container">
+							<span class="info">'.$offer['price'].' €</span>
+							<span class="info">'.$offer['qm'].' qm</span>
+							<span class="info">'.$offer['number_of_rooms'].' Zimmer</span>
+						</div>
+					</a>
+				</li>
+				';
+			}
 		}
 	}
 ?>
