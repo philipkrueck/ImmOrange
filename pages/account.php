@@ -4,6 +4,11 @@
     include_once('../includes/functions/pdo.php');
     include ('../includes/results.php');
 
+    // start session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     // get account-id from URL
     if(isset($_GET['acc_id'])){
         $curr_acc_id = $_GET['acc_id'];

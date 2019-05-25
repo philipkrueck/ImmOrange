@@ -6,6 +6,11 @@
     // includes results-area
     include ('../includes/results.php');
 
+    // start session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     if (isset($_GET['delete_offer_id'])) {
         // check that offer id is associated with logged in realtor
         $offer_id = $_GET['delete_offer_id'];

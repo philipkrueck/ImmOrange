@@ -102,7 +102,6 @@
     }
 
     function showFavoriteResults($favorite_ids) {
-        include('functions/pdo.php');
 
         echo '<div class="results-area" id="results"><h2>Deine Merkliste</h2>'; 
         echo '<div class="result-breadcrum">

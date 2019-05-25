@@ -4,6 +4,11 @@
     require_once('../includes/functions/private.php');
     include('../includes/functions/random_id.php');
 
+    // start session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     if (isset($_POST['submit_offer'])) {
         if (checkAllPostVariablesAreSet()) {
             setSessionVariables();
