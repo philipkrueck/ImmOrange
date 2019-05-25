@@ -78,18 +78,23 @@
         <!-- Feature-Includes -->
         <?php 
             include ('includes/features/jquery.php');
+            include ('includes/features/search_tabs.php');
             include ('includes/features/autocomplete.php');
             include ('includes/features/combobox.php');
             include ('includes/features/price_range.php');
-            include ('includes/features/search_tabs.php');
             include ('includes/features/popup.php');
             include ('includes/results.php');
         ?>
 
         <!-- Link-Relations -->
         <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> 
+        <link rel="stylesheet" href="css/pages/index.css">
+        <link rel="stylesheet" href="css/results.css">
+        <link rel="stylesheet" href="css/features/tabs.css">
         <link rel="stylesheet" type="text/css" href="/css/features/product_slider_styles.css" />
+        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css" />
+        
+        <!-- Scripts -->
 		<script src="/js/features/product_slider_js/modernizr.custom.63321.js"></script>       
         
 
