@@ -51,6 +51,19 @@
     function checkFulltextStringNotEmpty() {
         return ($_POST['fulltext_search_string'] != '');
     }
+
+    if(isset($_GET['logged_out']) && $_GET['logged_out'] == true){
+        $popup_message = 'erfolgreich abgemeldet';
+    }
+
+    if(isset($_GET['logged_in']) && $_GET['logged_in'] == true){
+        $popup_message = 'erfolgreich angemeldet';
+    }
+
+    if(isset($_GET['signed_up']) && $_GET['signed_up'] == true){
+        $popup_message = 'erfolgreich registriert';
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -69,6 +82,7 @@
             include ('includes/features/combobox.php');
             include ('includes/features/price_range.php');
             include ('includes/features/search_tabs.php');
+            include ('includes/features/popup.php');
             include ('includes/results.php');
         ?>
 
@@ -93,6 +107,13 @@
 
         <!-- MAIN-AREA -->
         <main>
+
+            <?php
+                if(isset($_GET['logged_out']) || isset($_GET['logged_in']) || isset($_GET['signed_up'])){
+                    echo '<div id="dialog" title="'.$popup_message.'">
+                    </div>';
+                }
+            ?>
 
             <!-- CONTENT-AREA -->
             <div class="content">
