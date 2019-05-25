@@ -1,7 +1,7 @@
 <?php
      
     // number of entries per page
-    $page_entries = 2;
+    $page_entries = 50;
 
     // decides, which character should be used for GET
     $paging_combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['page']))) ? "?" : "&";
