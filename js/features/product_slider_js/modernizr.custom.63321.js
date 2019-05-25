@@ -1,8 +1,4 @@
 
-/* Modernizr 2.6.2 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-cssanimations-csstransforms-shiv-cssclasses-prefixed-testprop-testallprops-domprefixes-load
- */
-;
 window.Modernizr = function(a, b, c) {
         function x(a) {
             j.cssText = a
