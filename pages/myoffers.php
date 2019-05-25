@@ -1,6 +1,7 @@
 <!-- PHP-AREA -->
 <?php
     include ('../includes/functions/private.php');
+    include('../includes/functions/manage_wishlist.php');
 
     // includes results-area
     include ('../includes/results.php');
@@ -14,6 +15,11 @@
             return;
         }
         deletePropertyOffer($offer_id);
+        // check if offer_id is in cookies
+        $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
+        if (in_array($offer_id, $favorites)) {
+            removeIdFromCookies($offer_id, $favorites);
+        }
     }
 
     function deletePropertyOffer($offer_id) {
