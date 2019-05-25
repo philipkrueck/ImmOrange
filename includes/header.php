@@ -7,13 +7,13 @@
 <!-- USER-AREA-->
 <?php
 
-  if(isset($_SESSION['acc_id'])) {
-
     echo '
       <!--DROPDOWN-->
       <div class="dropdown">
-          <img class="iconUSER" src="../img/icons/Benutzer.png" >
-          <div class="dropdown-content">';               
+          <img class="iconUSER" src="../img/icons/'; if(isset($_SESSION['acc_id'])){ echo 'Benutzer.png';}else{ echo 'Benutzer_2.png'; } echo'" >
+          <div class="dropdown-content">';    
+          
+            if(isset($_SESSION['acc_id'])){
               
               // Select realtor_id from account where account_id = :account_id
               $get_realtor_id_statement = pdo()->prepare("SELECT realtor_id, acc_id FROM account WHERE acc_id = :acc_id");
@@ -25,9 +25,11 @@
                 // realtor is now logged in
                 $_SESSION['realtor_id'] = $realtor_id_array['realtor_id'];
               }
+            }
 
               // show "MyOffers" & "MyProfil" only if logged in as realtor
               if(isset($_SESSION['realtor_id'])) {
+
                   echo '
                     <div class="in-dropDIV">
                       <a href="/pages/myoffers.php"><p class="drop-in">Meine Immobilien</p></a>
@@ -36,22 +38,33 @@
                     <div class="in-dropDIV">
                       <a href="/pages/account.php?acc_id='.$realtor_id_array['acc_id'].'"><p class="drop-in">Mein Profil</p></a>
                     </div>';
+
               }
 
-              echo '
-              <div class="in-dropDIV">
-                <a href="/pages/favorites.php"><p class="drop-in">Merkliste</p></a>
-              </div>
+              if(isset($_SESSION['acc_id'])){
+                echo '
+                <div class="in-dropDIV">
+                  <a href="/pages/favorites.php"><p class="drop-in">Merkliste</p></a>
+                </div>
 
-              <div class="in-dropDIV">
-                <a href="/includes/functions/logout.php"><p class="drop-in">Logout</p></a>
-              </div>
+                <div class="in-dropDIV">
+                  <a href="/includes/functions/logout.php"><p class="drop-in">Logout</p></a>
+                </div>';
+              }
 
+              if(!isset($_SESSION['acc_id'])){
+                echo '
+                <div class="in-dropDIV">
+                  <a href="/pages/favorites.php"><p class="drop-in">Merkliste</p></a>
+                </div>
+
+                <div class="in-dropDIV">
+                  <a href="/pages/login.php"><p class="drop-in">Login / Signup</p></a>
+                </div>';
+              }
+            echo'
         </div>
       </div>';
-  }else{
-    echo '<a href="/pages/login.php" class="dropdown"><span class="login-link">Login</span></a>';
-  }
 ?>
 
 
