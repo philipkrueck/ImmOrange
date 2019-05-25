@@ -72,7 +72,7 @@
     <head>
     
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title>Login  ∙  ImmOrange GmbH</title>
 
         <!-- Includes -->
         <?php 

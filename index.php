@@ -60,7 +60,7 @@
     <head>
     
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title>Startseite   ∙  ImmOrange GmbH</title>
 
         <!-- Feature-Includes -->
         <?php 

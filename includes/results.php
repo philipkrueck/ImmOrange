@@ -80,7 +80,7 @@
         }
         
         echo '
-            <div class="paging-container">
+            <div class="paging-container" ';  if($page_count == 0){echo 'style="display: none;" ';} echo '>
                 <div class="back">
                     <span ';  if($is_first_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_back.'">
                     <span class="arrow">&larr;</span> zurück
