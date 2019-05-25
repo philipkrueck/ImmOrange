@@ -32,7 +32,10 @@
     }
 
     function updatePropertyOffer($offer_id) {
-        $insert_offer_stmt = pdo()->prepare("UPDATE property_offer SET offer_name = :offer_name, is_apartment = :is_apartment, is_for_rent = :is_for_rent, number_of_rooms = :number_of_rooms, price = :price, qm = :qm, construction_year = :construction_year, has_garden = :has_garden, has_basement = :has_basement, has_bathtub = :has_bathtub, has_elevator = :has_elevator, has_balcony = :has_balcony, street = :street, house_number = :house_number, zip = :zip, city = :city, country = :country, image_name = :image_name, image_mime = :image_mime, image_data = :image_data WHERE offer_id = :offer_id;");
+        $image_insert_clause = ($_FILES['picture']['name'] != "") ? ", image_name = :image_name, image_mime = :image_mime, image_data = :image_data" : "";
+        $update_sql = "UPDATE property_offer SET offer_name = :offer_name, is_apartment = :is_apartment, is_for_rent = :is_for_rent, number_of_rooms = :number_of_rooms, price = :price, qm = :qm, construction_year = :construction_year, has_garden = :has_garden, has_basement = :has_basement, has_bathtub = :has_bathtub, has_elevator = :has_elevator, has_balcony = :has_balcony, street = :street, house_number = :house_number, zip = :zip, city = :city, country = :country".$image_insert_clause." WHERE offer_id = :offer_id;";
+
+        $insert_offer_stmt = pdo()->prepare($update_sql);
         $insert_offer_stmt->bindParam(':offer_id', $offer_id);
         $insert_offer_stmt->bindParam(':offer_name', $_SESSION['offer_name']);
         $insert_offer_stmt->bindParam(':is_apartment', $_SESSION['is_apartment']);
@@ -51,10 +54,12 @@
         $insert_offer_stmt->bindParam(':zip', $_SESSION['zip']);
         $insert_offer_stmt->bindParam(':city', $_SESSION['city']);
         $insert_offer_stmt->bindParam(':country', $_SESSION['country']);
-        $insert_offer_stmt->bindParam(':image_name', $_FILES['picture']['name']);
-        $insert_offer_stmt->bindParam(':image_mime', $_FILES['picture']['type']);
-        $image_data = file_get_contents($_FILES['picture']['tmp_name']);
-        $insert_offer_stmt->bindParam(':image_data', $image_data);
+        if ($_FILES['picture']['name'] != "") {
+            $insert_offer_stmt->bindParam(':image_name', $_FILES['picture']['name']);
+            $insert_offer_stmt->bindParam(':image_mime', $_FILES['picture']['type']);
+            $image_data = file_get_contents($_FILES['picture']['tmp_name']);
+            $insert_offer_stmt->bindParam(':image_data', $image_data);
+        }
         $insert_offer_stmt->execute();
     }
 
@@ -89,8 +94,7 @@
             ($_POST['house_number'] != '') and
             ($_POST['zip'] != '') and
             ($_POST['city'] != '') and
-            ($_POST['country'] != '') and 
-            ($_FILES['picture']['tmp_name'] != '')
+            ($_POST['country'] != '')
         ) {
             return true;
         }
