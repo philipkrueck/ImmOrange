@@ -82,6 +82,8 @@
 
         <!-- Scripts --> 
         <script>
+
+            // if user wants to be realtor, show additional fields
             function showRealtorInputs(){
                 // Get the checkbox
                 var is_realtor = document.getElementById("is_realtor");
@@ -99,6 +101,12 @@
                     tel_number.style.display = "none";
                 }
             }
+
+            // transform email input to LowerCase at signup
+            function forceLower(strInput){
+                strInput.value=strInput.value.toLowerCase();
+            }
+
         </script>
 
         <!-- Link-Relations -->
@@ -163,7 +171,7 @@
                             ?>
 
                             <!-- inputs for user-information -->
-                            <input type="email" maxlength="50" placeholder="E-Mail" name="email">
+                            <input type="email" maxlength="50" placeholder="E-Mail" name="email" onkeyup="return forceLower(this);">
                             <input type="password" maxlength="50" placeholder="Passwort*" name="password">
                             <input type="password" maxlength="50" placeholder="Passwort bestätigen" name="password_2">
 
