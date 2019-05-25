@@ -21,7 +21,7 @@
             $_SESSION["fulltext_error_message"] = null;
             $_SESSION['fulltext_search_string'] = $_POST['fulltext_search_string'];
         }
-        header("Location: index.php?");
+        header("Location: index.php");
         exit; 
 
     } else if (isset($_POST['submit_extended_search'])) {
