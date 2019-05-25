@@ -1,7 +1,14 @@
 <!-- PHP-AREA -->
 <?php
 
+    include('../includes/functions/pdo.php');
     include('../includes/functions/manage_wishlist.php');
+
+    // start session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     // check if favorite was selected and if so, toggle in cookie
     $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
     if ($favorite_id) {

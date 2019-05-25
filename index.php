@@ -3,6 +3,7 @@
     require_once('includes/functions/pdo.php');
     include('includes/functions/manage_wishlist.php');
 
+    // start session if not already started
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }

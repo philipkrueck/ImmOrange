@@ -4,6 +4,11 @@
     require_once('../includes/functions/pdo.php');
     include('../includes/functions/manage_wishlist.php');
 
+    // start session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     function getOffer($offer_id) {
         $offer_statement = pdo()->prepare("SELECT offer_id, offer_name, price, qm, number_of_rooms, is_for_rent, is_apartment, construction_year, has_basement, has_garden, has_bathtub, has_elevator, has_balcony, city, p.creation_date, company_name, acc_id FROM property_offer p LEFT OUTER JOIN realtor r ON p.realtor_id = r.realtor_id LEFT OUTER JOIN account a ON r.realtor_id = a.realtor_id WHERE offer_id = :offer_id;");
         $offer_statement->bindParam(':offer_id', $offer_id);

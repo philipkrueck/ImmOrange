@@ -2,7 +2,11 @@
     error_reporting(E_ALL ^ E_NOTICE); 
     require_once('pdo.php');
 
-    session_start();
+    // start session if not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     if(!isset($_SESSION['acc_id'])) {
         die('Bitte zuerst <a href="/pages/login.php">einloggen</a>');
     }
