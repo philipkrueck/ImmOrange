@@ -93,20 +93,14 @@
                     <?php
                         echo  $title;
                     ?>
-                </h2>
-                 
-
-                <div class="result-breadcrum">
-                            
-                    <span class="result-counter">Anzahl: <b><?php echo $counter; ?></b></span>
-
-                </div>        
+                </h2>                    
 
                     <!-- RESULTS-AREA -->
                     <div class="results-area" id="results">
 
-                        <?php                      
+                        <?php        
 
+                            showResultsHeader($sql_select);
                             showResults($sql_select, true);    
 
                         ?>

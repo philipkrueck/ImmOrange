@@ -106,6 +106,13 @@
         echo '<div class="results-area" id="results"><h2>Deine Merkliste</h2>'; 
         echo '<div class="result-breadcrum">
             <span class="result-counter">Anzahl Suchergebnisse: <b>'; echo count($favorite_ids); echo '</b></span>
+            <select>
+                <option disabled selected>Ergebnisse sortieren</option>
+                <option>online seit &uarr;</option>
+                <option>online seit &darr;</option>
+                <option>Preis &uarr;</option>
+                <option>Preis &darr;</option>
+            </select> 
         </div>';
 
         foreach ($favorite_ids as $favorite_id) {
@@ -284,11 +291,13 @@
         echo '<div class="result-breadcrum">';
             $counter = getResultsCount($sql_select);
             echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
-            <!-- <select>
-                <option>neuste zuerst</option>
-                <option>Preis aufsteigend</option>
-                <option>Preis absteigend</option>
-            </select> -->
+            <select>
+                <option disabled selected>Ergebnisse sortieren</option>
+                <option>online seit &uarr;</option>
+                <option>online seit &darr;</option>
+                <option>Preis &uarr;</option>
+                <option>Preis &darr;</option>
+            </select> 
         </div>';
     }
 
