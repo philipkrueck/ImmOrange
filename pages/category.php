@@ -100,7 +100,7 @@
 
                         <?php        
 
-                            showResultsHeader($sql_select);
+                            showResultsHeader($sql_select, false);
 
                             if($counter){
                                 showResults($sql_select, true);
