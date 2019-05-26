@@ -100,7 +100,7 @@
 
                         <?php        
 
-                            showResultsHeader($sql_select);
+                            showResultsHeader($sql_select, false);
                             showResults($sql_select, true);    
 
                         ?>
