@@ -2,6 +2,26 @@
 
     function showResults($sql_select, $do_favorite) {
 
+        if (isset($_GET['sort'])) {
+                switch($_GET['sort']){
+                    case 'price-asc':
+                        $sql_select = $sql_select.' ORDER BY price ASC';
+                    break;
+        
+                    case 'price-desc':
+                        $sql_select = $sql_select.' ORDER BY price DESC';
+                    break;
+        
+                    case 'date-asc':
+                        $sql_select = $sql_select.' ORDER BY creation_date ASC';
+                    break;
+        
+                    case 'date-desc':
+                        $sql_select = $sql_select.' ORDER BY creation_date DESC';  
+                    break;
+            }
+        }
+
         include ('functions/paging.php');
 
         // set session variable for current results page
@@ -102,17 +122,9 @@
     }
 
     function showFavoriteResults($favorite_ids) {
-
         echo '<div class="results-area" id="results"><h2>Deine Merkliste</h2>'; 
         echo '<div class="result-breadcrum">
             <span class="result-counter">Anzahl Suchergebnisse: <b>'; echo count($favorite_ids); echo '</b></span>
-            <select>
-                <option disabled selected>Ergebnisse sortieren</option>
-                <option>online seit &uarr;</option>
-                <option>online seit &darr;</option>
-                <option>Preis &uarr;</option>
-                <option>Preis &darr;</option>
-            </select> 
         </div>';
 
         if($favorite_ids){
@@ -205,7 +217,7 @@
         $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, zip, city, country) AGAINST ('$search_string' IN NATURAL LANGUAGE MODE) ";
     
         // show results-area
-        showResultsHeader($sql_select);
+        showResultsHeader($sql_select, true);
         showResults($sql_select, true);
 
         echo'</div>';       
@@ -287,25 +299,33 @@
 
     
         // show results-area
-        showResultsHeader($sql_select);
+        showResultsHeader($sql_select, true);
 
         showResults($sql_select, true);
 
         echo'</div>';
     }
 
-    function showResultsHeader($sql_select) {
+    function showResultsHeader($sql_select, $show_dropdown) {
         echo '<div class="result-breadcrum">';
             $counter = getResultsCount($sql_select);
-            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
-            <select>
-                <option disabled selected>Ergebnisse sortieren</option>
-                <option>online seit &uarr;</option>
-                <option>online seit &darr;</option>
-                <option>Preis &uarr;</option>
-                <option>Preis &darr;</option>
-            </select> 
-        </div>';
+            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>';
+            if ($show_dropdown) {
+                showSortingSelectionBox();
+            }
+        echo '</div>';
+    }
+
+    function showSortingSelectionBox() {
+        $current_page_url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+        echo '<select onchange="window.location=this.options[this.selectedIndex].value">
+            <option disabled selected>Ergebnisse sortieren</option>
+            <option value="'.$current_page_url.'?sort=date-asc" '; echo $sort == 'date-asc' ? 'selected' : ''; echo '>online seit &uarr;</option></a>
+            <option value="'.$current_page_url.'?sort=date-desc" '; echo $sort == 'date-desc' ? 'selected' : ''; echo '>online seit &darr;</option>
+            <option value="'.$current_page_url.'?sort=price-asc" '; echo $sort == 'price-asc' ? 'selected' : ''; echo '>Preis &uarr;</option>
+            <option value="'.$current_page_url.'?sort=price-desc" '; echo $sort == 'price-desc' ? 'selected' : ''; echo '>Preis &darr;</option>
+        </select>';
     }
 
     function getResultsCount($query) {
