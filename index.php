@@ -4,12 +4,13 @@
 
         // including functions
         require_once('includes/functions/pdo.php');
-        include('includes/functions/manage_wishlist.php');
+        include('includes/functions/manage_wishlist.php'); 
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
 
     #### Functions
 
@@ -52,7 +53,6 @@
             }
             header("Location: index.php");
             exit; 
-
         } else if (isset($_POST['submit_extended_search'])) {
             setSessionVariablesFromPost();
             $_SESSION['is_fulltext_search'] = false;
@@ -61,15 +61,15 @@
             exit;
         }
 
-        if(isset($_GET['logged_out']) && $_GET['logged_out'] == true){
+        if (isset($_GET['logged_out']) && $_GET['logged_out'] == true) {
             $popup_message = 'erfolgreich abgemeldet';
         }
 
-        if(isset($_GET['logged_in']) && $_GET['logged_in'] == true){
+        if (isset($_GET['logged_in']) && $_GET['logged_in'] == true) {
             $popup_message = 'erfolgreich angemeldet';
         }
 
-        if(isset($_GET['signed_up']) && $_GET['signed_up'] == true){
+        if (isset($_GET['signed_up']) && $_GET['signed_up'] == true) {
             $popup_message = 'erfolgreich registriert';
         }
 
