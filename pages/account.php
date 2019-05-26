@@ -49,8 +49,6 @@
     // set sql-statement for results
     $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$realtor_id'";
 
-    // user cannot make offer favorite
-    $do_favorite = false;
 
     // count offers
     $counter = 0;
@@ -137,7 +135,7 @@
                 <?php
                     //check if realtor has offers
                     if($counter > 0){
-                        showResults($sql_select, $do_favorite);                        
+                        showResults($sql_select, false);                        
                     }else{
                         echo '
                             <div class="no-offers">
