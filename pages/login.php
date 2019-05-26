@@ -25,7 +25,7 @@
         }
         setLoginSessionVariables();
         if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
-            header("Location: /?logged_in=true");
+            header("Location: /?logged_in=true#0");
             return;
         } else {
             $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
@@ -60,7 +60,7 @@
             $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
             return;
         }
-        header("Location: /?signed_up=true");
+        header("Location: /?signed_up=true#0");
         return;
     }
 ?>
