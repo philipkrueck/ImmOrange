@@ -57,7 +57,7 @@
         return false;
     }
 
-    function couldRegisterUserFromSessionVariables() {
+    function couldRegisterUserFromSessionVariables($password) {
         //converting password to hash   
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 

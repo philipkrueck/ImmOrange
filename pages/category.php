@@ -19,38 +19,38 @@
     }
 
     // saves GET-Parameter
-    if($_GET['city'] == 'hamburg' || $_GET['city'] == 'berlin'){
-        $get_result = $_GET['city'];
-    }else if($_GET['apartments'] == "0" || $_GET['apartments'] == "1"){
-        $get_result = $_GET['apartments'];
-    }else{
+
+    if (isset($_GET['category'])) {
+        // checking GET-Parameter and sets SQL
+        switch($_GET['category']){
+            case 'houses':
+                $title = 'Häuser';
+                $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '0'";
+            break;
+
+            case 'apartments':
+                $title = 'Wohnungen';
+                $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '1'";
+            break;
+
+            case 'hamburg':
+                $title = 'Hamburg';
+                $sql_select = "SELECT * FROM property_offer WHERE city = 'Hamburg'";
+            break;
+
+            case 'berlin':
+                $title = 'Berlin';
+                $sql_select = "SELECT * FROM property_offer WHERE city = 'Berlin'";
+            break;
+
+            default:
+                die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+            break;
+        }
+    } else {
         die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
     }
 
-    // checking GET-Parameter and sets SQL
-    switch($get_result){
-
-        case '0':
-            $title = 'Häuser';
-            $sql_select = "SELECT * FROM property_offer WHERE is_apartment = $get_result";
-        break;
-
-        case '1':
-            $title = 'Wohnungen';
-            $sql_select = "SELECT * FROM property_offer WHERE is_apartment = $get_result";
-        break;
-
-        case 'hamburg':
-            $title = 'Hamburg';
-            $sql_select = "SELECT * FROM property_offer WHERE city = '$get_result'";
-        break;
-
-        case 'berlin':
-            $title = 'Berlin';
-            $sql_select = "SELECT * FROM property_offer WHERE city = '$get_result'";
-        break;
-
-    }
 
     // counts results
     $counter = getResultsCount($sql_select);
