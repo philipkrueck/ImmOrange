@@ -1,59 +1,63 @@
 <!-- PHP-AREA -->
 <?php
-    error_reporting(E_ALL ^ E_NOTICE);
-    include ('../includes/functions/pdo.php');
-    include ('../includes/functions/manage_wishlist.php');
+    ### PHP Preparation
 
-    // includes results-area
-    include ('../includes/results.php');
+        error_reporting(E_ALL ^ E_NOTICE);
+        include ('../includes/functions/pdo.php');
+        include ('../includes/functions/manage_wishlist.php');
+        include ('../includes/results.php');
 
-    // start session if not already started
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // check if favorite was selected and if so, toggle in cookie
-    $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
-    if ($favorite_id) {
-        toggleFavorite($favorite_id);
-    }
-
-    // saves GET-Parameter
-
-    if (isset($_GET['category'])) {
-        // checking GET-Parameter and sets SQL
-        switch($_GET['category']){
-            case 'houses':
-                $title = 'Häuser';
-                $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '0'";
-            break;
-
-            case 'apartments':
-                $title = 'Wohnungen';
-                $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '1'";
-            break;
-
-            case 'hamburg':
-                $title = 'Hamburg';
-                $sql_select = "SELECT * FROM property_offer WHERE city = 'Hamburg'";
-            break;
-
-            case 'berlin':
-                $title = 'Berlin';
-                $sql_select = "SELECT * FROM property_offer WHERE city = 'Berlin'";
-            break;
-
-            default:
-                die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
-            break;
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
         }
-    } else {
-        die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
-    }
+
+    
+    ### Business Logic
+
+        // check if favorite was selected and if so, toggle in cookie
+        $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
+        if ($favorite_id) {
+            toggleFavorite($favorite_id);
+        }
+
+        // saves GET-Parameter
+        if (isset($_GET['category'])) {
+            // checking GET-Parameter and sets SQL
+            switch($_GET['category']){
+                case 'houses':
+                    $title = 'Häuser';
+                    $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '0'";
+                break;
+
+                case 'apartments':
+                    $title = 'Wohnungen';
+                    $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '1'";
+                break;
+
+                case 'hamburg':
+                    $title = 'Hamburg';
+                    $sql_select = "SELECT * FROM property_offer WHERE city = 'Hamburg'";
+                break;
+
+                case 'berlin':
+                    $title = 'Berlin';
+                    $sql_select = "SELECT * FROM property_offer WHERE city = 'Berlin'";
+                break;
+
+                default:
+                    die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+                break;
+            }
+        } else {
+            die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+        }
 
 
-    // counts results
-    $counter = getResultsCount($sql_select);
+        // counts results
+        $counter = getResultsCount($sql_select);
+
+
 
 ?>
 
@@ -66,7 +70,7 @@
         <!-- Homepage-Title -->
         <title>Kategorien  ∙  ImmOrange GmbH</title>
 
-        <!-- Link-Relations -->
+        <!-- Styles -->
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/results.css">
         <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">

@@ -1,60 +1,68 @@
 <!-- PHP-AREA -->
 <?php
 
-    include_once('../includes/functions/pdo.php');
-    include ('../includes/results.php');
+    #### PHP Preparation
 
-    // start session if not already started
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
+        include_once('../includes/functions/pdo.php');
+        include ('../includes/results.php');
 
-    // get account-id from URL
-    if(isset($_GET['acc_id'])){
-        $curr_acc_id = $_GET['acc_id'];
-    }else{
-        die('Kein Makler ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
-    }
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
-    // get realtor-object
-    function getRealtor($acc_id){
-        $realtor_statement = pdo()->prepare("SELECT acc_id, acc_email, acc_password, a.realtor_id, first_name, last_name, creation_date, tel_number, company_name FROM account a LEFT JOIN realtor r ON a.realtor_id = r.realtor_id WHERE a.acc_id = :acc_id;");
-        $realtor_statement->bindParam(':acc_id', $acc_id);
-        $realtor_statement->execute();
-        return $realtor_statement->fetch();
-    }
-
-    $realtor = getRealtor($curr_acc_id);
-
-    // checks if realtor exists
-    if(empty($realtor)){
-        die('Dieses Makler-Profil existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
-    }
-
-    $realtor_id = $realtor["realtor_id"];  
-
-    // checks if Account is Realtor
-    if(empty($realtor_id)){
-        die('Diese Person ist kein Makler. <a href="/index.php">Zurück zur Homepage</a>');
-    }
     
-    // converting Creation-Date
-    $creation_date_without_time = substr($realtor["creation_date"],0,10);
-    $creation_date_splitted = explode('-', $creation_date_without_time);
-    $date = $creation_date_splitted[2];
-    $month = $creation_date_splitted[1];
-    $year = $creation_date_splitted[0];
-    $creation_date = $date.'.'.$month.'.'.$year;
+    #### Functions
 
-    // set sql-statement for results
-    $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$realtor_id'";
+        // get realtor-object
+        function getRealtor($acc_id){
+            $realtor_statement = pdo()->prepare("SELECT acc_id, acc_email, acc_password, a.realtor_id, first_name, last_name, creation_date, tel_number, company_name FROM account a LEFT JOIN realtor r ON a.realtor_id = r.realtor_id WHERE a.acc_id = :acc_id;");
+            $realtor_statement->bindParam(':acc_id', $acc_id);
+            $realtor_statement->execute();
+            return $realtor_statement->fetch();
+        }
 
 
-    // count offers
-    $counter = 0;
-    foreach (pdo()->query($sql_select) as $offer) {
-        $counter++;
-    }
+    #### Business Logic
+
+        // get account-id from URL
+        if(isset($_GET['acc_id'])){
+            $curr_acc_id = $_GET['acc_id'];
+        }else{
+            die('Kein Makler ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+        }
+
+        $realtor = getRealtor($curr_acc_id);
+
+        $realtor_id = $realtor["realtor_id"]; 
+
+        
+        // checks if realtor exists
+        if(empty($realtor)){
+            die('Dieses Makler-Profil existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
+        }        
+
+        // checks if Account is Realtor
+        if(empty($realtor_id)){
+            die('Diese Person ist kein Makler. <a href="/index.php">Zurück zur Homepage</a>');
+        }
+        
+        // converting Creation-Date
+        $creation_date_without_time = substr($realtor["creation_date"],0,10);
+        $creation_date_splitted = explode('-', $creation_date_without_time);
+        $date = $creation_date_splitted[2];
+        $month = $creation_date_splitted[1];
+        $year = $creation_date_splitted[0];
+        $creation_date = $date.'.'.$month.'.'.$year;
+
+        // set sql-statement for results
+        $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$realtor_id'";
+
+        // count offers
+        $counter = 0;
+        foreach (pdo()->query($sql_select) as $offer) {
+            $counter++;
+        }
 
 ?>
 
@@ -67,7 +75,7 @@
         <!-- Homepage-Title -->
         <title><?php echo  $realtor["company_name"] ?>  ∙  ImmOrange GmbH</title>
 
-        <!-- Link-Relations -->
+        <!-- Styles -->
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/results.css">
         <link rel="stylesheet" href="../css/pages/account.css">

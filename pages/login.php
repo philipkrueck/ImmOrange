@@ -1,68 +1,77 @@
 <!-- PHP-AREA -->
 <?php
-    include ('../includes/functions/random_id.php');
-    require_once('../includes/functions/pdo.php');
-    include ('../includes/functions/login_helpers.php');
-    include ('../includes/functions/signup_helpers.php');
 
-    //starting session to save login-cookie
-    session_start();
-    $_SESSION['login_error_message'] = null;
-    $_SESSION['signup_error_message'] = null; 
+    ### PHP Preparation
+        include ('../includes/functions/random_id.php');
+        require_once('../includes/functions/pdo.php');
+        include ('../includes/functions/login_helpers.php');
+        include ('../includes/functions/signup_helpers.php');
 
-    if (isset($_POST['submit'])) {
-        if (isset($_GET['login'])) {
-            login();
-        } else if (isset($_GET['signup'])) {
-            signup();
+        //starting session to save login-cookie
+        session_start();
+        $_SESSION['login_error_message'] = null;
+        $_SESSION['signup_error_message'] = null; 
+
+    
+    ### Functions
+        function login() {
+            if (!checkLoginPostParameters()) {
+                $_SESSION['login_error_message'] = "Bitte gib sowohl eine Email, <br> als auch ein Passwort ein.";
+                return; 
+            }
+            setLoginSessionVariables();
+            if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
+                header("Location: /?logged_in=true#0");
+                return;
+            } else {
+                $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
+            }
         }
-    }
 
-    function login() {
-        if (!checkLoginPostParameters()) {
-            $_SESSION['login_error_message'] = "Bitte gib sowohl eine Email, <br> als auch ein Passwort ein.";
-            return; 
-        }
-        setLoginSessionVariables();
-        if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
-            header("Location: /?logged_in=true#0");
+        function signup() {
+            if (!checkSignupPostParameters()) {
+                $_SESSION['signup_error_message'] = "Bitte fülle alle Felder aus.";
+                return; 
+            }
+            setSignupSessionVariables();
+            // check email format
+            if (!emailFormatIsCorrect($_SESSION['email'])) {
+                $_SESSION['signup_error_message'] = "Bitte eine gültige eMail angeben.";
+                return; 
+            }
+
+            // check passwords are matching
+            if (!passwordsAreMatching($_SESSION['password'], $_SESSION['password_2'])) {
+                $_SESSION['signup_error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
+                return;
+            }
+
+            // check if email already exists
+            if (emailAlreadyExists($_SESSION['email'])) {
+                $_SESSION['signup_error_message'] = "Die eMail existiert bereits.";
+                return; 
+            }
+
+            if (!couldRegisterUserFromSessionVariables($_SESSION['password'])) {
+                $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
+                return;
+            }
+            header("Location: /?signed_up=true#0");
             return;
-        } else {
-            $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
-        }
-    }
-
-    function signup() {
-        if (!checkSignupPostParameters()) {
-            $_SESSION['signup_error_message'] = "Bitte fülle alle Felder aus.";
-            return; 
-        }
-        setSignupSessionVariables();
-        // check email format
-        if (!emailFormatIsCorrect($_SESSION['email'])) {
-            $_SESSION['signup_error_message'] = "Bitte eine gültige eMail angeben.";
-            return; 
         }
 
-        // check passwords are matching
-        if (!passwordsAreMatching($_SESSION['password'], $_SESSION['password_2'])) {
-            $_SESSION['signup_error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
-            return;
+    
+    ### Business Logic
+
+        if (isset($_POST['submit'])) {
+            if (isset($_GET['login'])) {
+                login();
+            } else if (isset($_GET['signup'])) {
+                signup();
+            }
         }
 
-        // check if email already exists
-        if (emailAlreadyExists($_SESSION['email'])) {
-            $_SESSION['signup_error_message'] = "Die eMail existiert bereits.";
-            return; 
-        }
-
-        if (!couldRegisterUserFromSessionVariables($_SESSION['password'])) {
-            $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
-            return;
-        }
-        header("Location: /?signed_up=true#0");
-        return;
-    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -74,15 +83,20 @@
         <!-- Homepage-Title -->
         <title>Login  ∙  ImmOrange GmbH</title>
 
-        <!-- Includes -->
+        <!-- Features -->
         <?php 
             include ('../includes/features/jquery.php');
             include ('../includes/features/search_tabs.php');
         ?>
 
+        <!-- Styles -->
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/pages/login.css">
+        <link rel="stylesheet" href="../css/features/tabs.css">
+        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">     
+
         <!-- Scripts --> 
         <script>
-
             // if user wants to be realtor, show additional fields
             function showRealtorInputs(){
                 // Get the checkbox
@@ -107,20 +121,14 @@
                 strInput.value=strInput.value.toLowerCase();
             }
 
-        </script>
-
-        <!-- Link-Relations -->
-        <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" href="../css/pages/login.css">
-        <link rel="stylesheet" href="../css/features/tabs.css">
-        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">        
+        </script> 
         
-
     </head>
 
     <!-- BODY-AREA -->
     <body class="login-page">
 
+        <!-- LOGO -->
         <a href="/">
             <img src="../img/logo.png" class="login-logo">
         </a>
