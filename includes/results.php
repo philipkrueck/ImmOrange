@@ -115,78 +115,85 @@
             </select> 
         </div>';
 
-        foreach ($favorite_ids as $favorite_id) {
+        if($favorite_ids){
+            foreach ($favorite_ids as $favorite_id) {
 
-            $select_offer = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id");
-            $select_offer->bindParam(':offer_id', $favorite_id);
-            $select_offer->execute();
-            $offer = $select_offer->fetch();
+                $select_offer = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id");
+                $select_offer->bindParam(':offer_id', $favorite_id);
+                $select_offer->execute();
+                $offer = $select_offer->fetch();
 
-            if (!empty($offer)) {
-                echo '<div class="result-container">
-            
-                <!-- offer-image -->
-                <div class="result-image-container">
-                    <a href="/pages/offer.php?offer_id='.$favorite_id.'"><img src="/includes/functions/image_source.php?offer_id='.$favorite_id.'"></a>
-                </div>
+                if (!empty($offer)) {
+                    echo '<div class="result-container">
+                
+                    <!-- offer-image -->
+                    <div class="result-image-container">
+                        <a href="/pages/offer.php?offer_id='.$favorite_id.'"><img src="/includes/functions/image_source.php?offer_id='.$favorite_id.'"></a>
+                    </div>
 
-                <!-- offer-title -->
-                <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$favorite_id.'">'.$offer['offer_name'].'</a></h3>
+                    <!-- offer-title -->
+                    <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$favorite_id.'">'.$offer['offer_name'].'</a></h3>
 
-                <!-- favorite-icon -->
-                '; 
-                    $image_source = "../img/icons/heart_orange.png";
-                    // destination url specifies which page to load, but removes get parameter 'favorite_id', if it is currently set
-                    $destination_url = preg_replace("/[\?|\&]favorite_id.*/", "", $_SERVER['REQUEST_URI']);
-                    $combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['favorite_id']))) ? "?" : "&";
-                    echo '<a href="'.$destination_url.$combination_character.'favorite_id='.$favorite_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
+                    <!-- favorite-icon -->
+                    '; 
+                        $image_source = "../img/icons/heart_orange.png";
+                        // destination url specifies which page to load, but removes get parameter 'favorite_id', if it is currently set
+                        $destination_url = preg_replace("/[\?|\&]favorite_id.*/", "", $_SERVER['REQUEST_URI']);
+                        $combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['favorite_id']))) ? "?" : "&";
+                        echo '<a href="'.$destination_url.$combination_character.'favorite_id='.$favorite_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
 
-                echo '
-                <!-- offer-price -->
-                <span class="result-price">'.$offer["price"].' €</span>
+                    echo '
+                    <!-- offer-price -->
+                    <span class="result-price">'.$offer["price"].' €</span>
 
-                <!-- offer-qm -->
-                <span class="result-space">'.$offer["qm"].' qm</span>
+                    <!-- offer-qm -->
+                    <span class="result-space">'.$offer["qm"].' qm</span>
 
-                <!-- offer-rooms -->
-                <div class="result-rooms-container">
-                    <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">'.$offer["number_of_rooms"].' Zimmer</span>
-                </div>
+                    <!-- offer-rooms -->
+                    <div class="result-rooms-container">
+                        <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">'.$offer["number_of_rooms"].' Zimmer</span>
+                    </div>
 
-                <!-- offer-location -->
-                <div class="result-location-container">
-                    <img src="../img/icons/location.png" class="location-img"><span class="result-location">in '.$offer["city"].'</span>
-                </div>
+                    <!-- offer-location -->
+                    <div class="result-location-container">
+                        <img src="../img/icons/location.png" class="location-img"><span class="result-location">in '.$offer["city"].'</span>
+                    </div>
 
-                <!-- offer-options -->
-                <div class="result-options-container">
-                    ';           
-                        if ($offer["has_basement"]) {
-                            echo '<img src="../img/icons/basement.png" title="besitzt einen Keller">';
-                        }
-                        if ($offer["has_garden"]) {
-                            echo '<img src="../img/icons/botanical.png" title="besitzt einen Garten">';
-                        }
-                        if ($offer["has_balcony"]) {
-                            echo '<img src="../img/icons/balcony.png" title="besitzt einen Balkon">';
-                        }
-                        if ($offer["has_bathtub"]) {
-                            echo '<img src="../img/icons/bathtub.png" title="besitzt eine Badewanne">';
-                        }
-                        if ($offer["has_elevator"]) {
-                            echo '<img src="../img/icons/lift.png" title="besitzt einen Fahrstuhl">';
-                        }
-                        
-                    echo '  
-                </div>
+                    <!-- offer-options -->
+                    <div class="result-options-container">
+                        ';           
+                            if ($offer["has_basement"]) {
+                                echo '<img src="../img/icons/basement.png" title="besitzt einen Keller">';
+                            }
+                            if ($offer["has_garden"]) {
+                                echo '<img src="../img/icons/botanical.png" title="besitzt einen Garten">';
+                            }
+                            if ($offer["has_balcony"]) {
+                                echo '<img src="../img/icons/balcony.png" title="besitzt einen Balkon">';
+                            }
+                            if ($offer["has_bathtub"]) {
+                                echo '<img src="../img/icons/bathtub.png" title="besitzt eine Badewanne">';
+                            }
+                            if ($offer["has_elevator"]) {
+                                echo '<img src="../img/icons/lift.png" title="besitzt einen Fahrstuhl">';
+                            }
+                            
+                        echo '  
+                    </div>
 
-            </div>';
-            } else {
-                removeIdFromCookies($favorite_id, $favorite_ids);
-                // refresh page
-                header("Refresh:0");
+                </div>';
+                } else {
+                    removeIdFromCookies($favorite_id, $favorite_ids);
+                    // refresh page
+                    header("Refresh:0");
+                }
             }
-        }
+        }else{
+            echo '<div class="no-results">
+                    <span>Keine Immobilien vorhanden.</span>
+                  </div>';
+        }  
+            
     }
 
 

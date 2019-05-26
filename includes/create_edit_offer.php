@@ -76,7 +76,7 @@
 
         <!-- image upload -->
         <div class="image-upload-input">
-            <input type="file" name="picture" id="offer-img" placeholder="Bild hochladen">
+            <input type="file" name="picture" id="offer-img" placeholder="Bild hochladen"  accept="image/*">
             <script type="text/javascript">
                 $("#offer-img").change(function(){
                     readURL(this);

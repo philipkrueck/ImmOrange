@@ -101,7 +101,14 @@
                         <?php        
 
                             showResultsHeader($sql_select);
-                            showResults($sql_select, true);    
+
+                            if($counter){
+                                showResults($sql_select, true);
+                            }else{
+                                echo '<div class="no-results">
+                                        <span>Keine Immobilien vorhanden.</span>
+                                      </div>';
+                            }      
 
                         ?>
 

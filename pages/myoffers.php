@@ -77,7 +77,6 @@
                 <h2>Meine Immobilien</h2>
 
                 <?php 
-                    $do_favorite = false;
                     $curr_realtor_id = $_SESSION['realtor_id'];
                                                                             
                     $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$curr_realtor_id'";
@@ -112,11 +111,17 @@
 
                         <?php                        
 
-                            showResults($sql_select, $do_favorite);
-
-                            echo'</div>';     
+                            if($counter){
+                                showResults($sql_select, false);
+                            }else{
+                                echo '<div class="no-results">
+                                        <span>Keine Immobilien vorhanden.</span>
+                                      </div>';
+                            }                               
 
                         ?>
+
+                    </div>  
 
                     <div class="edit-delete-area">
                         <?php

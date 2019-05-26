@@ -10,6 +10,18 @@
         color: white;
     }
 
+    .results-area .no-results{
+        background-color: rgba(0, 101, 114, 0.65);
+        text-align: center;
+        color: white;
+        min-width: 700px;
+        padding: 160px 100px;
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 3px;
+    }
+
     .result-breadcrum{
         display: grid;
         grid-template-columns: 700px 200px;
