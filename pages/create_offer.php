@@ -110,6 +110,7 @@
 
         <!-- Link-Relations -->
         <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/pages/index.css">
         <link rel="stylesheet" href="../css/pages/create_edit_offer.css">
         <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">  
 
