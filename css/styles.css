@@ -434,7 +434,7 @@ main .content{
                  Results-Area Sytles
     ***************************************************/
     .results-area{
-        margin-bottom: 20px;        
+        margin-bottom: 20px;
     }
 
     .results-area a{
@@ -503,7 +503,7 @@ main .content{
 
     .result-container .result-image-container img:hover{
         moz-transform: scale(1.1);
-        -webkit-transform: scale(1.1);        
+        -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
 
@@ -525,7 +525,7 @@ main .content{
         width: 35px;
         cursor: pointer;
     }
-    
+
     .result-container .result-price{
         grid-column: 4/5;
         grid-row: 2/3;
@@ -687,6 +687,7 @@ footer{
   width:32.33%;height:90%;
   margin-left: 8px;
   text-align: center;
+  margin-top: 10px;
 }
 
 .smallfooter a{
@@ -696,10 +697,10 @@ footer{
 
 .minifooter {
 
-  text-align: center; vertical-align:middle;
+  text-align: center; vertical-align:text-top;
   color:#ffffff;
-  font-size: 12px;
-  padding:15px;
+  font-size: 15px;
+  padding:0px;
 }
 
 .iconTIF{
@@ -708,16 +709,19 @@ footer{
   margin-left:75px;
   margin-top: 50px;
 }
+.iconTIF:hover {
+    background-color: rgba(0, 101, 114, 0.65);
+}
 
-.iconWP{
-  width:5%;
-  margin-left: 5px;
+.bitmoji{
+  width:6%;
+  margin-right: 5px;
 }
 
 .iconHouse{
   width:5%;
   margin-left: 10px;
-}    
+}
 
 
 /**************************************************
