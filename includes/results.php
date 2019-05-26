@@ -217,7 +217,7 @@
         $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, zip, city, country) AGAINST ('$search_string' IN NATURAL LANGUAGE MODE) ";
     
         // show results-area
-        showResultsHeader($sql_select);
+        showResultsHeader($sql_select, true);
         showResults($sql_select, true);
 
         echo'</div>';       
