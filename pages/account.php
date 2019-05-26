@@ -4,7 +4,7 @@
     #### PHP Preparation
 
         include_once('../includes/functions/pdo.php');
-        include ('../includes/results.php');
+        include('../includes/results.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
@@ -15,7 +15,7 @@
     #### Functions
 
         // get realtor-object
-        function getRealtor($acc_id){
+        function getRealtor($acc_id) {
             $realtor_statement = pdo()->prepare("SELECT acc_id, acc_email, acc_password, a.realtor_id, first_name, last_name, creation_date, tel_number, company_name FROM account a LEFT JOIN realtor r ON a.realtor_id = r.realtor_id WHERE a.acc_id = :acc_id;");
             $realtor_statement->bindParam(':acc_id', $acc_id);
             $realtor_statement->execute();
@@ -26,28 +26,26 @@
     #### Business Logic
 
         // get account-id from URL
-        if(isset($_GET['acc_id'])){
+        if (isset($_GET['acc_id'])) {
             $curr_acc_id = $_GET['acc_id'];
-        }else{
+        } else {
             die('Kein Makler ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
         }
 
         $realtor = getRealtor($curr_acc_id);
-
         $realtor_id = $realtor["realtor_id"]; 
-
         
         // checks if realtor exists
-        if(empty($realtor)){
+        if (empty($realtor)) {
             die('Dieses Makler-Profil existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
         }        
 
-        // checks if Account is Realtor
-        if(empty($realtor_id)){
+        // checks if account is realtor
+        if (empty($realtor_id)) {
             die('Diese Person ist kein Makler. <a href="/index.php">Zurück zur Homepage</a>');
         }
         
-        // converting Creation-Date
+        // converting creation_date
         $creation_date_without_time = substr($realtor["creation_date"],0,10);
         $creation_date_splitted = explode('-', $creation_date_without_time);
         $date = $creation_date_splitted[2];
@@ -63,7 +61,6 @@
         foreach (pdo()->query($sql_select) as $offer) {
             $counter++;
         }
-
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +86,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -104,17 +101,14 @@
 
                 <div class="realtor-infos">
                     <div class="left-column">
-
                         <!-- User-Icon -->
                         <img src="../img/icons/benutzer.png">
 
                         <!-- Realtor-Name -->
                         <span class="name"><?php echo $realtor["first_name"].' '.$realtor["last_name"] ?></span>
-
                     </div>
-
+                    
                     <div class="right-column">
-
                         <!-- Realtor-Email -->
                         <img src="../img/icons/email.png">
                         <span><b><?php echo $realtor["acc_email"] ?></b></span>  
@@ -130,21 +124,17 @@
                         <!-- Realtor-User-Since -->
                         <img src="../img/icons/add-user.png">
                         <span>Mitglied seit: <b><?php echo $creation_date ?></b></span>
-                    
-                        
                     </div>                    
-
                 </div>
-
 
                 <!-- RESULTS-AREA -->
                 <h2>Alle Immobilien dieses Anbieters:</h2>
 
                 <?php
                     //check if realtor has offers
-                    if($counter > 0){
+                    if ($counter > 0) {
                         showResults($sql_select, false);                        
-                    }else{
+                    } else {
                         echo '
                             <div class="no-offers">
                                 <span>Dieser Makler bietet momentan keine Immobilien an.</span>      
@@ -158,7 +148,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

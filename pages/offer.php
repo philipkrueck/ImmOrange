@@ -4,7 +4,8 @@
     ### PHP Preparation
 
         require_once('../includes/functions/pdo.php');
-        include('../includes/functions/manage_wishlist.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/functions/toggle_favorite.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
@@ -24,7 +25,7 @@
 
     ### Busines Logic
     
-        if(empty($_GET['offer_id'])){
+        if (empty($_GET['offer_id'])) {
             die('Keine Immobilie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
         }
 
@@ -32,7 +33,7 @@
         $offer = getOffer($_GET['offer_id']);
 
         // checks if offer exists
-        if(empty($offer)){
+        if (empty($offer)) {
             die('Diese Immobilie existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
         }
         
@@ -44,26 +45,23 @@
 
         // checking the number of extras in offer
         $extras_count = 0;
-        if($offer["has_basement"]){
+        if ($offer["has_basement"]) {
             $extras_count++;
         }
-        if($offer["has_garden"]){
+        if ($offer["has_garden"]) {
             $extras_count++;
         }
-        if($offer["has_bathtub"]){
+        if ($offer["has_bathtub"]) {
             $extras_count++;
         }
-        if($offer["has_elevator"]){
+        if ($offer["has_elevator"]) {
             $extras_count++;
         }
-        if($offer["has_balcony"]){
+        if ($offer["has_balcony"]) {
             $extras_count++;
         }
 
-        // favoriting offers is possibile
-        $do_favorite = true;
-
-        // converting Creation-Date
+        // converting creation_date
         $creation_date_without_time = substr($offer["creation_date"],0,10);
         $creation_date_splitted = explode('-', $creation_date_without_time);
         $date = $creation_date_splitted[2];
@@ -72,16 +70,16 @@
         $creation_date = $date.'.'.$month.'.'.$year;
 
         // check if offer is for rent
-        if($offer["is_for_rent"]){
+        if ($offer["is_for_rent"]) {
             $purchasing_type = "zu vermieten";
-        }else{
+        } else {
             $purchasing_type = "zu verkaufen";
         }
 
         // check if offer is appartment
-        if($offer["is_apartment"]){
+        if ($offer["is_apartment"]) {
             $offer_type = "Wohnung";
-        }else{
+        } else {
             $offer_type = "Haus";
         }
 
@@ -110,7 +108,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -179,7 +177,7 @@
                 <!-- offer-options -->
                 <?php
 
-                    if($extras_count > 0){
+                    if ($extras_count > 0) {
                         echo '                        
                         
                         <div class="extras-container">
@@ -224,23 +222,13 @@
                         </span>
                     </a>
                 </div>
-
-                
-                <!-- includes function to favorite offer -->
-                <?php
-                    
-                    if($do_favorite){
-                        include ('../includes/functions/toggle_favorite.php');
-                    }
-                ?>                
-
             </div>
         </main>
 
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

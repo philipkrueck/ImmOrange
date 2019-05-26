@@ -3,9 +3,9 @@
     ### PHP Preparation
 
         error_reporting(E_ALL ^ E_NOTICE);
-        include ('../includes/functions/pdo.php');
-        include ('../includes/functions/manage_wishlist.php');
-        include ('../includes/results.php');
+        include('../includes/functions/pdo.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/results.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
@@ -21,10 +21,9 @@
             toggleFavorite($favorite_id);
         }
 
-        // saves GET-Parameter
+        // checking GET-Parameter and sets SQL
         if (isset($_GET['category'])) {
-            // checking GET-Parameter and sets SQL
-            switch($_GET['category']){
+            switch($_GET['category']) {
                 case 'houses':
                     $title = 'Häuser';
                     $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '0'";
@@ -53,12 +52,8 @@
             die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
         }
 
-
         // counts results
         $counter = getResultsCount($sql_select);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +78,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -93,30 +88,24 @@
             <!-- CONTENT-AREA -->
             <div class="content">
 
-                <h2>Kategorie:
-                    <?php
-                        echo  $title;
+                <h2>Kategorie: <?php echo  $title; ?></h2>                    
+
+                <!-- RESULTS-AREA -->
+                <div class="results-area" id="results">
+
+                    <?php        
+                        showResultsHeader($sql_select, false);
+
+                        if ($counter) {
+                            showResults($sql_select, true);
+                        } else {
+                            echo '<div class="no-results">
+                                    <span>Keine Immobilien vorhanden.</span>
+                                    </div>';
+                        }      
                     ?>
-                </h2>                    
 
-                    <!-- RESULTS-AREA -->
-                    <div class="results-area" id="results">
-
-                        <?php        
-
-                            showResultsHeader($sql_select, false);
-
-                            if($counter){
-                                showResults($sql_select, true);
-                            }else{
-                                echo '<div class="no-results">
-                                        <span>Keine Immobilien vorhanden.</span>
-                                      </div>';
-                            }      
-
-                        ?>
-
-                    </div>
+                </div>
 
             </div>
         </main>
@@ -124,7 +113,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

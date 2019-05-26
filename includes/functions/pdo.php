@@ -1,6 +1,5 @@
 <?php
-function pdo()
-{
+function pdo() {
   static $pdo;
 
   return $pdo ?? $pdo = new PDO(

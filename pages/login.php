@@ -2,10 +2,13 @@
 <?php
 
     ### PHP Preparation
-        include ('../includes/functions/random_id.php');
+
         require_once('../includes/functions/pdo.php');
-        include ('../includes/functions/login_helpers.php');
-        include ('../includes/functions/signup_helpers.php');
+        include('../includes/functions/random_id.php');
+        include('../includes/functions/login_helpers.php');
+        include('../includes/functions/signup_helpers.php');
+        include('../includes/features/jquery.php');
+        include('../includes/features/search_tabs.php');
 
         //starting session to save login-cookie
         session_start();
@@ -14,6 +17,7 @@
 
     
     ### Functions
+
         function login() {
             if (!checkLoginPostParameters()) {
                 $_SESSION['login_error_message'] = "Bitte gib sowohl eine Email, <br> als auch ein Passwort ein.";
@@ -70,8 +74,6 @@
                 signup();
             }
         }
-
-    
 ?>
 
 <!DOCTYPE html>
@@ -83,12 +85,6 @@
         <!-- Homepage-Title -->
         <title>Login  ∙  ImmOrange GmbH</title>
 
-        <!-- Features -->
-        <?php 
-            include ('../includes/features/jquery.php');
-            include ('../includes/features/search_tabs.php');
-        ?>
-
         <!-- Styles -->
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/pages/login.css">
@@ -98,7 +94,7 @@
         <!-- Scripts --> 
         <script>
             // if user wants to be realtor, show additional fields
-            function showRealtorInputs(){
+            function showRealtorInputs() {
                 // Get the checkbox
                 var is_realtor = document.getElementById("is_realtor");
                 // Get the output text
@@ -107,7 +103,7 @@
                 var tel_number = document.getElementById("tel_number");
 
                 // If the checkbox is checked, display the output text
-                if (is_realtor.checked == true){
+                if (is_realtor.checked == true) {
                     company_name.style.display = "block";
                     tel_number.style.display = "block";
                 } else {
@@ -115,12 +111,10 @@
                     tel_number.style.display = "none";
                 }
             }
-
             // transform email input to LowerCase at signup
-            function forceLower(strInput){
+            function forceLower(strInput) {
                 strInput.value=strInput.value.toLowerCase();
             }
-
         </script> 
         
     </head>
@@ -154,7 +148,7 @@
 
                             <!-- check if error-message should be dispayed -->
                             <?php 
-                                if(isset($_SESSION['login_error_message'])) {
+                                if (isset($_SESSION['login_error_message'])) {
                                     echo '<div class="error-message">'.$_SESSION['login_error_message'].'</div>';
                                 }
                             ?>
@@ -170,7 +164,7 @@
                         <form action="?signup=1#tabs-2" method="POST" class="signup-form">
 
                             <?php
-                                if(isset($_SESSION['signup_error_message'])) {
+                                if (isset($_SESSION['signup_error_message'])) {
                                     echo '<div class="error-message">'.$_SESSION['signup_error_message'].'</div>';
                                 }
                                 

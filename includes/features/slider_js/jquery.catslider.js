@@ -30,7 +30,7 @@
 			// current category
 			this.current = 0;
 			var $currcat = this.$categories.eq( 0 );
-			if( !this.support ) {
+			if ( !this.support ) {
 				this.$categories.hide();
 				$currcat.show();
 			}
@@ -61,7 +61,7 @@
 		},
 		showCategory : function( catidx ) {
 
-			if( catidx === this.current || this.isAnimating ) {
+			if ( catidx === this.current || this.isAnimating ) {
 				return false;
 			}
 			this.isAnimating = true;
@@ -79,7 +79,7 @@
 				lastEnter = dir === 'right' ? $newcatchild.length - 1 : 0,
 				self = this;
 
-			if( this.support ) {
+			if ( this.support ) {
 
 				$currcat.removeClass().addClass( toClass );
 				
@@ -118,7 +118,7 @@
 				position = element.style.position;
 			element.appendChild(n);
 			element.style.position = 'relative';
-			setTimeout(function(){
+			setTimeout(function() {
 				element.style.position = position;
 				n.parentNode.removeChild(n);
 			}, 25);

@@ -3,9 +3,9 @@
 
     ### PHP Preparation
 
-        include ('../includes/functions/private.php');
-        include('../includes/functions/manage_wishlist.php');
-        include ('../includes/results.php');
+        include('../includes/functions/private.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/results.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
@@ -28,13 +28,14 @@
             return $offer_statement->fetch();
         }
 
+
     ### Business Logic
 
         if (isset($_GET['delete_offer_id'])) {
             // check that offer id is associated with logged in realtor
             $offer_id = $_GET['delete_offer_id'];
             $offer = getOffer($offer_id);
-            if($offer['realtor_id'] != $_SESSION['realtor_id']) {
+            if ($offer['realtor_id'] != $_SESSION['realtor_id']) {
                 die('Sie haben keine Berechtigung zum Bearbeiten. Zurück zur <a href="../../index.php">Homepage</a>');
                 return;
             }
@@ -47,10 +48,13 @@
         }
 
         $curr_realtor_id = $_SESSION['realtor_id'];
-                                                                            
         $sql_select = "SELECT * FROM property_offer WHERE realtor_id = '$curr_realtor_id'";
 
-
+        // get count of query results
+        $counter = 0;
+        foreach (pdo()->query($sql_select) as $offer) {
+            $counter++;
+        }
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +80,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -89,28 +93,18 @@
                 <h2>Meine Immobilien</h2>
 
                 <!-- BREADCRUM -->
-                <?php 
-                    echo '
-                    <div class="sub-line">
-                        <div class="result-breadcrum">';
-                            $counter = 0;
-                            foreach (pdo()->query($sql_select) as $offer) {
-                                $counter++;
-                            }
 
-                            echo '<span class="result-counter">Anzahl: <b>'; echo $counter; echo '</b></span>
-
+                <div class="sub-line">
+                    <div class="result-breadcrum">
+                        <span class="result-counter">Anzahl: <b><?php echo $counter;?></b></span>
+                    </div>
+                    <a href="create_offer.php">
+                        <div class="add-offer-container">                            
+                            <span>hinzufügen</span>
+                            <img src="../img/icons/add.png">                            
                         </div>
-
-                        <a href="create_offer.php">
-                            <div class="add-offer-container">                            
-                                <span>hinzufügen</span>
-                                <img src="../img/icons/add.png">                            
-                            </div>
-                        </a>
-                    </div>';
-                ?>
-            
+                    </a>
+                </div>
 
                 <div class="my-offers-container">
 
@@ -119,9 +113,9 @@
 
                         <?php                        
 
-                            if($counter){
+                            if ($counter) {
                                 showResults($sql_select, false);
-                            }else{
+                            } else {
                                 echo '<div class="no-results">
                                         <span>Keine Immobilien vorhanden.</span>
                                       </div>';
@@ -134,7 +128,7 @@
                     <!-- EDIT / DELETE-AREA -->
                     <div class="edit-delete-area">
                         <?php
-                            include ('../includes/functions/paging.php');
+                            include('../includes/functions/paging.php');
                             
                             foreach (pdo()->query($sql_select_with_paging) as $offer) {
                                 echo '<div class="edit-delete-container">
@@ -156,7 +150,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

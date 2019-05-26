@@ -1,5 +1,4 @@
 <?php
-
     function checkSignupPostParameters() {
         if (($_POST['email'] != '') and
         ($_POST['password'] != '') and
@@ -36,7 +35,7 @@
     }
 
     function emailFormatIsCorrect($email) {
-        if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         }
         return false;
@@ -51,7 +50,7 @@
         $email_check_statement->bindParam('acc_email', $email);
         $email_check_statement->execute();
         $account = $email_check_statement->fetch();
-        if($account !== false) {
+        if ($account !== false) {
             return true;
         } 
         return false;
@@ -65,18 +64,18 @@
         $account_id = get_random_id();
 
         //inserting realtor_infos
-        if(checkIsRealtor()){
+        if (checkIsRealtor()) {
             $realtor_id = get_random_id();
             $signup_statement_realtor = pdo()->prepare("INSERT INTO realtor (realtor_id, company_name, tel_number) VALUES ( :realtor_id, :company_name, :tel_number)");
             $result_realtor = $signup_statement_realtor->execute(array('realtor_id' => $realtor_id, 'company_name' => $_SESSION['company_name'], 'tel_number' => $_SESSION['tel_number']));
             $signup_statement_account = pdo()->prepare("INSERT INTO account (acc_id, acc_email, acc_password, first_name, last_name, realtor_id ) VALUES (:acc_id, :acc_email, :acc_password, :first_name, :last_name, :realtor_id )");
             $result_account = $signup_statement_account->execute(array('acc_id' => $account_id, 'acc_email' => $_SESSION['email'], 'acc_password' => $password_hash, 'first_name' => $_SESSION['first_name'], 'last_name' => $_SESSION['last_name'], 'realtor_id' => $realtor_id ));
-        }else{                                    
+        } else {                                    
             $signup_statement_account = pdo()->prepare("INSERT INTO account (acc_id, acc_email, acc_password, first_name, last_name ) VALUES (:acc_id, :acc_email, :acc_password, :first_name, :last_name )");
             $result_account = $signup_statement_account->execute(array('acc_id' => $account_id, 'acc_email' => $_SESSION['email'], 'acc_password' => $password_hash, 'first_name' => $_SESSION['first_name'], 'last_name' => $_SESSION['last_name'] ));
         }
 
-        if($result_account) {  
+        if ($result_account) {  
             $_SESSION['acc_id'] = $account_id;
             return true;
         } else {

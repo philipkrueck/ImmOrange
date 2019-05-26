@@ -4,7 +4,7 @@
     ### PHP Preparation
 
         include('../includes/functions/pdo.php');
-        include('../includes/functions/manage_wishlist.php');
+        include('../includes/functions/manage_favorites.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
@@ -43,7 +43,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -59,7 +59,7 @@
 
                     <?php 
                         $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
-                        include ('../includes/results.php');
+                        include('../includes/results.php');
                         showFavoriteResults($favorites);
                     ?>
 
@@ -71,7 +71,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

@@ -10,7 +10,7 @@ body{
     font-family: 'Open Sans' !important;
 
     background-color: #717171;
-    background: url(../img/placeholder_banner.jpg) no-repeat center center fixed;
+    background: url(../img/background_image.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

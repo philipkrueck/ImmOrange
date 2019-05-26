@@ -11,6 +11,7 @@
             session_start();
         }
 
+
     ### Functions
 
         function setSessionVariables() {
@@ -84,6 +85,7 @@
     
     ### Business Logic
         
+        // insert property offer
         if (isset($_POST['submit_offer'])) {
             if (checkAllPostVariablesAreSet()) {
                 setSessionVariables();
@@ -96,6 +98,8 @@
                 return;
             }
         }    
+
+        $page_is_in_edit_ui = false;
 ?>
 
 <!DOCTYPE html>
@@ -129,7 +133,6 @@
         <!-- MAIN-AREA -->
         <main>
             <?php 
-                $page_is_in_edit_ui = false;
                 include('../includes/create_edit_offer.php');
             ?>>
         </main>
@@ -137,7 +140,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

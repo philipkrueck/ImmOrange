@@ -94,17 +94,20 @@
      
     ### Business Logic    
 
-        if(!isset($_GET['offer_id'])) {
+        // checks that offer_id is set in get parameter
+        if (!isset($_GET['offer_id'])) {
             die('Immobilie existiert nicht. Zurück zur <a href="../../index.php">Homepage</a>');
             return;
         }
 
+        // checks if user is allowed to edit
         $offer = getOffer($_GET['offer_id']);
-        if($offer['realtor_id'] != $_SESSION['realtor_id']) {
+        if ($offer['realtor_id'] != $_SESSION['realtor_id']) {
             die('Sie haben keine Berechtigung zu bearbeiten. Zurück zur <a href="../../index.php">Homepage</a>');
             return;
         }
 
+        // update property fields
         if (isset($_POST['submit_offer'])) {
             if (checkAllPostVariablesAreSet()) {
                 setSessionVariables();
@@ -115,7 +118,9 @@
                 header("Location: edit_offer.php?not_filled=1&offer_id=".$_GET['offer_id']);
                 return;
             }
-        }    
+        }
+
+        $page_is_in_edit_ui = true;
 ?>
 
 <!DOCTYPE html>
@@ -148,7 +153,6 @@
         <!-- MAIN-AREA -->
         <main>
             <?php 
-                $page_is_in_edit_ui = true;
                 include('../includes/create_edit_offer.php');
             ?>
         </main>
@@ -156,7 +160,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     </body>

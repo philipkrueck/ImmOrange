@@ -3,7 +3,7 @@
     function showResults($sql_select, $do_favorite) {
 
         if (isset($_GET['sort'])) {
-                switch($_GET['sort']){
+                switch($_GET['sort']) {
                     case 'price-asc':
                         $sql_select = $sql_select.' ORDER BY price ASC';
                     break;
@@ -22,7 +22,7 @@
             }
         }
 
-        include ('functions/paging.php');
+        include('functions/paging.php');
 
         // set session variable for current results page
         $_SESSION['current_results_url'] = $_SERVER['REQUEST_URI'];
@@ -45,7 +45,7 @@
             <!-- favorite-icon -->
             '; 
             $image_source = "../img/icons/heart_white.png";
-            if($do_favorite){
+            if ($do_favorite) {
                 $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
                 if (in_array($offer_id, $favorites)) {
                     $image_source = "../img/icons/heart_orange.png";
@@ -100,9 +100,9 @@
         }
         
         echo '
-            <div class="paging-container" ';  if($page_count == 0){echo 'style="display: none;" ';} echo '>
+            <div class="paging-container" ';  if ($page_count == 0) {echo 'style="display: none;" ';} echo '>
                 <div class="back">
-                    <span ';  if($is_first_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_back.'">
+                    <span ';  if ($is_first_page) {echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_back.'">
                     <span class="arrow">&larr;</span> zurück
                     </a></span>
                     
@@ -113,7 +113,7 @@
                 </div>
 
                 <div class="next">
-                    <span ';  if($is_last_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_next.'">
+                    <span ';  if ($is_last_page) {echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_next.'">
                         nächste <span class="arrow">&rarr;</span>
                     </a></span>
                 </div>
@@ -127,7 +127,7 @@
             <span class="result-counter">Anzahl Suchergebnisse: <b>'; echo count($favorite_ids); echo '</b></span>
         </div>';
 
-        if($favorite_ids){
+        if ($favorite_ids) {
             foreach ($favorite_ids as $favorite_id) {
 
                 $select_offer = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id");
@@ -200,7 +200,7 @@
                     header("Refresh:0");
                 }
             }
-        }else{
+        } else {
             echo '<div class="no-results">
                     <span>Keine Immobilien vorhanden.</span>
                   </div>';
@@ -335,5 +335,4 @@
         }
         return $counter;
     }
-
 ?>

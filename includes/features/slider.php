@@ -77,7 +77,7 @@
 	</div>
 
 <!-- below jquery script allows slider to present arrow for current tab -->
-<script src="/js/features/slider_js/jquery.catslider.js"></script>
+<script src="/includes/features/slider_js/jquery.catslider.js"></script>
 <script>
 $(function() {
 

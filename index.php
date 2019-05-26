@@ -2,9 +2,8 @@
 <?php
     #### PHP Preparation
 
-        // including functions
         require_once('includes/functions/pdo.php');
-        include('includes/functions/manage_wishlist.php'); 
+        include('includes/functions/manage_favorites.php'); 
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
@@ -86,13 +85,13 @@
 
         <!-- Features -->
         <?php 
-            include ('includes/features/jquery.php');
-            include ('includes/features/search_tabs.php');
-            include ('includes/features/autocomplete.php');
-            include ('includes/features/combobox.php');
-            include ('includes/features/price_range.php');
-            include ('includes/features/popup.php');
-            include ('includes/results.php');
+            include('includes/features/jquery.php');
+            include('includes/features/search_tabs.php');
+            include('includes/features/autocomplete.php');
+            include('includes/features/combobox.php');
+            include('includes/features/price_range.php');
+            include('includes/features/popup.php');
+            include('includes/results.php');
         ?>
 
         <!-- Styles -->
@@ -104,7 +103,7 @@
         <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css" />
         
         <!-- Scripts -->
-		<script src="/js/features/slider_js/modernizr.custom.63321.js"></script>       
+		<script src="/includes/features/slider_js/modernizr.custom.63321.js"></script>       
         
 
     </head>
@@ -115,7 +114,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('includes/header.php');
+                include('includes/header.php');
             ?>
         </header>
 
@@ -124,7 +123,7 @@
 
             <!-- POP-UP MESSAGE -->
             <?php
-                if(isset($_GET['logged_out']) || isset($_GET['logged_in']) || isset($_GET['signed_up'])){
+                if (isset($_GET['logged_out']) || isset($_GET['logged_in']) || isset($_GET['signed_up'])) {
                     echo '<div id="dialog" title="'.$popup_message.'">
                     </div>';
                 }
@@ -288,7 +287,7 @@
                     <?php 
 
                         // check if error-message should be dispayed
-                        if(isset($_SESSION["fulltext_error_message"])) {
+                        if (isset($_SESSION["fulltext_error_message"])) {
                             echo '<div class="error-message">'.$_SESSION["fulltext_error_message"].'</div>';
                         }
 
@@ -320,7 +319,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('includes/footer.php');
+                include('includes/footer.php');
             ?>
         </footer>
     
