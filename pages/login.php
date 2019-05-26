@@ -159,7 +159,7 @@
                     <!-- SIGNUP-AREA -->                  
                     <div id="tabs-2">
 
-                        <form action="?signup=1" method="POST" class="signup-form">
+                        <form action="?signup=1#tabs-2" method="POST" class="signup-form">
 
                             <?php
                                 if(isset($_SESSION['signup_error_message'])) {
