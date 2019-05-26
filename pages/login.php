@@ -56,7 +56,7 @@
             return; 
         }
 
-        if (!couldRegisterUserFromSessionVariables()) {
+        if (!couldRegisterUserFromSessionVariables($_SESSION['password'])) {
             $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
             return;
         }
@@ -159,7 +159,7 @@
                     <!-- SIGNUP-AREA -->                  
                     <div id="tabs-2">
 
-                        <form action="/?signed_up=true" method="POST" class="signup-form">
+                        <form action="?signup=1" method="POST" class="signup-form">
 
                             <?php
                                 if(isset($_SESSION['signup_error_message'])) {
