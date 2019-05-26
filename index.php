@@ -100,11 +100,11 @@
         <link rel="stylesheet" href="css/pages/index.css">
         <link rel="stylesheet" href="css/results.css">
         <link rel="stylesheet" href="css/features/tabs.css">
-        <link rel="stylesheet" type="text/css" href="/css/features/product_slider_styles.css" />
+        <link rel="stylesheet" type="text/css" href="/css/features/slider_styles.css" />
         <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css" />
         
         <!-- Scripts -->
-		<script src="/js/features/product_slider_js/modernizr.custom.63321.js"></script>       
+		<script src="/js/features/slider_js/modernizr.custom.63321.js"></script>       
         
 
     </head>
@@ -309,7 +309,7 @@
                     <h2>Promoted</h2>    
 
                     <?php
-                        include('includes/features/product_slider.php');
+                        include('includes/features/slider.php');
                     ?>
 
                 </div>
