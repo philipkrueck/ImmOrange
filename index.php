@@ -1,68 +1,79 @@
 <!-- PHP-AREA -->
 <?php
-    require_once('includes/functions/pdo.php');
-    include('includes/functions/manage_wishlist.php');
 
-    // start session if not already started
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
+    #### PHP Preparation
 
-    // check if favorite was selected and if so, toggle in cookie
-    $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
-    if ($favorite_id) {
-        toggleFavorite($favorite_id);
-    }
+        // including functions
+        require_once('includes/functions/pdo.php');
+        include('includes/functions/manage_wishlist.php');
 
-    if (isset($_POST['submit_fulltext_search'])) {
-        if (!checkFulltextStringNotEmpty()) {
-            $_SESSION["fulltext_error_message"] = "Bitte geben Sie etwas in die Suche ein.";
-        } else {
-            $_SESSION['is_fulltext_search'] = true;
-            $_SESSION["fulltext_error_message"] = null;
-            $_SESSION['fulltext_search_string'] = $_POST['fulltext_search_string'];
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
         }
-        header("Location: index.php");
-        exit; 
 
-    } else if (isset($_POST['submit_extended_search'])) {
-        setSessionVariablesFromPost();
-        $_SESSION['is_fulltext_search'] = false;
-        $_SESSION["fulltext_error_message"] = null;
-        header("Location: index.php");
-        exit;
-    }
 
-    function setSessionVariablesFromPost() {
-        $_SESSION['price_min'] = $_POST['price_min']; 
-        $_SESSION['price_max'] = $_POST['price_max']; 
-        $_SESSION['city'] = $_POST['city'] != '' ? $_POST['city'] : null; 
-        $_SESSION['qm'] = $_POST['qm'] != '' ? $_POST['qm'] : null; 
-        $_SESSION['is_apartment'] = isset($_POST['is_apartment']) ? $_POST['is_apartment'] : null;
-        $_SESSION['is_for_rent'] = isset($_POST['is_for_rent']) ? $_POST['is_for_rent'] : null;
-        $_SESSION['number_of_rooms'] = isset($_POST['number_of_rooms']) ? $_POST['number_of_rooms'] : null;
-        $_SESSION['has_basement'] = isset($_POST['has_basement']) ? $_POST['has_basement'] : null; 
-        $_SESSION['has_garden'] = isset($_POST['has_garden']) ? $_POST['has_garden'] : null; 
-        $_SESSION['has_balcony'] = isset($_POST['has_balcony']) ? $_POST['has_balcony'] : null;
-        $_SESSION['has_bathtub'] = isset($_POST['has_bathtub']) ? $_POST['has_bathtub'] : null;
-        $_SESSION['has_lift'] = isset($_POST['has_lift']) ? $_POST['has_lift'] : null;
-    }
+    #### Business Logic
 
-    function checkFulltextStringNotEmpty() {
-        return ($_POST['fulltext_search_string'] != '');
-    }
+        // check if favorite was selected and if so, toggle in cookie
+        $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
+        if ($favorite_id) {
+            toggleFavorite($favorite_id);
+        }
 
-    if(isset($_GET['logged_out']) && $_GET['logged_out'] == true){
-        $popup_message = 'erfolgreich abgemeldet';
-    }
+        // check if full-text-search has input
+        if (isset($_POST['submit_fulltext_search'])) {
+            if (!checkFulltextStringNotEmpty()) {
+                $_SESSION["fulltext_error_message"] = "Bitte geben Sie etwas in die Suche ein.";
+            } else {
+                $_SESSION['is_fulltext_search'] = true;
+                $_SESSION["fulltext_error_message"] = null;
+                $_SESSION['fulltext_search_string'] = $_POST['fulltext_search_string'];
+            }
+            header("Location: index.php");
+            exit; 
 
-    if(isset($_GET['logged_in']) && $_GET['logged_in'] == true){
-        $popup_message = 'erfolgreich angemeldet';
-    }
+        } else if (isset($_POST['submit_extended_search'])) {
+            setSessionVariablesFromPost();
+            $_SESSION['is_fulltext_search'] = false;
+            $_SESSION["fulltext_error_message"] = null;
+            header("Location: index.php");
+            exit;
+        }
 
-    if(isset($_GET['signed_up']) && $_GET['signed_up'] == true){
-        $popup_message = 'erfolgreich registriert';
-    }
+        if(isset($_GET['logged_out']) && $_GET['logged_out'] == true){
+            $popup_message = 'erfolgreich abgemeldet';
+        }
+
+        if(isset($_GET['logged_in']) && $_GET['logged_in'] == true){
+            $popup_message = 'erfolgreich angemeldet';
+        }
+
+        if(isset($_GET['signed_up']) && $_GET['signed_up'] == true){
+            $popup_message = 'erfolgreich registriert';
+        }
+
+
+    #### Functions
+
+        function setSessionVariablesFromPost() {
+            $_SESSION['price_min'] = $_POST['price_min']; 
+            $_SESSION['price_max'] = $_POST['price_max']; 
+            $_SESSION['city'] = $_POST['city'] != '' ? $_POST['city'] : null; 
+            $_SESSION['qm'] = $_POST['qm'] != '' ? $_POST['qm'] : null; 
+            $_SESSION['is_apartment'] = isset($_POST['is_apartment']) ? $_POST['is_apartment'] : null;
+            $_SESSION['is_for_rent'] = isset($_POST['is_for_rent']) ? $_POST['is_for_rent'] : null;
+            $_SESSION['number_of_rooms'] = isset($_POST['number_of_rooms']) ? $_POST['number_of_rooms'] : null;
+            $_SESSION['has_basement'] = isset($_POST['has_basement']) ? $_POST['has_basement'] : null; 
+            $_SESSION['has_garden'] = isset($_POST['has_garden']) ? $_POST['has_garden'] : null; 
+            $_SESSION['has_balcony'] = isset($_POST['has_balcony']) ? $_POST['has_balcony'] : null;
+            $_SESSION['has_bathtub'] = isset($_POST['has_bathtub']) ? $_POST['has_bathtub'] : null;
+            $_SESSION['has_lift'] = isset($_POST['has_lift']) ? $_POST['has_lift'] : null;
+        }
+
+        function checkFulltextStringNotEmpty() {
+            return ($_POST['fulltext_search_string'] != '');
+        }
 
 ?>
 
