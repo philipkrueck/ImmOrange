@@ -86,8 +86,8 @@
         <title>Login  ∙  ImmOrange GmbH</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/pages/login.css">
+        <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/features/tabs.css">
         <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">     
 
