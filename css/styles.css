@@ -714,8 +714,12 @@ footer{
 }
 
 .bitmoji{
-  width:6%;
-  margin-right: 5px;
+  width:4%;
+  margin-right: 8px;
+}
+.bitmojileo{
+  width:4.5%;
+  margin-right: 10px;
 }
 
 .iconHouse{
