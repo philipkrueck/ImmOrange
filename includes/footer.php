@@ -25,10 +25,20 @@
       <div class="smallfooter">
 
         <h3>Lerne die Entwickler kennen:</h3>
-        <p style="text-align: center; margin-right: 5px">  <img class="bitmoji" src="../img/icons/phillippbitmoji.png">Phillip </p>
-        <p style="text-align: center; margin-right: 6.5px">  <img class="bitmoji" src="../img/icons/ollibitmoji.png">Oliver </p>
-        <p style="text-align: center; margin-right: 21px">  <img class="bitmojileo" src="../img/icons/bitmoji.png">Leo </p>
-        <p style="text-align: center; margin-right: 0px">  <img class="bitmoji" src="../img/icons/marcelbitmoji.png">Marcel </p>
+        <div class="developer">
+          <div>
+            <p style="text-align: center; margin-right: 5px">  <img class="bitmoji" src="../img/icons/phillippbitmoji.png">Phillip </p>
+          </div>
+          <div>
+            <p style="text-align: center; margin-right: 6.5px">  <img class="bitmoji" src="../img/icons/ollibitmoji.png">Oliver </p>
+          </div>
+          <div>
+            <p style="text-align: center; margin-right: 21px">  <img class="bitmojileo" src="../img/icons/bitmoji.png">Leo </p>
+          </div>
+          <div>
+            <p style="text-align: center; margin-right: 0px">  <img class="bitmoji" src="../img/icons/marcelbitmoji.png">Marcel </p>
+          </div>
+        </div>
       </div>
 
 

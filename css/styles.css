@@ -279,6 +279,13 @@ footer{
     text-decoration: none;
 }
 
+.developer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 0px 60px;
+}
+
 .minifooter {
 
   text-align: center; vertical-align:text-top;
@@ -298,11 +305,11 @@ footer{
 }
 
 .bitmoji{
-  width:4%;
+  width:35px;
   margin-right: 8px;
 }
 .bitmojileo{
-  width:4.5%;
+  width: 38px;
   margin-right: 10px;
 }
 
