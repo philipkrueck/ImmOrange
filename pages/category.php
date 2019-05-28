@@ -1,16 +1,15 @@
-<!-- PHP-AREA -->
 <?php
     ### PHP Preparation
-
-        error_reporting(E_ALL ^ E_NOTICE);
-        include('../includes/functions/pdo.php');
-        include('../includes/functions/manage_favorites.php');
-        include('../includes/results.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
+        error_reporting(E_ALL ^ E_NOTICE);
+        include('../includes/functions/pdo.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/results.php');        
 
     
     ### Business Logic

@@ -1,16 +1,15 @@
-<!-- PHP-AREA -->
 <?php
 
     ### PHP Preparation
-
-        require_once('../includes/functions/pdo.php');
-        include('../includes/functions/manage_favorites.php');
-        include('../includes/functions/toggle_favorite.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
+        require_once('../includes/functions/pdo.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/functions/toggle_favorite.php');
 
 
     ### Functions

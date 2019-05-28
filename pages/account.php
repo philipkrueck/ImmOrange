@@ -1,15 +1,14 @@
-<!-- PHP-AREA -->
 <?php
 
     #### PHP Preparation
-
-        include_once('../includes/functions/pdo.php');
-        include('../includes/results.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
+        include_once('../includes/functions/pdo.php');
+        include('../includes/results.php');        
 
     
     #### Functions

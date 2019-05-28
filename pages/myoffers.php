@@ -1,16 +1,15 @@
-<!-- PHP-AREA -->
 <?php
 
     ### PHP Preparation
-
-        include('../includes/functions/private.php');
-        include('../includes/functions/manage_favorites.php');
-        include('../includes/results.php');
 
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
+        include('../includes/functions/private.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/results.php');        
 
 
     ### Functions

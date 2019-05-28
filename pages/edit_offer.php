@@ -1,14 +1,14 @@
 <?php
     ### PHP Preparation
 
-        require_once('../includes/functions/pdo.php');
-        require_once('../includes/functions/private.php');
-        include('../includes/functions/random_id.php');
-
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
+        require_once('../includes/functions/pdo.php');
+        require_once('../includes/functions/private.php');
+        include('../includes/functions/random_id.php');
 
 
     ### Functions

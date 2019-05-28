@@ -1,4 +1,3 @@
-<!-- PHP-AREA -->
 <?php
 
     ### PHP Preparation
