@@ -1,6 +1,6 @@
 <!--LOGO-->
   <a href="/">
-    <img src="../img/logo.png" class="logo">
+    <img src="/img/logo.png" class="logo">
   </a>
 
 
@@ -9,7 +9,7 @@
     echo '
       <!--DROPDOWN-->
       <div class="dropdown">
-          <img class="iconUSER" src="../img/icons/'; if (isset($_SESSION['acc_id'])) { echo 'Benutzer.png';} else { echo 'Benutzer_2.png'; } echo'" >
+          <img class="iconUSER" src="/img/icons/'; if (isset($_SESSION['acc_id'])) { echo 'Benutzer.png';} else { echo 'Benutzer_2.png'; } echo'" >
           <div class="dropdown-content">';    
           
             if (isset($_SESSION['acc_id'])) {
