@@ -271,6 +271,7 @@ footer{
   width:32.33%;height:90%;
   margin-left: 8px;
   text-align: center;
+  margin-top: 10px;
 }
 
 .smallfooter a{
@@ -278,12 +279,19 @@ footer{
     text-decoration: none;
 }
 
+.developer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 0px 60px;
+}
+
 .minifooter {
 
-  text-align: center; vertical-align:middle;
+  text-align: center; vertical-align:text-top;
   color:#ffffff;
-  font-size: 12px;
-  padding:15px;
+  font-size: 15px;
+  padding:0px;
 }
 
 .iconTIF{
@@ -292,15 +300,22 @@ footer{
   margin-left:75px;
   margin-top: 50px;
 }
+.iconTIF:hover {
+    background-color: rgba(0, 101, 114, 0.65);
+}
 
-.iconWP{
-  width:5%;
-  margin-left: 5px;
+.bitmoji{
+  width:35px;
+  margin-right: 8px;
+}
+.bitmojileo{
+  width: 38px;
+  margin-right: 10px;
 }
 
 .iconHouse{
   width:5%;
   margin-left: 10px;
-}    
+}
 
 
