@@ -17,15 +17,15 @@
     $is_last_page = false;
 
     // sets how many pages exist
-    if(getResultsCount($sql_select) % $page_entries == 0){
+    if (getResultsCount($sql_select) % $page_entries == 0) {
         $page_count = getResultsCount($sql_select) / $page_entries;
-    }else{
+    } else {
         $page_count = (floor((getResultsCount($sql_select) / $page_entries))) + 1;
     }
 
 
     // sets new page-values
-    if(isset($_GET['page']))
+    if (isset($_GET['page']))
     {
         $page_current = $_GET['page'];
         $page_next = $_GET['page'] + 1;
@@ -35,12 +35,12 @@
     // sets how many entries need to be skipped
     $skip = $page_back * $page_entries;
 
-    if($page_current == 1)
+    if ($page_current == 1)
     {
         $is_first_page = true;
     }
 
-    if($page_current == $page_count)
+    if ($page_current == $page_count)
     {
         $is_last_page = true;
     }

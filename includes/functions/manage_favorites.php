@@ -9,13 +9,17 @@
                 $_COOKIE['favorites'] = json_encode($favorites);
             }
             else {
-                $idx = array_search($favorite_id, $favorites);
-                unset($favorites[$idx]);
-                $favorites = array_values($favorites);
-                setcookie('favorites', json_encode($favorites), time() + (86400 * 30), "/"); // 86400 = 1 day
-                $_COOKIE['favorites'] = json_encode($favorites);
+                removeIdFromCookies($favorite_id, $favorites);
             }
         }
+    }
+
+    function removeIdFromCookies($id, $favorites) {
+        $idx = array_search($id, $favorites);
+        unset($favorites[$idx]);
+        $favorites = array_values($favorites);
+        setcookie('favorites', json_encode($favorites), time() + (86400 * 30), "/"); // 86400 = 1 day
+        $_COOKIE['favorites'] = json_encode($favorites);
     }
 
 ?>

@@ -1,12 +1,24 @@
 <!-- PHP-AREA -->
 <?php
 
-    include('../includes/functions/manage_wishlist.php');
-    // check if favorite was selected and if so, toggle in cookie
-    $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
-    if ($favorite_id) {
-        toggleFavorite($favorite_id);
-    }
+    ### PHP Preparation
+
+        include('../includes/functions/pdo.php');
+        include('../includes/functions/manage_favorites.php');
+
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+    
+    ### Business Logic
+
+        // check if favorite was selected and if so, toggle in cookie
+        $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
+        if ($favorite_id) {
+            toggleFavorite($favorite_id);
+        }
 ?>
 
 <!DOCTYPE html>
@@ -16,11 +28,12 @@
     <head>
     
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title>Meine Favoriten  ∙  ImmOrange GmbH</title>
 
-        <!-- Link-Relations -->
+        <!-- Styles -->
         <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> 
+        <link rel="stylesheet" href="../css/results.css">
+        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">
 
     </head>
 
@@ -30,7 +43,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -46,7 +59,7 @@
 
                     <?php 
                         $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
-                        include ('../includes/results.php');
+                        include('../includes/results.php');
                         showFavoriteResults($favorites);
                     ?>
 
@@ -58,7 +71,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

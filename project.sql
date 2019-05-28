@@ -34,11 +34,11 @@ CREATE TABLE property_offer (
   creation_date DATETIME DEFAULT now() NOT NULL,
   FOREIGN KEY(realtor_id) REFERENCES realtor(realtor_id),
   FULLTEXT (offer_name, street, zip, city, country)
-) ENGINE=MyISAM CHARSET=utf8mb4;
+) ENGINE=InnoDB ;
 
 CREATE TABLE account (
   acc_id INTEGER PRIMARY KEY NOT NULL,
-  acc_email VARCHAR(50) NOT NULL,
+  acc_email VARCHAR(50) NOT NULL UNIQUE,
   acc_password VARCHAR(255) NOT NULL,
   first_name VARCHAR(50) NOT NULL,
   last_name VARCHAR(50) NOT NULL,

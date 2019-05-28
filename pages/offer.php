@@ -1,76 +1,87 @@
 <!-- PHP-AREA -->
 <?php
 
-    require_once('../includes/functions/pdo.php');
-    include('../includes/functions/manage_wishlist.php');
+    ### PHP Preparation
 
-    function getOffer($offer_id) {
-        $offer_statement = pdo()->prepare("SELECT offer_id, offer_name, price, qm, number_of_rooms, is_for_rent, is_apartment, construction_year, has_basement, has_garden, has_bathtub, has_elevator, has_balcony, city, p.creation_date, company_name, acc_id FROM property_offer p LEFT OUTER JOIN realtor r ON p.realtor_id = r.realtor_id LEFT OUTER JOIN account a ON r.realtor_id = a.realtor_id WHERE offer_id = :offer_id;");
-        $offer_statement->bindParam(':offer_id', $offer_id);
-        $offer_statement->execute();
-        return $offer_statement->fetch();
-    }
+        require_once('../includes/functions/pdo.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/functions/toggle_favorite.php');
 
-    if(empty($_GET['offer_id'])){
-        die('Keine Immobilie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
-    }
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
-     // getting offer based on GET-Parameter
-    $offer = getOffer($_GET['offer_id']);
 
-    // checks if offer exists
-    if(empty($offer)){
-        die('Diese Immobilie existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
-    }
+    ### Functions
+
+        function getOffer($offer_id) {
+            $offer_statement = pdo()->prepare("SELECT offer_id, offer_name, price, qm, number_of_rooms, is_for_rent, is_apartment, construction_year, has_basement, has_garden, has_bathtub, has_elevator, has_balcony, city, p.creation_date, company_name, acc_id FROM property_offer p LEFT OUTER JOIN realtor r ON p.realtor_id = r.realtor_id LEFT OUTER JOIN account a ON r.realtor_id = a.realtor_id WHERE offer_id = :offer_id;");
+            $offer_statement->bindParam(':offer_id', $offer_id);
+            $offer_statement->execute();
+            return $offer_statement->fetch();
+        }
+
+
+    ### Busines Logic
     
-    // toggle favorite if get param is set
-    $favorite_id = isset($_GET['favorite']) ? $_GET['offer_id'] : null;
-    if ($favorite_id) {
-        toggleFavorite($favorite_id);
-    }
+        if (empty($_GET['offer_id'])) {
+            die('Keine Immobilie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+        }
 
-    // checking the number of extras in offer
-    $extras_count = 0;
-    if($offer["has_basement"]){
-        $extras_count++;
-    }
-    if($offer["has_garden"]){
-        $extras_count++;
-    }
-    if($offer["has_bathtub"]){
-        $extras_count++;
-    }
-    if($offer["has_elevator"]){
-        $extras_count++;
-    }
-    if($offer["has_balcony"]){
-        $extras_count++;
-    }
+        // getting offer based on GET-Parameter
+        $offer = getOffer($_GET['offer_id']);
 
-    // favoriting offers is possibile
-    $do_favorite = true;
+        // checks if offer exists
+        if (empty($offer)) {
+            die('Diese Immobilie existiert nicht. <a href="/index.php">Zurück zur Homepage</a>');
+        }
+        
+        // toggle favorite if get param is set
+        $favorite_id = isset($_GET['favorite']) ? $_GET['offer_id'] : null;
+        if ($favorite_id) {
+            toggleFavorite($favorite_id);
+        }
 
-    // converting Creation-Date
-    $creation_date_without_time = substr($offer["creation_date"],0,10);
-    $creation_date_splitted = explode('-', $creation_date_without_time);
-    $date = $creation_date_splitted[2];
-    $month = $creation_date_splitted[1];
-    $year = $creation_date_splitted[0];
-    $creation_date = $date.'.'.$month.'.'.$year;
+        // checking the number of extras in offer
+        $extras_count = 0;
+        if ($offer["has_basement"]) {
+            $extras_count++;
+        }
+        if ($offer["has_garden"]) {
+            $extras_count++;
+        }
+        if ($offer["has_bathtub"]) {
+            $extras_count++;
+        }
+        if ($offer["has_elevator"]) {
+            $extras_count++;
+        }
+        if ($offer["has_balcony"]) {
+            $extras_count++;
+        }
 
-    // check if offer is for rent
-    if($offer["is_for_rent"]){
-        $purchasing_type = "zu vermieten";
-    }else{
-        $purchasing_type = "zu verkaufen";
-    }
+        // converting creation_date
+        $creation_date_without_time = substr($offer["creation_date"],0,10);
+        $creation_date_splitted = explode('-', $creation_date_without_time);
+        $date = $creation_date_splitted[2];
+        $month = $creation_date_splitted[1];
+        $year = $creation_date_splitted[0];
+        $creation_date = $date.'.'.$month.'.'.$year;
 
-    // check if offer is appartment
-    if($offer["is_apartment"]){
-        $offer_type = "Wohnung";
-    }else{
-        $offer_type = "Haus";
-    }
+        // check if offer is for rent
+        if ($offer["is_for_rent"]) {
+            $purchasing_type = "zu vermieten";
+        } else {
+            $purchasing_type = "zu verkaufen";
+        }
+
+        // check if offer is appartment
+        if ($offer["is_apartment"]) {
+            $offer_type = "Wohnung";
+        } else {
+            $offer_type = "Haus";
+        }
 
 ?>
 
@@ -81,12 +92,13 @@
     <head>
     
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title><?php echo  $offer["offer_name"] ?>  ∙  ImmOrange GmbH</title>
 
-        <!-- Link-Relations -->
+        <!-- Styles -->
         <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/results.css">
         <link rel="stylesheet" href="../css/pages/offer.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> 
+        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css"> 
 
     </head>
 
@@ -96,7 +108,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -165,7 +177,7 @@
                 <!-- offer-options -->
                 <?php
 
-                    if($extras_count > 0){
+                    if ($extras_count > 0) {
                         echo '                        
                         
                         <div class="extras-container">
@@ -210,24 +222,13 @@
                         </span>
                     </a>
                 </div>
-
-                
-                <!-- includes function to favorite offer -->
-                <?php
-                    
-                    if($do_favorite){
-                        include ('../includes/functions/toggle_favorite.php');
-                    }
-                ?>
-                
-
             </div>
         </main>
 
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

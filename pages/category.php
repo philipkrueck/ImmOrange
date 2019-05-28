@@ -1,55 +1,59 @@
 <!-- PHP-AREA -->
 <?php
-    error_reporting(E_ALL ^ E_NOTICE);
-    include ('../includes/functions/pdo.php');
-    include ('../includes/functions/manage_wishlist.php');
+    ### PHP Preparation
 
-    // includes results-area
-    include ('../includes/results.php');
+        error_reporting(E_ALL ^ E_NOTICE);
+        include('../includes/functions/pdo.php');
+        include('../includes/functions/manage_favorites.php');
+        include('../includes/results.php');
 
-    // check if favorite was selected and if so, toggle in cookie
-    $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
-    if ($favorite_id) {
-        toggleFavorite($favorite_id);
-    }
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
-    // saves GET-Parameter
-    if($_GET['city'] == 'hamburg' || $_GET['city'] == 'berlin'){
-        $get_result = $_GET['city'];
-    }else if($_GET['apartments'] == "0" || $_GET['apartments'] == "1"){
-        $get_result = $_GET['apartments'];
-    }else{
-        die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
-    }
+    
+    ### Business Logic
 
-    // checking GET-Parameter and sets SQL
-    switch($get_result){
+        // check if favorite was selected and if so, toggle in cookie
+        $favorite_id = (isset($_GET['favorite_id']) && !empty($_GET['favorite_id'])) ? $_GET['favorite_id'] : null;
+        if ($favorite_id) {
+            toggleFavorite($favorite_id);
+        }
 
-        case '0':
-            $title = 'Häuser';
-            $sql_select = "SELECT * FROM property_offer WHERE is_apartment = $get_result";
-        break;
+        // checking GET-Parameter and sets SQL
+        if (isset($_GET['category'])) {
+            switch($_GET['category']) {
+                case 'houses':
+                    $title = 'Häuser';
+                    $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '0'";
+                break;
 
-        case '1':
-            $title = 'Wohnungen';
-            $sql_select = "SELECT * FROM property_offer WHERE is_apartment = $get_result";
-        break;
+                case 'apartments':
+                    $title = 'Wohnungen';
+                    $sql_select = "SELECT * FROM property_offer WHERE is_apartment = '1'";
+                break;
 
-        case 'hamburg':
-            $title = 'Hamburg';
-            $sql_select = "SELECT * FROM property_offer WHERE city = '$get_result'";
-        break;
+                case 'hamburg':
+                    $title = 'Hamburg';
+                    $sql_select = "SELECT * FROM property_offer WHERE city = 'Hamburg'";
+                break;
 
-        case 'berlin':
-            $title = 'Berlin';
-            $sql_select = "SELECT * FROM property_offer WHERE city = '$get_result'";
-        break;
+                case 'berlin':
+                    $title = 'Berlin';
+                    $sql_select = "SELECT * FROM property_offer WHERE city = 'Berlin'";
+                break;
 
-    }
+                default:
+                    die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+                break;
+            }
+        } else {
+            die('Keine gültige Kategorie ausgewählt. <a href="/index.php">Zurück zur Homepage</a>');
+        }
 
-    // counts results
-    $counter = getResultsCount($sql_select);
-
+        // counts results
+        $counter = getResultsCount($sql_select);
 ?>
 
 <!DOCTYPE html>
@@ -59,11 +63,12 @@
     <head>
     
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title>Kategorien  ∙  ImmOrange GmbH</title>
 
-        <!-- Link-Relations -->
+        <!-- Styles -->
         <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> 
+        <link rel="stylesheet" href="../css/results.css">
+        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">
 
     </head>
 
@@ -73,7 +78,7 @@
         <!-- HEADER-AREA -->
         <header>
             <?php 
-                include ('../includes/header.php');
+                include('../includes/header.php');
             ?>
         </header>
 
@@ -83,29 +88,24 @@
             <!-- CONTENT-AREA -->
             <div class="content">
 
-                <h2>Kategorie:
-                    <?php
-                        echo  $title;
+                <h2>Kategorie: <?php echo  $title; ?></h2>                    
+
+                <!-- RESULTS-AREA -->
+                <div class="results-area" id="results">
+
+                    <?php        
+                        showResultsHeader($sql_select, false);
+
+                        if ($counter) {
+                            showResults($sql_select, true);
+                        } else {
+                            echo '<div class="no-results">
+                                    <span>Keine Immobilien vorhanden.</span>
+                                    </div>';
+                        }      
                     ?>
-                </h2>
-                 
 
-                <div class="result-breadcrum">
-                            
-                    <span class="result-counter">Anzahl: <b><?php echo $counter; ?></b></span>
-
-                </div>        
-
-                    <!-- RESULTS-AREA -->
-                    <div class="results-area" id="results">
-
-                        <?php                      
-
-                            showResults($sql_select, true);    
-
-                        ?>
-
-                    </div>
+                </div>
 
             </div>
         </main>
@@ -113,7 +113,7 @@
         <!-- FOOTER-AREA -->
         <footer>
             <?php
-                include ('../includes/footer.php');
+                include('../includes/footer.php');
             ?>
         </footer>
     

@@ -1,14 +1,13 @@
-
 <!-- FOOTER -->
 
       <!-- Category-Area -->
       <div class="smallfooter">
 
-        <h3>Deine Traumimmobilie:</h3>
-        <a href="/pages/category.php?apartments=0"><p style="text-align: center; margin-left: 0px"> Häuser  <img class="iconHouse" src="../img/icons/house.png"></p></a>
-        <a href="/pages/category.php?apartments=1"><p style="text-align: center; margin-left: -32px"> Wohnungen   <img class="iconHouse" src="../img/icons/apartement.png"></p></a>
-        <a href="/pages/category.php?city=hamburg"><p style="text-align: center; margin-left: -30px"> in Hamburg  <img class="iconHouse" src="../img/icons/location.png" ></p></a>
-        <a href="/pages/category.php?city=berlin"><p style="text-align: center; margin-left: -5px"> in Berlin  <img class="iconHouse" src="../img/icons/location.png" ></p></a>
+        <h4><i>Kategorien:</i></h4>
+        <a href="/pages/category.php?category=houses"><p style="text-align: center; margin-left: 0px"> Häuser  <img class="iconHouse" src="../img/icons/house.png"></p></a>
+        <a href="/pages/category.php?category=apartments"><p style="text-align: center; margin-left: -32px"> Wohnungen   <img class="iconHouse" src="../img/icons/apartement.png"></p></a>
+        <a href="/pages/category.php?category=hamburg"><p style="text-align: center; margin-left: -30px"> in Hamburg  <img class="iconHouse" src="../img/icons/location.png" ></p></a>
+        <a href="/pages/category.php?category=berlin"><p style="text-align: center; margin-left: -5px"> in Berlin  <img class="iconHouse" src="../img/icons/location.png" ></p></a>
 
       </div>
 

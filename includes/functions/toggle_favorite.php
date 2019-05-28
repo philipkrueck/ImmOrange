@@ -1,6 +1,6 @@
 <script>
     $('.heart-icon').on({
-    'click': function(){
+    'click': function() {
 
         if ( $(this).attr('src') == '../img/icons/heart_white.png' ) {
             $(this).attr('src','../img/icons/heart_orange.png');

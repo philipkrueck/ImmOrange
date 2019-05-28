@@ -1,8 +1,4 @@
 
-/* Modernizr 2.6.2 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-cssanimations-csstransforms-shiv-cssclasses-prefixed-testprop-testallprops-domprefixes-load
- */
-;
 window.Modernizr = function(a, b, c) {
         function x(a) {
             j.cssText = a
@@ -134,7 +130,7 @@ window.Modernizr = function(a, b, c) {
                 function p(a, b) {
                     b.cache || (b.cache = {}, b.createElem = a.createElement, b.createFrag = a.createDocumentFragment, b.frag = b.createFrag()), a.createElement = function(c) {
                         return r.shivMethods ? n(c, a, b) : b.createElem(c)
-                    }, a.createDocumentFragment = Function("h,f", "return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + l().join().replace(/\w+/g, function(a) {
+                    }, a.createDocumentFragment = Function("h,f", "return function() {var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + l().join().replace(/\w+/g, function(a) {
                         return b.createElem(a), b.frag.createElement(a), 'c("' + a + '")'
                     }) + ");return n}")(r, b.frag)
                 }

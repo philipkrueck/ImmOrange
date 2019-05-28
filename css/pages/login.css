@@ -40,7 +40,8 @@ img.login-logo{
         display: block;
         margin: 0 auto;
         margin-bottom: 20px;
-        width: 280px;
+        width: 400px;
+        height: auto;
         border: 0px;
 
         border: 5px solid white;
@@ -73,18 +74,19 @@ img.login-logo{
     ***************************************************/
 
     .signup-form{
-        padding: 40px 90px 20px 60px;
-        max-width: 410px;
+        padding: 40px 60px 20px 60px;
+        max-width: 500px;
     }
 
     .signup-form input{
         border-radius: 50px;
-        padding: 7px 30px;;
+        padding: 10px 30px;;
         font-size: 15px;
         display: block;
         margin: 0 auto;
         margin-bottom: 20px;
         width: 100%;
+        height: auto;
         border: 0px;
         border: 5px solid white;
     }
@@ -102,7 +104,7 @@ img.login-logo{
 
     .signup-form .names{
         display: grid;
-        grid-gap: 90px;
+        grid-gap: 10px;
         grid-template-columns: 1fr 1fr;
     }
 
@@ -122,8 +124,7 @@ img.login-logo{
         display: grid;
         grid-template-columns: 1fr 3fr;
         margin-bottom: 20px;
-        margin-bottom: 10px;
-        background-color: 
+        padding: 0px 140px;
     }
 
     .signup-form .is-realtor-description{
@@ -133,15 +134,13 @@ img.login-logo{
     }
 
     .signup-form input[type=checkbox]{
-        /* Double-sized Checkboxes */
-        -ms-transform: scale(1.5); /* IE */
-        -moz-transform: scale(1.5); /* FF */
-        -webkit-transform: scale(1.5); /* Safari and Chrome */
-        -o-transform: scale(1.5); /* Opera */
-        transform: scale(1.5);
+        -ms-transform: scale(2.0); /* IE */
+        -moz-transform: scale(2.0); /* FF */
+        -webkit-transform: scale(2.0); /* Safari and Chrome */
+        -o-transform: scale(2.0); /* Opera */
+        transform: scale(2.0);
         padding: 10px;
-        margin-left: 100px;
-        margin-top: 4px;
+        margin-top: 8px;
     }
 
     .signup-form .error-message{

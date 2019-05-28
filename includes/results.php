@@ -2,7 +2,27 @@
 
     function showResults($sql_select, $do_favorite) {
 
-        include ('functions/paging.php');
+        if (isset($_GET['sort'])) {
+                switch($_GET['sort']) {
+                    case 'price-asc':
+                        $sql_select = $sql_select.' ORDER BY price ASC';
+                    break;
+        
+                    case 'price-desc':
+                        $sql_select = $sql_select.' ORDER BY price DESC';
+                    break;
+        
+                    case 'date-asc':
+                        $sql_select = $sql_select.' ORDER BY creation_date ASC';
+                    break;
+        
+                    case 'date-desc':
+                        $sql_select = $sql_select.' ORDER BY creation_date DESC';  
+                    break;
+            }
+        }
+
+        include('functions/paging.php');
 
         // set session variable for current results page
         $_SESSION['current_results_url'] = $_SERVER['REQUEST_URI'];
@@ -25,7 +45,7 @@
             <!-- favorite-icon -->
             '; 
             $image_source = "../img/icons/heart_white.png";
-            if($do_favorite){
+            if ($do_favorite) {
                 $favorites = (isset($_COOKIE['favorites']) && !empty($_COOKIE['favorites'])) ? json_decode($_COOKIE['favorites'], true) : array();
                 if (in_array($offer_id, $favorites)) {
                     $image_source = "../img/icons/heart_orange.png";
@@ -80,9 +100,9 @@
         }
         
         echo '
-            <div class="paging-container">
+            <div class="paging-container" ';  if ($page_count == 0) {echo 'style="display: none;" ';} echo '>
                 <div class="back">
-                    <span ';  if($is_first_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_back.'">
+                    <span ';  if ($is_first_page) {echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_back.'">
                     <span class="arrow">&larr;</span> zurück
                     </a></span>
                     
@@ -93,7 +113,7 @@
                 </div>
 
                 <div class="next">
-                    <span ';  if($is_last_page){echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_next.'">
+                    <span ';  if ($is_last_page) {echo 'style="display: none;" ';} echo '><a href="/.'.$paging_url.$paging_combination_character.'page='.$page_next.'">
                         nächste <span class="arrow">&rarr;</span>
                     </a></span>
                 </div>
@@ -102,79 +122,90 @@
     }
 
     function showFavoriteResults($favorite_ids) {
-        include('functions/pdo.php');
-
         echo '<div class="results-area" id="results"><h2>Deine Merkliste</h2>'; 
         echo '<div class="result-breadcrum">
             <span class="result-counter">Anzahl Suchergebnisse: <b>'; echo count($favorite_ids); echo '</b></span>
         </div>';
 
-        foreach ($favorite_ids as $favorite_id) {
+        if ($favorite_ids) {
+            foreach ($favorite_ids as $favorite_id) {
 
-            $select_offer = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id");
-            $select_offer->bindParam(':offer_id', $favorite_id);
-            $select_offer->execute();
-            $offer = $select_offer->fetch();
+                $select_offer = pdo()->prepare("SELECT * FROM property_offer WHERE offer_id = :offer_id");
+                $select_offer->bindParam(':offer_id', $favorite_id);
+                $select_offer->execute();
+                $offer = $select_offer->fetch();
 
-            echo '<div class="result-container">
+                if (!empty($offer)) {
+                    echo '<div class="result-container">
+                
+                    <!-- offer-image -->
+                    <div class="result-image-container">
+                        <a href="/pages/offer.php?offer_id='.$favorite_id.'"><img src="/includes/functions/image_source.php?offer_id='.$favorite_id.'"></a>
+                    </div>
+
+                    <!-- offer-title -->
+                    <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$favorite_id.'">'.$offer['offer_name'].'</a></h3>
+
+                    <!-- favorite-icon -->
+                    '; 
+                        $image_source = "../img/icons/heart_orange.png";
+                        // destination url specifies which page to load, but removes get parameter 'favorite_id', if it is currently set
+                        $destination_url = preg_replace("/[\?|\&]favorite_id.*/", "", $_SERVER['REQUEST_URI']);
+                        $combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['favorite_id']))) ? "?" : "&";
+                        echo '<a href="'.$destination_url.$combination_character.'favorite_id='.$favorite_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
+
+                    echo '
+                    <!-- offer-price -->
+                    <span class="result-price">'.$offer["price"].' €</span>
+
+                    <!-- offer-qm -->
+                    <span class="result-space">'.$offer["qm"].' qm</span>
+
+                    <!-- offer-rooms -->
+                    <div class="result-rooms-container">
+                        <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">'.$offer["number_of_rooms"].' Zimmer</span>
+                    </div>
+
+                    <!-- offer-location -->
+                    <div class="result-location-container">
+                        <img src="../img/icons/location.png" class="location-img"><span class="result-location">in '.$offer["city"].'</span>
+                    </div>
+
+                    <!-- offer-options -->
+                    <div class="result-options-container">
+                        ';           
+                            if ($offer["has_basement"]) {
+                                echo '<img src="../img/icons/basement.png" title="besitzt einen Keller">';
+                            }
+                            if ($offer["has_garden"]) {
+                                echo '<img src="../img/icons/botanical.png" title="besitzt einen Garten">';
+                            }
+                            if ($offer["has_balcony"]) {
+                                echo '<img src="../img/icons/balcony.png" title="besitzt einen Balkon">';
+                            }
+                            if ($offer["has_bathtub"]) {
+                                echo '<img src="../img/icons/bathtub.png" title="besitzt eine Badewanne">';
+                            }
+                            if ($offer["has_elevator"]) {
+                                echo '<img src="../img/icons/lift.png" title="besitzt einen Fahrstuhl">';
+                            }
+                            
+                        echo '  
+                    </div>
+
+                </div>';
+                } else {
+                    removeIdFromCookies($favorite_id, $favorite_ids);
+                    // refresh page
+                    header("Refresh:0");
+                }
+            }
+        } else {
+            echo '<div class="no-results">
+                    <span>Keine Immobilien vorhanden.</span>
+                  </div>';
+        }  
             
-            <!-- offer-image -->
-            <div class="result-image-container">
-                <a href="/pages/offer.php?offer_id='.$favorite_id.'"><img src="/includes/functions/image_source.php?offer_id='.$favorite_id.'"></a>
-            </div>
-
-            <!-- offer-title -->
-            <h3 class="result-title"><a href="/pages/offer.php?offer_id='.$favorite_id.'">'.$offer['offer_name'].'</a></h3>
-
-            <!-- favorite-icon -->
-            '; 
-                $image_source = "../img/icons/heart_orange.png";
-                // destination url specifies which page to load, but removes get parameter 'favorite_id', if it is currently set
-                $destination_url = preg_replace("/[\?|\&]favorite_id.*/", "", $_SERVER['REQUEST_URI']);
-                $combination_character = (empty($_GET) or (count($_GET) == 1 and isset($_GET['favorite_id']))) ? "?" : "&";
-                echo '<a href="'.$destination_url.$combination_character.'favorite_id='.$favorite_id.'" class="heart-icon" id="heart-icon"><img src="'.$image_source.'" onclick="toggleFavorite()"></a>';
-
-            echo '
-            <!-- offer-price -->
-            <span class="result-price">'.$offer["price"].' €</span>
-
-            <!-- offer-qm -->
-            <span class="result-space">'.$offer["qm"].' qm</span>
-
-            <!-- offer-rooms -->
-            <div class="result-rooms-container">
-                <img src="../img/icons/rooms.png" class="rooms-img"><span class="result-rooms">'.$offer["number_of_rooms"].' Zimmer</span>
-            </div>
-
-            <!-- offer-location -->
-            <div class="result-location-container">
-                <img src="../img/icons/location.png" class="location-img"><span class="result-location">in '.$offer["city"].'</span>
-            </div>
-
-            <!-- offer-options -->
-            <div class="result-options-container">
-                ';           
-                    if ($offer["has_basement"]) {
-                        echo '<img src="../img/icons/basement.png" title="besitzt einen Keller">';
-                    }
-                    if ($offer["has_garden"]) {
-                        echo '<img src="../img/icons/botanical.png" title="besitzt einen Garten">';
-                    }
-                    if ($offer["has_balcony"]) {
-                        echo '<img src="../img/icons/balcony.png" title="besitzt einen Balkon">';
-                    }
-                    if ($offer["has_bathtub"]) {
-                        echo '<img src="../img/icons/bathtub.png" title="besitzt eine Badewanne">';
-                    }
-                    if ($offer["has_elevator"]) {
-                        echo '<img src="../img/icons/lift.png" title="besitzt einen Fahrstuhl">';
-                    }
-                    
-                echo '  
-            </div>
-
-        </div>';
-        }
     }
 
 
@@ -186,7 +217,7 @@
         $sql_select = "SELECT * FROM property_offer WHERE MATCH (offer_name, street, zip, city, country) AGAINST ('$search_string' IN NATURAL LANGUAGE MODE) ";
     
         // show results-area
-        showResultsHeader($sql_select);
+        showResultsHeader($sql_select, true);
         showResults($sql_select, true);
 
         echo'</div>';       
@@ -268,23 +299,33 @@
 
     
         // show results-area
-        showResultsHeader($sql_select);
+        showResultsHeader($sql_select, true);
 
         showResults($sql_select, true);
 
         echo'</div>';
     }
 
-    function showResultsHeader($sql_select) {
+    function showResultsHeader($sql_select, $show_dropdown) {
         echo '<div class="result-breadcrum">';
             $counter = getResultsCount($sql_select);
-            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>
-            <!-- <select>
-                <option>neuste zuerst</option>
-                <option>Preis aufsteigend</option>
-                <option>Preis absteigend</option>
-            </select> -->
-        </div>';
+            echo '<span class="result-counter">Anzahl Suchergebnisse: <b>'; echo $counter; echo '</b></span>';
+            if ($show_dropdown) {
+                showSortingSelectionBox();
+            }
+        echo '</div>';
+    }
+
+    function showSortingSelectionBox() {
+        $current_page_url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
+        $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+        echo '<select onchange="window.location=this.options[this.selectedIndex].value">
+            <option disabled selected>Ergebnisse sortieren</option>
+            <option value="'.$current_page_url.'?sort=date-asc" '; echo $sort == 'date-asc' ? 'selected' : ''; echo '>online seit &uarr;</option></a>
+            <option value="'.$current_page_url.'?sort=date-desc" '; echo $sort == 'date-desc' ? 'selected' : ''; echo '>online seit &darr;</option>
+            <option value="'.$current_page_url.'?sort=price-asc" '; echo $sort == 'price-asc' ? 'selected' : ''; echo '>Preis &uarr;</option>
+            <option value="'.$current_page_url.'?sort=price-desc" '; echo $sort == 'price-desc' ? 'selected' : ''; echo '>Preis &darr;</option>
+        </select>';
     }
 
     function getResultsCount($query) {
@@ -294,5 +335,4 @@
         }
         return $counter;
     }
-
 ?>

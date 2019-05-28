@@ -10,7 +10,7 @@ body{
     font-family: 'Open Sans' !important;
 
     background-color: #717171;
-    background: url(../img/placeholder_banner.jpg) no-repeat center center fixed;
+    background: url(../img/background_image.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -35,14 +35,14 @@ body{
                     Font Sytles
     ***************************************************/
 
-h2{
-    color: white;
-    max-width: 900px;
-    background-color: rgba(255, 165, 0, 0.8);
-    padding: 10px;
-    text-align: center;
-    border-radius: 3px;
-}
+        h2{
+            color: white;
+            max-width: 900px;
+            background-color: rgba(255, 165, 0, 0.8);
+            padding: 10px;
+            text-align: center;
+            border-radius: 3px;
+        }
 
 
 /**************************************************
@@ -87,6 +87,7 @@ header a{
         color: white;
         padding-right: 20px;
         padding-left: 20px;
+        box-sizing: content-box;
     }
 
     .navsearch::placeholder{
@@ -114,7 +115,7 @@ header a{
 
 
     .dropdown:hover {
-        background-color: rgba(255, 165, 0, 0.8);;
+        background-color: rgba(255, 165, 0, 0.8);
     }
 
     .dropdown-content {
@@ -122,7 +123,7 @@ header a{
         float: right;
         margin-right: -1px;
         display: none;
-        background-color: rgba(0, 101, 114, 0.65);
+        background-color: rgba(255, 165, 0, 0.9);
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
         width: 210px;
@@ -164,6 +165,10 @@ header a{
 
     }
 
+    .drop-in:active {
+        background-color: #d18800;
+    }
+
     .in-dropDIV {
         text-align: center;
         vertical-align: middle;
@@ -176,7 +181,6 @@ header a{
         color: white;
         text-decoration: none;
     }
-
 
 
 
@@ -252,426 +256,6 @@ main .content{
     }
 
 
-/**************************************************
-                 HEADER Sytles
-***************************************************/
-header{
-    height: 90px;
-    background-color: rgba(0, 101, 114, 0.65);
-}
-
-/**************************************************
-                 MAIN Sytles
-***************************************************/
-
-main .content{
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-    /**************************************************
-                 Search-Area Sytles
-    ***************************************************/
-    .search-area {
-        margin-top: 80px;
-        margin-bottom: 20px;
-    }
-
-
-        /**************************************************
-                 Extended-Search Sytles
-        ***************************************************/
-
-        .extended-search{
-            text-align: center;
-            border-radius: 0px 0px 3px 3px;
-            margin-top: -18px;
-            padding: 30px 20px 20px 20px;
-        }
-
-        .extended-search h3{
-            color: white;
-            margin: 0px 0px 20px 0px;
-            font-family: 'Open Sans';
-            font-size: 16px;
-        }
-
-
-            /**************************************************
-                 Extended-Search: FIRST Row
-            ***************************************************/
-
-            .extended-search.first-row{
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                padding: 30px 0px 30px 0px;
-            }
-
-            /**************************************************
-                 Extended-Search: SECOND Row
-            ***************************************************/
-
-            .extended-search.second-row{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                padding: 10px 100px 30px 100px;
-            }
-
-            /**************************************************
-                 Extended-Search: THIRD Row
-            ***************************************************/
-
-            .extended-search.third-row{
-                padding: 20px 140px 30px 140px;
-            }
-
-
-            .extended-search.third-row #amount {
-                background: none;
-                border: 0px;
-                text-align: center;
-                color: white;
-                font-weight: bold;
-            }
-
-            .extended-search.third-row #amount:focus {
-                outline: none;
-                cursor: default;
-            }
-
-            .extended-search.third-row #amount:hover {
-                outline: none;
-                cursor: default;
-            }
-
-            span.ui-slider-handle.ui-corner-all.ui-state-default {
-                background-color: #ffa500;
-                border-radius: 50px;
-            }
-
-            .ui-slider-range.ui-corner-all.ui-widget-header {
-                background-color: #d18800!important;
-            }
-
-            /**************************************************
-                 Extended-Search: FOURTH Row
-            ***************************************************/
-
-            .extended-search.fourth-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                padding: 10px 40px 10px 40px;
-                margin-left: 45px;
-            }
-
-            .checkbox-container{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
-            }
-
-            .checkbox-icon{
-                grid-column: 1/2;
-                grid-row: 1/2;
-                width: 40px;
-                margin: 0 auto;
-            }
-
-            .checkbox-description{
-                grid-column: 1/2;
-                grid-row: 2/3;
-                margin-top: 5px;
-                font-size: 14px;
-                color: white;
-                font-family: 'Open Sans';
-                text-align: center;
-            }
-
-            .checkbox-container input[type=checkbox]{
-                grid-column: 2/3;
-                grid-row: 1/3;
-                margin-top: 20px;
-                width: 1em;
-
-                /* Double-sized Checkboxes */
-                -ms-transform: scale(1.3); /* IE */
-                -moz-transform: scale(1.3); /* FF */
-                -webkit-transform: scale(1.3); /* Safari and Chrome */
-                -o-transform: scale(1.3); /* Opera */
-                transform: scale(1.3);
-                padding: 10px;
-            }
-
-            /**************************************************
-                 Extended-Search: FIFTH Row
-            ***************************************************/
-
-            .extended-search.fifth-row{
-                padding: 20px 140px 30px 140px;
-            }
-
-        /**************************************************
-                    Full-Text-Search Sytles
-        ***************************************************/
-
-        .full-text-search-area{
-            text-align: center;
-            border-radius: 0px 0px 3px 3px;
-            margin-top: -18px;
-            padding: 30px 50px 20px 50px;
-        }
-
-        .full-text-search-bar{
-            width: 95% !important;
-            display: block;
-            border-radius: 50px !important;
-            padding: 15px !important;
-            font-size: 18px!important;
-        }
-
-
-    /**************************************************
-                 Results-Area Sytles
-    ***************************************************/
-    .results-area{
-        margin-bottom: 20px;
-    }
-
-    .results-area a{
-        text-decoration: none;
-        color: white;
-    }
-
-    .result-breadcrum{
-        display: grid;
-        grid-template-columns: 700px 200px;
-
-        background-color: #d18800d1;
-        color: white;
-        padding: 7px;
-        border-radius: 50px;
-        font-family: 'Open Sans';
-        max-w
-    }
-
-    .result-breadcrum .result-counter{
-        margin: 0px 0px 0px 10px;
-    }
-
-    .result-breadcrum select{
-        background-color: #ffa500;
-        color: white;
-        border-radius: 50px;
-        padding: 7px;
-        border: 0px;
-        max-width: 185px;
-        float: right;
-        font-family: 'Open Sans';
-    }
-
-    .result-breadcrum select:focus{
-        outline: none;
-    }
-
-    .result-container{
-        display: grid;
-        grid-gap: 10px;
-        grid-template-columns: 2fr 2fr 1fr;
-        grid-template-rows: 80px 50px 50px 50px;
-
-        font-family: 'Open Sans';
-        margin-bottom: 20px;
-        margin-top: 30px;
-        max-height: 280px;
-        border-radius: 3px;
-        background-color: rgba(0, 101, 114, 0.65);
-    }
-
-    .result-container .result-image-container{
-        grid-column: 1/2;
-        grid-row: 1/5;
-        overflow: hidden;
-        border-right: 10px solid #d18800;
-    }
-
-    .result-container .result-image-container img{
-        max-height: 280px;
-        -moz-transition: all 0.5s;
-        -webkit-transition: all 0.5s;
-        transition: all 0.5s;
-    }
-
-    .result-container .result-image-container img:hover{
-        moz-transform: scale(1.1);
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
-
-    .result-container h3{
-        grid-column: 2/5;
-
-        text-align: center;
-        font-size: 22px;
-        margin: 30px 30px 20px 30px;
-    }
-
-    .result-container .heart-icon{
-        position: absolute;
-        margin-left: 820px;
-        margin-top: 25px;
-    }
-
-    .result-container .heart-icon img{
-        width: 35px;
-        cursor: pointer;
-    }
-
-    .result-container .result-price{
-        grid-column: 4/5;
-        grid-row: 2/3;
-
-        text-align: center;
-        padding: 10px 20px;
-        margin-right: 20px;
-        font-size: 20px;
-        font-weight: bold;
-        background-color: #ffa500;
-        border-radius: 10px;
-        height: 30px;
-    }
-
-    .result-container .result-space{
-        grid-column: 4/5;
-        grid-row: 3/4;
-
-        text-align: center;
-        padding: 10px 20px;
-        margin-right: 20px;
-        font-size: 20px;
-        font-weight: bold;
-        background-color: #ffa500;
-        border-radius: 10px;
-        height: 30px;
-    }
-
-    .result-container .result-rooms-container{
-        display: inline;
-        grid-column: 2/4;
-        grid-row: 2/3;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    .result-rooms{
-        font-size: 18px;
-        font-style: italic;
-    }
-
-    .result-container .rooms-img{
-        width: 20px;
-        margin-right: 15px;
-    }
-
-    .result-container .result-location-container{
-        display: inline;
-        grid-column: 2/4;
-        grid-row: 3/4;
-        text-align: center;
-        margin: 5px;
-    }
-
-    .result-location{
-        font-size: 18px;
-        font-style: italic;
-    }
-
-    .result-container .location-img{
-        width: 20px;
-        margin-right: 10px;
-    }
-
-    .result-container .result-options-container{
-        display: inline;
-        grid-column: 2/4;
-        grid-row: 4/5;
-        text-align: center;
-    }
-
-    .result-container .result-options-container img{
-        max-width: 25px;
-        margin-right: 25px;
-    }
-
-    .result-container .result-options-container img:last-child{
-        margin-right: 0px;
-    }
-
-    /**************************************************
-                Paging Sytles
-    ***************************************************/
-    .paging-container{
-        display: grid;
-        grid-template-columns: 175px 510px 175px;
-        grid-gap: 20px;
-
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 20px;
-        margin-top: 10px;
-    }
-
-    .paging-container a{
-        color: white;
-        text-decoration: none;
-    }
-
-    .back{
-        grid-column: 1/2;
-
-        background-color: rgba(0, 101, 114, 0.65);
-        padding: 30px 10px;
-        border-radius: 3px;
-    }
-
-    .current{
-        grid-column: 2/3;
-
-        background-color: rgba(0, 101, 114, 0.65);
-        padding: 30px 10px;
-        border-radius: 3px;
-    }
-
-    .next{
-        grid-column: 3/4;
-
-        background-color: rgba(0, 101, 114, 0.65);
-        padding: 30px 10px;
-        border-radius: 3px;
-    }
-
-    .arrow{
-        font-weight: bold;
-        margin: 5px;
-    }
-
-
-
-    /**************************************************
-                 Promoted-Area Sytles
-    ***************************************************/
-    .promoted-area{
-        background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;
-    }
-
-    /**************************************************
-                 Newest-Area Sytles
-    ***************************************************/
-    .newest-area{
-        background-color: rgba(0, 101, 114, 0.65);
-        margin-bottom: 20px;
-    }
-
 
 /**************************************************
                  FOOTER Sytles
@@ -728,70 +312,3 @@ footer{
 }
 
 
-/**************************************************
-            Tabs Sytles
-***************************************************/
-
-#search-tabs {
-    background-color: rgba(0, 101, 114, 0.65);
-}
-
-.ui-tabs .ui-tabs-panel {
-    padding: 0em !important;
-}
-
-.ui-widget-content {
-    border: 0px !important
-}
-
-.ui-widget-header {
-    border: 0px !important;
-    background: none !important;
-}
-
-.ui-tabs .ui-tabs-nav {
-    text-align: center;
-    margin-top: -30px !important;
-    font-family: 'Open Sans';
-    font-weight: bold;
-}
-
-.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
-    background-color: #ffa500;
-    padding: 30px !important;
-    color: white;
-}
-
-.ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover{
-    background-color: #d18800;
-}
-
-.ui-tabs-anchor:focus{
-    outline: none;
-}
-
-.ui-tabs .ui-tabs-nav .ui-tabs-anchor:focus {
-    border: none;
-}
-
-.ui-tabs .ui-tabs-nav li {
-        float: none !important;
-        display: inline-block;
-        margin-top: -20px;
-        border: none;
-}
-
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-    border: 0px !important;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor, .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor, .ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
-    border: 0px!important;
-    background: #d18800!important;
-}
-
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-    border: 0px !important;
-    background: none !important;
-    color: black !important;
-}

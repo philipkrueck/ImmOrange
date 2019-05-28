@@ -1,68 +1,79 @@
 <!-- PHP-AREA -->
 <?php
-    include ('../includes/functions/random_id.php');
-    require_once('../includes/functions/pdo.php');
-    include ('../includes/functions/login_helpers.php');
-    include ('../includes/functions/signup_helpers.php');
 
-    //starting session to save login-cookie
-    session_start();
-    $_SESSION['login_error_message'] = null;
-    $_SESSION['signup_error_message'] = null; 
+    ### PHP Preparation
 
-    if (isset($_POST['submit'])) {
-        if (isset($_GET['login'])) {
-            login();
-        } else if (isset($_GET['signup'])) {
-            signup();
+        require_once('../includes/functions/pdo.php');
+        include('../includes/functions/random_id.php');
+        include('../includes/functions/login_helpers.php');
+        include('../includes/functions/signup_helpers.php');
+        include('../includes/features/jquery.php');
+        include('../includes/features/search_tabs.php');
+
+        //starting session to save login-cookie
+        session_start();
+        $_SESSION['login_error_message'] = null;
+        $_SESSION['signup_error_message'] = null; 
+
+    
+    ### Functions
+
+        function login() {
+            if (!checkLoginPostParameters()) {
+                $_SESSION['login_error_message'] = "Bitte gib sowohl eine Email, <br> als auch ein Passwort ein.";
+                return; 
+            }
+            setLoginSessionVariables();
+            if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
+                header("Location: /?logged_in=true#0");
+                return;
+            } else {
+                $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
+            }
         }
-    }
 
-    function login() {
-        if (!checkLoginPostParameters()) {
-            $_SESSION['login_error_message'] = "Bitte gib sowohl eine Email, <br> als auch ein Passwort ein.";
-            return; 
-        }
-        setLoginSessionVariables();
-        if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
-            header("Location: /?logged_in=true");
+        function signup() {
+            if (!checkSignupPostParameters()) {
+                $_SESSION['signup_error_message'] = "Bitte fülle alle Felder aus.";
+                return; 
+            }
+            setSignupSessionVariables();
+            // check email format
+            if (!emailFormatIsCorrect($_SESSION['email'])) {
+                $_SESSION['signup_error_message'] = "Bitte eine gültige eMail angeben.";
+                return; 
+            }
+
+            // check passwords are matching
+            if (!passwordsAreMatching($_SESSION['password'], $_SESSION['password_2'])) {
+                $_SESSION['signup_error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
+                return;
+            }
+
+            // check if email already exists
+            if (emailAlreadyExists($_SESSION['email'])) {
+                $_SESSION['signup_error_message'] = "Die eMail existiert bereits.";
+                return; 
+            }
+
+            if (!couldRegisterUserFromSessionVariables($_SESSION['password'])) {
+                $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
+                return;
+            }
+            header("Location: /?signed_up=true#0");
             return;
-        } else {
-            $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
-        }
-    }
-
-    function signup() {
-        if (!checkSignupPostParameters()) {
-            $_SESSION['signup_error_message'] = "Bitte fülle alle Felder aus.";
-            return; 
-        }
-        setSignupSessionVariables();
-        // check email format
-        if (!emailFormatIsCorrect($_SESSION['email'])) {
-            $_SESSION['signup_error_message'] = "Bitte eine gültige eMail angeben.";
-            return; 
         }
 
-        // check passwords are matching
-        if (!passwordsAreMatching($_SESSION['password'], $_SESSION['password_2'])) {
-            $_SESSION['signup_error_message'] = "Die eingegebenen Passwörter stimmen nicht überein.";
-            return;
-        }
+    
+    ### Business Logic
 
-        // check if email already exists
-        if (emailAlreadyExists($_SESSION['email'])) {
-            $_SESSION['signup_error_message'] = "Die eMail existiert bereits.";
-            return; 
+        if (isset($_POST['submit'])) {
+            if (isset($_GET['login'])) {
+                login();
+            } else if (isset($_GET['signup'])) {
+                signup();
+            }
         }
-
-        if (!couldRegisterUserFromSessionVariables()) {
-            $_SESSION['signup_error_message'] = "Beim Abspeichern ist leider ein Fehler aufgetreten";
-            return;
-        }
-        header("Location: /?signed_up=true");
-        return;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -72,17 +83,18 @@
     <head>
     
         <!-- Homepage-Title -->
-        <title>Page Title</title>
+        <title>Login  ∙  ImmOrange GmbH</title>
 
-        <!-- Includes -->
-        <?php 
-            include ('../includes/features/jquery.php');
-            include ('../includes/features/search_tabs.php');
-        ?>
+        <!-- Styles -->
+        <link rel="stylesheet" href="../css/pages/login.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/features/tabs.css">
+        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">     
 
         <!-- Scripts --> 
         <script>
-            function showRealtorInputs(){
+            // if user wants to be realtor, show additional fields
+            function showRealtorInputs() {
                 // Get the checkbox
                 var is_realtor = document.getElementById("is_realtor");
                 // Get the output text
@@ -91,7 +103,7 @@
                 var tel_number = document.getElementById("tel_number");
 
                 // If the checkbox is checked, display the output text
-                if (is_realtor.checked == true){
+                if (is_realtor.checked == true) {
                     company_name.style.display = "block";
                     tel_number.style.display = "block";
                 } else {
@@ -99,19 +111,18 @@
                     tel_number.style.display = "none";
                 }
             }
-        </script>
-
-        <!-- Link-Relations -->
-        <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" href="../css/pages/login.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />        
+            // transform email input to LowerCase at signup
+            function forceLower(strInput) {
+                strInput.value=strInput.value.toLowerCase();
+            }
+        </script> 
         
-
     </head>
 
     <!-- BODY-AREA -->
     <body class="login-page">
 
+        <!-- LOGO -->
         <a href="/">
             <img src="../img/logo.png" class="login-logo">
         </a>
@@ -137,7 +148,7 @@
 
                             <!-- check if error-message should be dispayed -->
                             <?php 
-                                if(isset($_SESSION['login_error_message'])) {
+                                if (isset($_SESSION['login_error_message'])) {
                                     echo '<div class="error-message">'.$_SESSION['login_error_message'].'</div>';
                                 }
                             ?>
@@ -153,7 +164,7 @@
                         <form action="?signup=1#tabs-2" method="POST" class="signup-form">
 
                             <?php
-                                if(isset($_SESSION['signup_error_message'])) {
+                                if (isset($_SESSION['signup_error_message'])) {
                                     echo '<div class="error-message">'.$_SESSION['signup_error_message'].'</div>';
                                 }
                                 
@@ -163,7 +174,7 @@
                             ?>
 
                             <!-- inputs for user-information -->
-                            <input type="email" maxlength="50" placeholder="E-Mail" name="email">
+                            <input type="email" maxlength="50" placeholder="E-Mail" name="email" onkeyup="return forceLower(this);">
                             <input type="password" maxlength="50" placeholder="Passwort*" name="password">
                             <input type="password" maxlength="50" placeholder="Passwort bestätigen" name="password_2">
 
