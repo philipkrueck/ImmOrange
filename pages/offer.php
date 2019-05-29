@@ -9,7 +9,6 @@
 
         require_once('../includes/functions/pdo.php');
         include('../includes/functions/manage_favorites.php');
-        include('../includes/functions/toggle_favorite.php');
 
 
     ### Functions
@@ -98,6 +97,11 @@
         <link rel="stylesheet" href="../css/results.css">
         <link rel="stylesheet" href="../css/pages/offer.css">
         <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css"> 
+
+        <!-- Scripts -->
+        <?php
+            include('../includes/functions/toggle_favorite.php');
+        ?>
 
     </head>
 

@@ -89,6 +89,7 @@ img.login-logo{
         height: auto;
         border: 0px;
         border: 5px solid white;
+        box-sizing: border-box;
     }
 
     .signup-form input:focus{

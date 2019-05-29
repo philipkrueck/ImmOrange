@@ -2,15 +2,14 @@
 
     ### PHP Preparation
 
+        //starting session to save login-cookie
+        session_start();
+
         require_once('../includes/functions/pdo.php');
         include('../includes/functions/random_id.php');
         include('../includes/functions/login_helpers.php');
         include('../includes/functions/signup_helpers.php');
-        include('../includes/features/jquery.php');
-        include('../includes/features/search_tabs.php');
-
-        //starting session to save login-cookie
-        session_start();
+        
         $_SESSION['login_error_message'] = null;
         $_SESSION['signup_error_message'] = null; 
 
@@ -24,7 +23,7 @@
             }
             setLoginSessionVariables();
             if (verifyPassword($_SESSION['email'], $_SESSION['password'])) {
-                header("Location: /?logged_in=true#0");
+                header("Location: /?logged_in=true");
                 return;
             } else {
                 $_SESSION['login_error_message'] = "E-Mail oder Passwort ungültig!";
@@ -88,7 +87,13 @@
         <link rel="stylesheet" href="../css/pages/login.css">
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/features/tabs.css">
-        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">     
+        <link rel="stylesheet" type="text/css" href="/css/fonts/OpenSans.css">   
+
+        <!-- Features -->
+        <?php
+            include('../includes/features/jquery.php');
+            include('../includes/features/search_tabs.php');
+        ?>  
 
         <!-- Scripts --> 
         <script>

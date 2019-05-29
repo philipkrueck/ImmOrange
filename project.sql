@@ -38,7 +38,7 @@ CREATE TABLE property_offer (
 
 CREATE TABLE account (
   acc_id INTEGER PRIMARY KEY NOT NULL,
-  acc_email VARCHAR(50) NOT NULL UNIQUE,
+  acc_email VARCHAR(200) NOT NULL UNIQUE,
   acc_password VARCHAR(255) NOT NULL,
   first_name VARCHAR(50) NOT NULL,
   last_name VARCHAR(50) NOT NULL,

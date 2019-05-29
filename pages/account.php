@@ -101,7 +101,7 @@
                 <div class="realtor-infos">
                     <div class="left-column">
                         <!-- User-Icon -->
-                        <img src="../img/icons/benutzer.png">
+                        <img src="/img/icons/Benutzer.png">
 
                         <!-- Realtor-Name -->
                         <span class="name"><?php echo $realtor["first_name"].' '.$realtor["last_name"] ?></span>
