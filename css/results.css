@@ -11,7 +11,7 @@
     }
 
     .results-area .no-results{
-        background-color: rgba(0, 101, 114, 0.65);
+        background-color: rgba(0, 101, 114, 0.90);
         text-align: center;
         color: white;
         min-width: 700px;
@@ -64,7 +64,7 @@
         margin-top: 30px;
         max-height: 280px;
         border-radius: 3px;
-        background-color: rgba(0, 101, 114, 0.65);
+        background-color: rgba(0, 101, 114, 0.90);
     }
 
     .result-container .result-image-container{
@@ -212,7 +212,7 @@
     .back{
         grid-column: 1/2;
 
-        background-color: rgba(0, 101, 114, 0.65);
+        background-color: rgba(0, 101, 114, 0.90);
         padding: 30px 10px;
         border-radius: 3px;
     }
@@ -220,7 +220,7 @@
     .current{
         grid-column: 2/3;
 
-        background-color: rgba(0, 101, 114, 0.65);
+        background-color: rgba(0, 101, 114, 0.90);
         padding: 30px 10px;
         border-radius: 3px;
     }
@@ -228,7 +228,7 @@
     .next{
         grid-column: 3/4;
 
-        background-color: rgba(0, 101, 114, 0.65);
+        background-color: rgba(0, 101, 114, 0.90);
         padding: 30px 10px;
         border-radius: 3px;
     }

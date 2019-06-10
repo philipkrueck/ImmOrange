@@ -10,7 +10,7 @@ img.login-logo{
     position: absolute;
     width: 250px;
     padding: 10px;
-    background-color: rgba(0, 101, 114, 0.65);
+    background-color: rgba(0, 101, 114, 0.90);
     margin: 15px 20px;
     border-radius: 3px;
 }
@@ -35,7 +35,7 @@ img.login-logo{
 
     .login-form input{
         border-radius: 50px;
-        padding: 10px 20px;;
+        padding: 10px 32px;
         font-size: 17px;
         display: block;
         margin: 0 auto;
@@ -80,7 +80,7 @@ img.login-logo{
 
     .signup-form input{
         border-radius: 50px;
-        padding: 10px 30px;;
+        padding: 10px 30px;
         font-size: 15px;
         display: block;
         margin: 0 auto;
