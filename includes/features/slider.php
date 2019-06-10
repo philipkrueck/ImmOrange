@@ -1,5 +1,5 @@
 <?php
-	$sql_select_newest = "SELECT * FROM property_offer ORDER BY creation_date DESC LIMIT 3;";
+	$sql_select_newest = "SELECT offer_id, offer_name, price, qm, number_of_rooms FROM property_offer ORDER BY creation_date DESC LIMIT 3;";
 
 	$newest_offers = getPropertyOffers($sql_select_newest);
 
@@ -16,7 +16,7 @@
 	}
 
 	function getSqlSelectString($city) {
-		return "SELECT * FROM property_offer WHERE city = '$city' ORDER BY creation_date DESC LIMIT 3;";
+		return "SELECT offer_id, offer_name, price, qm, number_of_rooms FROM property_offer WHERE city = '$city' ORDER BY creation_date DESC LIMIT 3;";
 	}
 
 
