@@ -317,7 +317,7 @@
     }
 
     function showSortingSelectionBox() {
-        $current_page_url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
+        $current_page_url = $_SERVER['PHP_SELF'];
         $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
         echo '<select onchange="window.location=this.options[this.selectedIndex].value">
             <option disabled selected>Ergebnisse sortieren</option>
