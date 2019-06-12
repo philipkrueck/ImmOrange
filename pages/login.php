@@ -147,8 +147,8 @@
                     <div id="tabs-1">
 
                         <form action="?login=1" method="POST" class="login-form">    
-                            <input type="email" maxlength="50" placeholder="E-Mail" name="email">
-                            <input type="password" maxlength="50" placeholder="Passwort" name="password">
+                            <input type="email" maxlength="200" placeholder="E-Mail" name="email">
+                            <input type="password" maxlength="255" placeholder="Passwort" name="password">
 
                             <!-- check if error-message should be dispayed -->
                             <?php 
@@ -178,9 +178,9 @@
                             ?>
 
                             <!-- inputs for user-information -->
-                            <input type="email" maxlength="50" placeholder="E-Mail" name="email" onkeyup="return forceLower(this);">
-                            <input type="password" maxlength="50" placeholder="Passwort*" name="password">
-                            <input type="password" maxlength="50" placeholder="Passwort bestätigen" name="password_2">
+                            <input type="email" maxlength="200" placeholder="E-Mail" name="email" onkeyup="return forceLower(this);">
+                            <input type="password" maxlength="255" placeholder="Passwort*" name="password">
+                            <input type="password" maxlength="255" placeholder="Passwort bestätigen" name="password_2">
 
                              <!-- inputs for person-information -->
                             <div class="names">

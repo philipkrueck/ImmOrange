@@ -51,7 +51,7 @@
 
                 <!-- title -->
                 <div class="name-input">
-                    <input type="text" name="offer_name" placeholder="Titel" value="<?php echo $offer_name ?>">
+                    <input type="text" name="offer_name" maxlength="50" placeholder="Titel" value="<?php echo $offer_name ?>">
                 </div>
 
                 <!-- offer-type -->
@@ -158,27 +158,27 @@
 
                     <!-- street -->
                     <div class="street-input">
-                        <input type="text" name="street" placeholder="Straße" value="<?php echo $street ?>">
+                        <input type="text" name="street"  maxlength="50" placeholder="Straße" value="<?php echo $street ?>">
                     </div>
 
                     <!-- house_number -->
                     <div class="house_number-input">
-                        <input type="text" name="house_number" placeholder="Hausnummer" value="<?php echo $house_number ?>">
+                        <input type="text" name="house_number"  maxlength="10" placeholder="Hausnummer" value="<?php echo $house_number ?>">
                     </div>
 
                     <!-- zip -->
                     <div class="zip-input">
-                        <input type="text" name="zip" placeholder="PLZ" value="<?php echo $zip ?>">
+                        <input type="text" name="zip" placeholder="PLZ"  maxlength="10" value="<?php echo $zip ?>">
                     </div>
 
                     <!-- city -->
                     <div class="city-input">
-                        <input type="text" name="city" placeholder="Stadt" value="<?php echo $city ?>">
+                        <input type="text" name="city" placeholder="Stadt"  maxlength="50" value="<?php echo $city ?>">
                     </div>
 
                     <!-- country -->
                     <div class="country-input">
-                        <input type="text" name="country" placeholder="Land" value="<?php echo $country ?>">
+                        <input type="text" name="country" placeholder="Land"  maxlength="50" value="<?php echo $country ?>">
                     </div>
 
                     <!-- submit-button -->
